@@ -5,6 +5,7 @@ int main()
 	int a, b, c;
 	cout << "输入a,b进行加法运算；" << endl;
 	cout << "输入a:";
+	
 	cin >> a;
 	cout << "输入b:";
 	cin >> b;
