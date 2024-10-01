@@ -14,6 +14,6 @@ int main()
 	cin >> a >> b;
 	m = max(a, b);
 	cout << "max=" << m << '\n';
-
+	
 	return 0;
 }
