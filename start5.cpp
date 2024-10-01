@@ -9,10 +9,10 @@ int main()
 	cout << "请输入b=";
 	    cin >> b;
 
-    T = a + b;
-	F = a - b;
-	N = a * b;
-	M = a / b;
+        T = a + b;
+        F = a - b;
+        N = a * b;
+        M = a / b;
 	Q = a % b;
 
 	cout << a << "+" << b << "=" << T << endl;
