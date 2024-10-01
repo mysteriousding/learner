@@ -14,7 +14,6 @@ int main()
 	cout << a << "-" << a << "=" << F << endl;
 	cout << a << "*" << a << "=" << M << endl;
 	cout << a << "/" << a << "=" << N << "-" << "-" << "-" << Q << endl;
-
-
+	
 	return 0;
 }
