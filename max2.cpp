@@ -17,6 +17,6 @@ int main()
 	cin >> a >> b >> c;
 	m = max(a, b, c);
 	cout << "max=" << m << endl;
-
+	
 	return 0;
 }
