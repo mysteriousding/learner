@@ -31,6 +31,6 @@ int main()
 	cin >> l >> m >> n >> o >> p >> q >> r >> s >> t >> u;
 	xyz = max(l, m, n, o, p, q, r, s, t, u);
 	cout << "max=" << xyz << endl;
-
+	
 	return 0;
 }
