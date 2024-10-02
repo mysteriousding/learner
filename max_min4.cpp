@@ -64,6 +64,6 @@ int main()
 	cout << "最小的数为：" << XYZ << endl<<endl;
 
 	cout << "判断完毕，谢谢使用！" << endl;
-
+	
 	return 0;
 }
