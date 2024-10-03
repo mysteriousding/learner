@@ -30,23 +30,23 @@ int max(int a, int b, int c, int d, int e, int f, int g, int h, int i, int j)
 {
 	int k;
 	if (a > b)k = a;
-	else k = b;
+	   else k = b;
 	if (k > c)k = k;
-	else k = c;
+	   else k = c;
 	if (k > d)k = k;
-	else k = d;
+	   else k = d;
 	if (k > e)k = k;
-	else k = e;
+	   else k = e;
 	if (k > f)k = k;
-	else k = f;
+	   else k = f;
 	if (k > g)k = k;
-	else k = g;
+	   else k = g;
 	if (k > h)k = k;
-	else k = h;
+	   else k = h;
 	if (k > i)k = k;
-	else k = i;
+	   else k = i;
 	if (k > j)k = k;
-	else k = j;
+	   else k = j;
 
 	return(k);
 }
@@ -55,23 +55,23 @@ int min(int a, int b, int c, int d, int e, int f, int g, int h, int i, int j)
 {
 	int K;
 	if (a < b)K = a;
-	else K = b;
+	   else K = b;
 	if (K < c)K = K;
-	else K = c;
+	   else K = c;
 	if (K < d)K = K;
-	else K = d;
+	   else K = d;
 	if (K < e)K = K;
-	else K = e;
+	   else K = e;
 	if (K < f)K = K;
-	else K = f;
+	   else K = f;
 	if (K < g)K = K;
-	else K = g;
+	   else K = g;
 	if (K < h)K = K;
-	else K = h;
+	   else K = h;
 	if (K < i)K = K;
-	else K = i;
+	   else K = i;
 	if (K < j)K = K;
-	else K = j;
+	   else K = j;
 
 	return(K);
 }
