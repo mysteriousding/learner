@@ -15,7 +15,7 @@ public:
 	{
 		cout << "学号：" << num << endl;
 		cout << "成绩：" << score << endl;
-		cout << "-------------" << endl;
+		cout << "------------" << endl;
 	};
 };
 Student stud1, stud2;
