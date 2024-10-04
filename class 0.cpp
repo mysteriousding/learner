@@ -24,5 +24,5 @@ int main()
 	stud1.display();
 	stud2.display();
 
-	return 0;
+	return 0；
 }
