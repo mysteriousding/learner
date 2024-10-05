@@ -6,7 +6,7 @@ int main()
     //      c=a+b;
     //      cout>>"a+b=">>a+b;
 
-    //改正：(共四处错误）
+    //改正：(共五处错误）
     int a, b, c;
     cin >> a >> b;
     c = a + b;
