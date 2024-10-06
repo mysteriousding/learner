@@ -11,7 +11,7 @@ using namespace std;
 //int add(int x,int y);
 //{
 //   z=x+y;
-//   return(z）；
+//   return(z）;
 // }
 //改正：                 （共五处错误）
 int main()
