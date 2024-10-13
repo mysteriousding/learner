@@ -5,8 +5,8 @@ int main()
 {
 	//cout << "hello world" << endl;
 
-//±äÁ¿
-	//ÕûĞÍ£º
+//å˜é‡
+	//æ•´å‹ï¼š
 	/*int a1 = 10;
 	short a2 = 11;
 	long a3 = 12;
@@ -19,7 +19,7 @@ int main()
 
 
 
-    //¸¡µãĞÍ
+    //æµ®ç‚¹å‹
 	/*float b1 = 1.23456544;
 	float b2 = 1.23456444f;
 	double b3 = 1.23456544;
@@ -32,7 +32,7 @@ int main()
 
 
 
-	//×Ö·ûĞÍ
+	//å­—ç¬¦å‹
 	/*char c1, c2, c3;
 	c1 = 'A';
 	c2 = 'B';
@@ -56,11 +56,11 @@ int main()
 
 
 
-	//×Ö·û´®ĞÍ
-	/*//C·ç¸ñ
+	//å­—ç¬¦ä¸²å‹
+	/*//Cé£æ ¼
 	char d1[] = "dsq";
 
-	//C++·ç¸ñ
+	//C++é£æ ¼
 	string d2 = "njj";
 
 	cout << d1 << endl;
@@ -68,7 +68,7 @@ int main()
 
 
 
-	//²¼¶ûĞÍ
+	//å¸ƒå°”å‹
 	/*bool e1 = true;
 	bool e2 = false;
 	bool e3 = 1;
@@ -86,18 +86,18 @@ int main()
 
 
 
-//³£Á¿
+//å¸¸é‡
 	/*const int f1 = 16;
 
-	//f1 = 17;        ³£Á¿²»¿ÉĞŞ¸Ä
-	//ai = 8.21;      ³£Á¿²»¿ÉĞŞ¸Ä
+	//f1 = 17;        å¸¸é‡ä¸å¯ä¿®æ”¹
+	//ai = 8.21;      å¸¸é‡ä¸å¯ä¿®æ”¹
 
 	cout << f1 << endl << ai << endl;*/
 
 
 
 
-//ÄÚ´æ¿Õ¼ä
+//å†…å­˜ç©ºé—´
 /*
 	int a1 = 10;
 	short a2 = 11;
@@ -124,51 +124,51 @@ int main()
 
 	ai;
 
-	cout << "intËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(int) << endl;                 //4 
-	cout << "shortËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(short) << endl;             //2
-	cout << "longËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" <<sizeof(long)  << endl;               //4
-	cout << "long longËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" <<sizeof(long long)  << endl;     //8
-	cout << "intËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(a1) << endl;                  //4
-	cout << "shortËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(a2) << endl;                //2
-	cout << "longËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(a3) << endl;                 //4
-	cout << "long longËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(a4) << endl << endl;    //8
+	cout << "intæ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(int) << endl;                 //4 
+	cout << "shortæ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(short) << endl;             //2
+	cout << "longæ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" <<sizeof(long)  << endl;               //4
+	cout << "long longæ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" <<sizeof(long long)  << endl;     //8
+	cout << "intæ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(a1) << endl;                  //4
+	cout << "shortæ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(a2) << endl;                //2
+	cout << "longæ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(a3) << endl;                 //4
+	cout << "long longæ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(a4) << endl << endl;    //8
 
-	cout << "floatËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(float) << endl;             //4
-	cout << "doubleËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(double) << endl;           //8
-	cout << "floatËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(b1) << endl;                //4
-	cout << "doubleËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(b2) << endl << endl;       //8
+	cout << "floatæ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(float) << endl;             //4
+	cout << "doubleæ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(double) << endl;           //8
+	cout << "floatæ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(b1) << endl;                //4
+	cout << "doubleæ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(b2) << endl << endl;       //8
 
-	cout << "charËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(char) << endl;               //1
-	cout << "charËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(c1) << endl << endl;         //1
+	cout << "charæ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(char) << endl;               //1
+	cout << "charæ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(c1) << endl << endl;         //1
 
-	//cout << "C·ç¸ñ×Ö·û´®ËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(char) << endl;
-	cout << "C++·ç¸ñ×Ö·û´®ËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(string) << endl;    //40
-	cout << "C·ç¸ñ×Ö·û´®ËùÕ¼ÄÚ´æ¿Õ¼äd1Îª£º" << sizeof(d1) << endl;        //4
-	cout << "C++·ç¸ñ×Ö·û´®ËùÕ¼ÄÚ´æ¿Õ¼äd2Îª£º" << sizeof(d2) << endl;      //40
-	cout << "C·ç¸ñ×Ö·û´®ËùÕ¼ÄÚ´æ¿Õ¼äd3Îª£º" << sizeof(d3) << endl;        //10
-	cout << "C++·ç¸ñ×Ö·û´®ËùÕ¼ÄÚ´æ¿Õ¼äd4Îª£º" << sizeof(d4) << endl;      //40
-	cout << "C·ç¸ñ×Ö·û´®ËùÕ¼ÄÚ´æ¿Õ¼äd5Îª£º" << sizeof(d5) << endl;        //53
-	cout << "d4=" << d4 << endl;                   //Ğ¡ÓÚ40Î»ÓÃC·ç¸ñ,´óÓÚ40Î»ÓÃC++·ç¸ñ
+	//cout << "Cé£æ ¼å­—ç¬¦ä¸²æ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(char) << endl;
+	cout << "C++é£æ ¼å­—ç¬¦ä¸²æ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(string) << endl;    //40
+	cout << "Cé£æ ¼å­—ç¬¦ä¸²æ‰€å å†…å­˜ç©ºé—´d1ä¸ºï¼š" << sizeof(d1) << endl;        //4
+	cout << "C++é£æ ¼å­—ç¬¦ä¸²æ‰€å å†…å­˜ç©ºé—´d2ä¸ºï¼š" << sizeof(d2) << endl;      //40
+	cout << "Cé£æ ¼å­—ç¬¦ä¸²æ‰€å å†…å­˜ç©ºé—´d3ä¸ºï¼š" << sizeof(d3) << endl;        //10
+	cout << "C++é£æ ¼å­—ç¬¦ä¸²æ‰€å å†…å­˜ç©ºé—´d4ä¸ºï¼š" << sizeof(d4) << endl;      //40
+	cout << "Cé£æ ¼å­—ç¬¦ä¸²æ‰€å å†…å­˜ç©ºé—´d5ä¸ºï¼š" << sizeof(d5) << endl;        //53
+	cout << "d4=" << d4 << endl;                   //å°äº40ä½ç”¨Cé£æ ¼,å¤§äº40ä½ç”¨C++é£æ ¼
 	cout << "d5=" << d5 << endl << endl;           
 
-	cout << "boolËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(bool) << endl;               //1
-	cout << "boolËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(e1) << endl << endl;         //1
+	cout << "boolæ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(bool) << endl;               //1
+	cout << "boolæ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(e1) << endl << endl;         //1
 	
-	cout << "³£Á¿ËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(const int) << endl;          //4
-	cout << "³£Á¿ËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(const short) << endl;        //2
-	cout << "³£Á¿ËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(const long) << endl;         //4
-	cout << "³£Á¿ËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(const long long) << endl;    //8
-	cout << "³£Á¿ËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(f1) << endl;                 //4
-	cout << "³£Á¿ËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(f2) << endl;                 //2
-	cout << "³£Á¿ËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(f3) << endl;                 //4
-	cout << "³£Á¿ËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(f4) << endl << endl;         //8
+	cout << "å¸¸é‡æ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(const int) << endl;          //4
+	cout << "å¸¸é‡æ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(const short) << endl;        //2
+	cout << "å¸¸é‡æ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(const long) << endl;         //4
+	cout << "å¸¸é‡æ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(const long long) << endl;    //8
+	cout << "å¸¸é‡æ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(f1) << endl;                 //4
+	cout << "å¸¸é‡æ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(f2) << endl;                 //2
+	cout << "å¸¸é‡æ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(f3) << endl;                 //4
+	cout << "å¸¸é‡æ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(f4) << endl << endl;         //8
 
-	cout << "ºê³£Á¿ËùÕ¼ÄÚ´æ¿Õ¼äÎª£º" << sizeof(ai) << endl;               //8
+	cout << "å®å¸¸é‡æ‰€å å†…å­˜ç©ºé—´ä¸ºï¼š" << sizeof(ai) << endl;               //8
 	*/
 
 
 
-//×ªÒå×Ö·û
+//è½¬ä¹‰å­—ç¬¦
 /*
     // \n
     cout << "asdfg\nhjkl" << endl;
@@ -190,9 +190,9 @@ int main()
 	cout << "asdf\vghjkl" << endl;
 	//\0
 	cout << "asdf\0ghjkl" << endl;
-	//\ddd(1-3Î»Êı×Ö[8½øÖÆ]£©
+	//\ddd(1-3ä½æ•°å­—[8è¿›åˆ¶]ï¼‰
 	cout << "\101" << endl;
-	//\xhh(1-2Î»[16½øÖÆ]£©
+	//\xhh(1-2ä½[16è¿›åˆ¶]ï¼‰
 	cout << "\x45" << endl;
 */
 
