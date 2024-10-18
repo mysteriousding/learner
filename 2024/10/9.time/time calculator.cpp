@@ -1,4 +1,4 @@
-﻿#include<iostream>
+#include<iostream>
 using namespace std;
 int main()
 {
@@ -28,14 +28,14 @@ int main()
 			if (a % 400 == 0) { num = 29 - c + 1; }
 			else { num = 28 - c + 1; }
 		}
-	    else 
+		else
 		{
 			if (a % 4 == 0) { num = 29 - c + 1; }
 			else { num = 28 - c + 1; }
-	    }
+		}
 	}
-	   else if (b == 1 || b == 3 || b == 5 || b == 7 || b == 8 || b == 10 || b == 12) { num = 31 - c + 1; }
-	       else { num = 30 - c + 1; }
+	else if (b == 1 || b == 3 || b == 5 || b == 7 || b == 8 || b == 10 || b == 12) { num = 31 - c + 1; }
+	else { num = 30 - c + 1; }
 
 	//2.生年余月
 	b = b + 1;
@@ -54,8 +54,8 @@ int main()
 				else { num = num + 28; }
 			}
 		}
-		   else if (b == 1 || b == 3 || b == 5 || b == 7 || b == 8 || b == 10 || b == 12) { num = num = num + 31; }
-		       else { num = num + 30; }
+		else if (b == 1 || b == 3 || b == 5 || b == 7 || b == 8 || b == 10 || b == 12) { num = num = num + 31; }
+		else { num = num + 30; }
 
 		b++;
 	}
@@ -81,7 +81,7 @@ int main()
 
 	//4.今昔溢月
 	e = e - 1;
-	while(i<=e)
+	while (i <= e)
 	{
 		if (i == 2)
 		{
@@ -96,8 +96,8 @@ int main()
 				else { num = num + 28; }
 			}
 		}
-		   else if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) { num = num = num + 31; }
-		       else { num =num + 30; }
+		else if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) { num = num = num + 31; }
+		else { num = num + 30; }
 
 		i++;
 	}
@@ -105,6 +105,14 @@ int main()
 	//5.今昔溢日
 	num = num + f;
 
+	//6.同年补充
+	if (a = d)
+	{
+		if ((a % 4 == 0 && a % 100 != 0) || (a % 400 == 0))
+		{num = num - 366;}
+
+		   else{ num = num - 365; }
+	}
 
 	cout << "今天是你的第" << num << "个白天！" << endl;
 	cout << "祝你每一天都开心快乐！！" << endl;
