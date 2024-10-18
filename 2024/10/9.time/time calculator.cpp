@@ -2,7 +2,7 @@
 using namespace std;
 int main()
 {
-	int a, b, c, d, e, f, i, num;
+	int a, b, c, d, e, f, i, num, a0, d0;
 	cout << "欢迎使用时间计算机：" << endl;
 	cout << "请输入你的生日：" << endl;
 	cout << "年：";
@@ -18,7 +18,7 @@ int main()
 	cin >> e;
 	cout << "日：";
 	cin >> f;
-	i = 1;
+	i = 1; a0 = a; d0 = d;
 
 	//1.生月余日
 	if (b == 2)
@@ -80,7 +80,7 @@ int main()
 	}
 
 	//4.今昔溢月
-	e = e - 1;
+	e = e - 1; a = a0;
 	while (i <= e)
 	{
 		if (i == 2)
@@ -96,7 +96,7 @@ int main()
 				else { num = num + 28; }
 			}
 		}
-		else if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) { num = num = num + 31; }
+		else if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) { num = num + 31; }
 		else { num = num + 30; }
 
 		i++;
@@ -106,6 +106,7 @@ int main()
 	num = num + f;
 
 	//6.同年补充
+	a = a0; d = d0;
 	if (a = d)
 	{
 		if ((a % 4 == 0 && a % 100 != 0) || (a % 400 == 0))
