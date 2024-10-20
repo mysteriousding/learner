@@ -16,7 +16,7 @@ int main()
 		if (a == 0)break;
 	}
 	a = c;
-	cout << endl << a << "的二进制=";
+	cout << endl << a << " 的二进制 = ";
 	for (; i >= 0; i--)
 	{
 		cout << arr[i];
