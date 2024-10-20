@@ -17,7 +17,7 @@ int main()
     }
 
     a = a0;
-    cout << endl << a << "的十进制=" << c << endl;
+    cout << endl << a << " 的十进制 = " << c << endl;
 
     return 0;
 }
