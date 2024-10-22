@@ -1,4 +1,4 @@
-﻿/*(1)
+/*(1)
 #include<iostream>
 using namespace std;
 int main()
@@ -90,19 +90,21 @@ int main()
     { 
         cin >> n >> m;
         m0 += m;
-       
         arr[i] = n;
+        arr[i + 5] = m;
     }
-    cout << m0;
     for (int i = 0; i < 5; i++)
     {
         n = arr[i];
+        m = arr[i + 5];
+        cout << m << endl;
         if (n >= 90) { v += 4.0 * (m / m0); }
-        else { v += (4.0 * n / 90.0) * (m / m0); }
+           else { v += (4.0 * n / 90.0)* (m / m0); }
+        cout << v << endl;
     }
 
     cout << setiosflags(ios::fixed) << setprecision(2);
-    cout << "GPA: " << v << endl;
+    cout << "GPA:" << v << endl;
 
     return 0;
 }
