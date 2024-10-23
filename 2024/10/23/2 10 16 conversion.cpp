@@ -161,5 +161,5 @@ int main()
 
     cout << endl << "计算完毕，谢谢使用！" << endl;
 
-	return 0;
+    return 0;
 }
