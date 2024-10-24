@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 #include<cmath>
 using namespace std;
@@ -9,7 +9,6 @@ int main()
 	long long C, T;
 	cout << "欢迎使用进制转换计算机，我可以为你将一个数在2进制、10进制、16进制，之间转换！" << endl;
 start:
-	/*string H;*/
 	cout << "输入进制时，请输入 2 10 或 16 （输入 0 结束计算程序）。" << endl;
 	cout << "请选择输入的进制：" << endl;
 	cin >> x;
@@ -60,15 +59,17 @@ start:
 		      else if(y == 10)
 		      {
 			      int F = T;
-				  cout << endl << Cc << " 的十进制 = " << F << endl;
+				  if (x == 2 || x == 10) { cout << endl << C << " 的十进制 = " << F << endl; }
+				     else { cout << endl << Cc << " 的十进制 = " << F << endl; }
 		      }
 			     else if(y == 0){ goto end; }
 				    else if(y == 1){ goto start; }
 					   else
-		               {
-			               cout << "请输入正确的进制数！" << endl;
-			               continue;
-		               }
+		                          {
+			                     cout << "请输入正确的进制数！" << endl;
+			                     continue;
+		                          }
+		cout << endl << endl;
 	}
 
 end:
@@ -148,7 +149,7 @@ string _10to16(long long Ci)
 		b = Ci % 16;
 		Ci /= 16;
 		if (b <= 9) { arr[i] = b; }
-		else { arr[i] = (b - 9 + 64); }
+		   else { arr[i] = (b - 9 + 64); }
 		if (Ci == 0)break;
 	}
 	for (; i >= 0; i--)
