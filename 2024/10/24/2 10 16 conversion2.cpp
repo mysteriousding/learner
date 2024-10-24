@@ -47,16 +47,15 @@ start:
 			int _10to2(long long Ci);
 			int F = _10to2(T);
 
-			if (x == 2 || x == 10) { cout << endl << C << " 的二进制 = " << F << endl; }
-			   else { cout << endl << Cc << " 的二进制 = " << F << endl; }
+			 cout << endl << C << " 的二进制 = " << F << endl; 
 		}
 		   else if (y == 16)
 		   {
 			   string _10to16(long long Ci);
 			   string F = _10to16(T);
 
-			   if (x == 2 || x == 10) { cout << endl << C << " 的十六进制 = " << F << endl; }
-			      else { cout << endl << Cc << " 的十六进制 = " << F << endl; }
+			    cout << endl << C << " 的十六进制 = " << F << endl; 
+			      
 		   }
 		      else if(y == 10)
 		      {
