@@ -47,14 +47,16 @@ start:
 			int _10to2(long long Ci);
 			int F = _10to2(T);
 
-			cout << endl << C << " 的二进制 = " << F << endl;
+			if (x == 2 || x == 10) { cout << endl << C << " 的二进制 = " << F << endl; }
+			   else { cout << endl << Cc << " 的二进制 = " << F << endl; }
 		}
 		   else if (y == 16)
 		   {
 			   string _10to16(long long Ci);
 			   string F = _10to16(T);
 
-			   cout << endl << C << " 的十六进制 = " << F << endl;
+			   if (x == 2 || x == 10) { cout << endl << C << " 的十六进制 = " << F << endl; }
+			      else { cout << endl << Cc << " 的十六进制 = " << F << endl; }
 		   }
 		      else if(y == 10)
 		      {
@@ -65,10 +67,10 @@ start:
 			     else if(y == 0){ goto end; }
 				    else if(y == 1){ goto start; }
 					   else
-		                          {
-			                     cout << "请输入正确的进制数！" << endl;
-			                     continue;
-		                          }
+		               {
+			               cout << "请输入正确的进制数！" << endl;
+			               continue;
+		               }
 		cout << endl << endl;
 	}
 
@@ -149,7 +151,7 @@ string _10to16(long long Ci)
 		b = Ci % 16;
 		Ci /= 16;
 		if (b <= 9) { arr[i] = b; }
-		   else { arr[i] = (b - 9 + 64); }
+		else { arr[i] = (b - 9 + 64); }
 		if (Ci == 0)break;
 	}
 	for (; i >= 0; i--)
