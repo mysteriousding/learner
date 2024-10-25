@@ -17,8 +17,14 @@ start:
 	{
 		int _2to10(string Ci);
 		cout << "请输入要转换的数：" << endl;
+	to2:
 		cin >> Cc;
 		T = _2to10(Cc);
+		if (Cc != "0" && T == 0)
+		{
+			cout << "请输入二进制数！" << endl;
+			goto to2;
+		}
 	}
 	   else if (x == 16)
 	   {
@@ -93,6 +99,11 @@ int _2to10(string Ci)
 	{
 		b = Ci[i];
 		if (i == n)break;
+		if (b != '0' && b != '1')
+		{
+			T = 0;
+			break;
+		}
 		T += (int)(b - 48) * pow(2, n-1-i);
 		i++;
 	}
