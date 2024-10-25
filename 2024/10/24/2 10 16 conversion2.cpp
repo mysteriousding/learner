@@ -1,4 +1,4 @@
-//有三个bug，2 10 16 conversion3上已修复。
+//有四个bug，2 10 16 conversion3上已修复。
 #include <iostream>
 #include <string>
 #include<cmath>
