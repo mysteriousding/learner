@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 #include<cmath>
 using namespace std;
@@ -93,7 +93,7 @@ int _2to10(string Ci)
 	{
 		b = Ci[i];
 		if (i == n)break;
-		T += (int)(b - 48) * pow(2, i);
+		T += (int)(b - 48) * pow(2, n-1-i);
 		i++;
 	}
 
