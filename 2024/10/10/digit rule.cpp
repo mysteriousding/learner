@@ -42,7 +42,7 @@ int main()
 		i++;
 	}
 
-	cout << "结束了！你明白数字的规律了吗？" << endl;
+	cout << endl << "结束了！你明白数字的规律了吗？" << endl;
 
 	return 0;
 }
