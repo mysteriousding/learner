@@ -1,4 +1,4 @@
-﻿/*(16)字符错序（错误版）
+/*(16)字符错序（错误版）
 #include<iostream>
 #include<ctime>
 #include<cstdlib>
@@ -240,43 +240,38 @@ int main()
 using namespace std;
 int main()
 {
-    string x, y, z;
-    cin >> x >> y >> z;
-    string n[3];
-    char a, b, c;
-    int A, B, C, m;
-    A = B = C = 2;
+    string X[10], Y[10];
+    for (int i = 0; i < 10; i++) { cin >> X[i]; }
+    int y[10] = { 9,9,9,9,9,9,9,9,9,9 };
+    int p;
     int max(string x, string y);
-    a = max(x, y);
-    (a == 1) ? A-- : B--;
-    
-    a = max(y, z);
-    (a == 1) ? B-- : C--;
-  
-    a = max(x, z);
-    (a == 1) ? A-- : C--;
-   
-    n[A] = x; n[B] = y; n[C] = z;
-    for (int j = 0; j < 3; j++)
-    {
-        cout << n[j] << endl;
-    }
 
+    for (int i = 0; i < 10; i++)
+    {
+        for (int j = i + 1; j < 10; j++)
+        {
+            p = max(X[i], X[j]);
+            (p == 1) ? y[i]-- : y[j]--;
+        }
+    }
+    for (int k = 0; k < 10; k++) { Y[y[k]] = X[k]; }
+    for (int j = 0; j < 10; j++)
+    {
+        cout << Y[j] << endl;
+    }
 
     return 0;
 }
 
-
 int max(string x, string y)
 {
-    char a, b; int k;
+    char n, m; int k;
     for (int i = 0;; i++)
     {
-        a = x[i]; b = y[i];
-        if (a == b) { continue; }
-        k=((int)a < (int)b) ? 1:0;
+        n = x[i]; m = y[i];
+        if (n == m) { continue; }
+        k = ((int)n < (int)m) ? 1 : 0;
         break;
     }
-
     return(k);
 }
