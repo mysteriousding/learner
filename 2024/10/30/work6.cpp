@@ -1,4 +1,4 @@
-﻿/*(6)
+/*(6)
 #include<iostream>
 #include<iomanip>
 #include<cmath>
@@ -33,98 +33,151 @@ int main()
 }
 */
 
+/*(8)错
+#include<iostream>
+#include<string>
+using namespace std;
+int main()
+{
+    string x, y, z, m;
+    char k[10];
+    int h;
+    cin >> x >> y >> z;
+    for (int j = 0; j < 3; j++)
+    {
+        if (j == 0) { m = x; }
+        else if (j == 1) { m = y; }
+        else { m = z; }
+        h = m.size();
+        for (int i = 0; i < h; i++)
+        {
+            k[i] = m[i];
+            k[i + 1] = m[i + 1];
+            if ((int)k[i] == 92)
+            {
+                if (k[i + 1] == 'n') { cout << "\n"; }
+                if (k[i + 1] == 't') { cout << "\t"; }
+                if (k[i + 1] == '?') { cout << "\?"; }
+                if ((int)k[i + 1] == 39) { cout << "\'"; }
+                if (k[i + 1] == '"') { cout << "\""; }
+                if ((int)k[i + 1] == 92) { cout << "\\"; }
+                if (k[i + 1] == 'a') { cout << "\a"; }
+                if (k[i + 1] == 'b') { cout << "\b"; }
+                if (k[i + 1] == 'f') { cout << "\f"; }
+                if (k[i + 1] == 'v') { cout << "\v"; }
+                if (k[i + 1] == 'r') { cout << "\r"; }
+                if (k[i + 1] == '0') { cout << "\0"; }
+                i += 1;
+            }
+            else { cout << k[i]; }
+        }
+        if (j != 2)cout << endl;
+    }
 
-//#include<iostream>
-//#include<string>
-//using namespace std;
-//int main()
-//{
-//    string x, y, z, m;
-//    char k[10];
-//    int h;
-//    cin >> x >> y >> z;
-//    for (int j = 0; j < 3; j++)
-//    {
-//        if (j == 0) { m = x; }
-//        else if (j == 1) { m = y; }
-//        else { m = z; }
-//        h = m.size();
-//        for (int i = 0; i < h; i++)
-//        {
-//            k[i] = m[i];
-//            k[i + 1] = m[i + 1];
-//            if ((int)k[i] == 92)
-//            {
-//                if (k[i + 1] == 'n') { cout << "\n"; }
-//                if (k[i + 1] == 't') { cout << "\t"; }
-//                if (k[i + 1] == '?') { cout << "\?"; }
-//                if ((int)k[i + 1] == 39) { cout << "\'"; }
-//                if (k[i + 1] == '"') { cout << "\""; }
-//                if ((int)k[i + 1] == 92) { cout << "\\"; }
-//                if (k[i + 1] == 'a') { cout << "\a"; }
-//                if (k[i + 1] == 'b') { cout << "\b"; }
-//                if (k[i + 1] == 'f') { cout << "\f"; }
-//                if (k[i + 1] == 'v') { cout << "\v"; }
-//                if (k[i + 1] == 'r') { cout << "\r"; }
-//                if (k[i + 1] == '0') { cout << "\0"; }
-//                i += 1;
-//            }
-//            else { cout << k[i]; }
-//        }
-//        if (j != 2)cout << endl;
-//    }
-//
-//
-//    return 0;
-//}
 
-//#include<iostream>
-//#include<string>
-//using namespace std;
-//int main()
-//{
-//    string x, y, z, m;
-//    char k[10];
-//    int i,h;
-//    cin >> x >> y >> z;
-//    for (int j = 0; j < 4; j++)
-//    {
-//        if (j == 0) { m = x; }
-//        else if (j == 1) { m = y; }
-//        else { m = z; }
-//        h = m.size();
-//        for (i = 0; i < h; i++)
-//        {
-//            k[i] = m[i];
-//            k[i + 1] = m[i + 1];
-//            if ((int)k[i] == 92)
-//            {
-//                if (k[i + 1] == 'n') { cout << "\n"; }
-//                if (k[i + 1] == 't') { cout << "\t"; }
-//                if (k[i + 1] == '?') { cout << "\?"; }
-//                if ((int)k[i + 1] == 39) { cout << "\'"; }
-//                if (k[i + 1] == '"') { cout << "\""; }
-//                if ((int)k[i + 1] == 92) { cout << "\\"; }
-//                if (k[i + 1] == 'a') { cout << "\a"; }
-//                if (k[i + 1] == 'b') { cout << "\b"; }
-//                if (k[i + 1] == 'f') { cout << "\f"; }
-//                if (k[i + 1] == 'v') { cout << "\v"; }
-//                if (k[i + 1] == 'r') { cout << "\r"; }
-//                if (k[i + 1] == '0') { cout << "\0"; }
-//                i += 1;
-//            }
-//            else { cout << k[i]; }
-//        }
-//        if (j != 2)cout << endl;
-//        if ((int)k[i] == '^' && k[i + 1] == 'z') { goto end; }
-//    }
-//
-//end:
-//
-//    return 0;
-//}
+    return 0;
+}
+*/
 
-/*(9)
+/*(8)错
+#include<iostream>
+#include<string>
+using namespace std;
+int main()
+{
+    string x, y, z, m;
+    char k[10];
+    int i,h;
+    cin >> x >> y >> z;
+    for (int j = 0; j < 4; j++)
+    {
+        if (j == 0) { m = x; }
+        else if (j == 1) { m = y; }
+        else { m = z; }
+        h = m.size();
+        for (i = 0; i < h; i++)
+        {
+            k[i] = m[i];
+            k[i + 1] = m[i + 1];
+            if ((int)k[i] == 92)
+            {
+                if (k[i + 1] == 'n') { cout << "\n"; }
+                if (k[i + 1] == 't') { cout << "\t"; }
+                if (k[i + 1] == '?') { cout << "\?"; }
+                if ((int)k[i + 1] == 39) { cout << "\'"; }
+                if (k[i + 1] == '"') { cout << "\""; }
+                if ((int)k[i + 1] == 92) { cout << "\\"; }
+                if (k[i + 1] == 'a') { cout << "\a"; }
+                if (k[i + 1] == 'b') { cout << "\b"; }
+                if (k[i + 1] == 'f') { cout << "\f"; }
+                if (k[i + 1] == 'v') { cout << "\v"; }
+                if (k[i + 1] == 'r') { cout << "\r"; }
+                if (k[i + 1] == '0') { cout << "\0"; }
+                i += 1;
+            }
+            else { cout << k[i]; }
+        }
+        if (j != 2)cout << endl;
+        if ((int)k[i] == '^' && k[i + 1] == 'z') { goto end; }
+    }
+
+end:
+
+    return 0;
+}
+*/
+
+/*(8)
+#include<iostream>
+#include<string>
+using namespace std;
+int main()
+{
+    string str(string x, int y);
+    string n;
+    int m, k = 0;
+    do
+    {
+        getline(cin, n);
+        if (cin.eof())k = 1;
+        m = n.size();
+        string a = str(n, m);
+        cout << a;
+        if (k == 0)cout << endl;
+    } while (k == 0);
+
+    return 0;
+}
+
+string str(string x, int y)
+{
+    string z;
+    int i = 0;
+    while (i < y)
+    {
+        if ((int)x[i] == 92)
+        {
+            i++;
+            if (x[i] == 'n') { z += "\n"; }
+            if (x[i] == 't') { z += "\t"; }
+            if (x[i] == '?') { z += "\?"; }
+            if ((int)x[i] == 39) { z += "\'"; }
+            if (x[i] == '"') { z += "\""; }
+            if ((int)x[i] == 92) { z += "\\"; }
+            if (x[i] == 'a') { z += "\a"; }
+            if (x[i] == 'b') { z += "\b"; }
+            if (x[i] == 'f') { z += "\f"; }
+            if (x[i] == 'v') { z += "\v"; }
+            if (x[i] == 'r') { z += "\r"; }
+        }
+        else z += x[i];
+        i++;
+    }
+    return z;
+}
+*/
+
+/*(9)错
 #include<iostream>
 #include<cstdint>
 #include<chrono>
