@@ -1,4 +1,4 @@
-﻿/*(26)
+/*(26)
 #include<iostream>
 using namespace std;
 int main()
@@ -12,36 +12,32 @@ int main()
 }
 */
 
-
+/*(27)
 #include<iostream>
-#include<vector>
 using namespace std;
 int main()
 {
     int n, k = 0;
+    int m[500];
     cin >> n;
-    vector<int>m(n);
-    if (n < 1 || n>500)goto end;
     for (int i = 0; i < n; i++)
     {
         cin >> m[i];
-        if (m[i] > 1000 || m[i] < -1000)goto end;
     }
     for (int j = 0; j < n; j++)
     {
-        for (int l = 0; l < n; l++)
+        for (int l = n; l > 0; l--)
         {
             if (m[j] == -m[l])k++;
-            if (j == l)break;
+            if (j > l)break;
         }
     }
 
     cout << k;
-end:
 
     return 0;
 }
-
+*/
 
 /*(28)
 #include<iostream>
@@ -98,20 +94,20 @@ int main()
 */
 
 
-//#include<iostream>
-//#include<cmath>
-//using namespace std;
-//int main()
-//{
-//    float a, b, c, p;
-//    cin >> a >> b >> c;
-//    if (a + b > c && b + c > a && a + c > b)
-//    {
-//        p = (a + b + c) / 2;
-//        p = pow(p * (p - a) * (p - b) * (p - c), 1.0 / 2);
-//        cout << p << endl;
-//    }
-//    else cout << "No";
-//
-//    return 0;
-//}
+#include<iostream>
+#include<cmath>
+using namespace std;
+int main()
+{
+    float a, b, c, p;
+    cin >> a >> b >> c;
+    if (a + b > c && b + c > a && a + c > b)
+    {
+        p = (a + b + c) / 2;
+        p = pow(p * (p - a) * (p - b) * (p - c), 1.0 / 2);
+        cout << p << endl;
+    }
+    else cout << "No";
+
+    return 0;
+}
