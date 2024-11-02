@@ -1,4 +1,4 @@
-﻿/*(1)
+/*(1)
 #include<iostream>
 #include<vector>
 using namespace std;
@@ -115,58 +115,23 @@ int main()
 using namespace std;
 int main()
 {
-    int x, y, p = 0, h;
-    cin >> x;
-    vector<int>n(x);
-    for (int i = 0; i < x; i++)cin >> n[i];
-    cin >> y;
-    vector<int>m(y);
-    for (int j = 0; j < y; j++)cin >> m[j];
-    for (int i = 0; i < x; i++)
-    {
-        for (int j = 0; j < y; j++)
-        {
-            if (n[i] == m[j])
-            {
-                n[i] = 1e8;
-                m[j] = 1e8;
-            }
-        }
-    }
-    for (int i = 0; i < x - 1; i++)
-    {
-        for (int j = 0; j < x - 1; j++)
-        {
-            if (n[j] > n[j + 1]) { h = n[j]; n[j] = n[j + 1]; n[j + 1] = h; }
-            else if (n[j] == n[j + 1]) { n[j] = 1e8; }
-        }
-    }
+    int n, h1, i1, h2, i2;
+    cin >> n;
+    vector<int>m(n);
+    for (int i = 0; i < n; i++)cin >> m[i];
 
-    for (int i = 0; i < y - 1; i++)
-    {
-        for (int j = 0; j < y - 1; j++)
-        {
-            if (m[j] > m[j + 1]) { h = m[j]; m[j] = m[j + 1]; m[j + 1] = h; }
-            else if (m[j] == m[j + 1]) { m[j] = 1e8; }
-        }
-    }
+    h1 = m[0]; i1 = 0;
+    for (int i = 0; i < n; i++) { if (m[i] < h1) { h1 = m[i]; i1 = i; } }
+    m[i1] = m[0]; m[0] = h1;
 
-    /*for (int k = 0; k < x; k++)
-    {
-        if (n[k] != 1e8)
-        {
-            if (k != 0)cout << " ";
-            cout << n[k];
-        }
-    }
-    for (int l = 0; l < y; l++)
-    {
-        if (m[l] != 1e8)
-        {
-            cout << " " << m[l];
-        }
-    }*/
+    h2 = m[0]; i2 = 0;
+    for (int j = 0; j < n; j++) { if (m[j] > h2) { h2 = m[j]; i2 = j; } }
+    m[i2] = m[n - 1]; m[n - 1] = h2;
 
+    for (int j = 0; j < n; j++)
+    {
+        cout << m[j] << " ";
+    }
 
     return 0;
 }
