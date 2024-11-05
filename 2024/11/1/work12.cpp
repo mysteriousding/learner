@@ -1,4 +1,4 @@
-﻿
+
 
 
 /*(37)
@@ -58,60 +58,67 @@ int main()
     return 0;
 */
 
-
+/*(39）
 #include<iostream>
 #include<vector>
 using namespace std;
 int main()
 {
     int n, h;
-    cin >> n;
-    vector<int>m(n);
-    for (int i = 0; i < n; i++) { cin >> m[i]; }
-    int y;
-    cin >> y;
-    vector<int>x(y);
-    for (int j = 0; j < y; j++) { cin >> x[j]; }
-    for (int j = 0; j < n - 1; j++)
+    while (cin >> n)
     {
-        for (int i = 0; i < n - 1; i++)
+        vector<int>m(n);
+        for (int i = 0; i < n; i++) { cin >> m[i]; }
+        int y;
+        cin >> y;
+        vector<int>x(y);
+        for (int j = 0; j < y; j++) { cin >> x[j]; }
+        for (int j = 0; j < n - 1; j++)
         {
-            if (m[i] > m[i + 1]) { h = m[i]; m[i] = m[i + 1]; m[i + 1] = h; }
-        }
-    }
-    for (int l = 0; l < n; l++)
-    {
-        if (l != 0)cout << " ";
-        cout << m[l];
-    }
-
-    for (int i = 0; i < y; i++)
-    {
-        int k1 = 0, k2 = n - 1, k3, l = 0;
-        while (k1 <= k2)
-        {
-            k3 = (k1 + k2) / 2;
-            if (x[i] == m[k3])
+            for (int i = 0; i < n - 1 - j; i++)
             {
-                if (i == 0)cout << endl;
-                else cout << " ";
-                cout << k3 + 1;
-                l = 1;
-                break;
+                if (m[i] > m[i + 1]) { h = m[i]; m[i] = m[i + 1]; m[i + 1] = h; }
             }
-            else if (x[i] > m[k3]) { k1 = k3 + 1; }
-            else { k2 = k3 - 1; }
         }
-        if (l == 0)
+        for (int l = 0; l < n; l++)
         {
-            if (i == 0)cout << endl;
-            else cout << " ";
-            cout << 0;
+            if (l != 0)cout << " ";
+            cout << m[l];
+            if (l == n - 1)cout << endl;
         }
+
+        for (int i = 0; i < y; i++)
+        {
+            //if(n<0||n>100||m<0||m>100)break;
+            int k1 = 0, k2 = n - 1, k3, l = 0;
+            while (k1 <= k2)
+            {
+                k3 = (k1 + k2) / 2;
+                if (x[i] == m[k3])
+                {
+                    if (i != 0)cout << " ";
+                    cout << k3 + 1;
+                    l = 1;
+
+                    for (int v = k3 + 1; v < n; v++)
+                    {
+                        if (x[i] == m[v])cout << " " << v + 1;
+                    }
+
+                    break;
+                }
+                else if (x[i] > m[k3]) { k1 = k3 + 1; }
+                else { k2 = k3 - 1; }
+            }
+            if (l == 0)
+            {
+                if (i != 0)cout << " ";
+                cout << 0;
+            }
+        }
+        cout << endl;
     }
 
     return 0;
 }
-//9
-//4 7 2 1 8 5 9 3 6
-//5
+*/
