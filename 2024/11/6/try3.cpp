@@ -1,4 +1,4 @@
-﻿#include<iostream>
+#include<iostream>
 #include<string>
 using namespace std;
 int main()
@@ -48,7 +48,7 @@ int main()
 	cout << c << endl;
 	*/
 
-	/*递增递减尝试*/
+	/*递增递减尝试
 	int a = 2, b = ++a;
 	cout << "前置递增:   a = 2; b = ++a;        " << "a = " << a << "; b = " << b << "; " << endl;
 
@@ -60,7 +60,29 @@ int main()
 
 	a = 2; b = a--;
 	cout << "后置递减:   a = 2; b = a--;        " << "a = " << a << "; b = " << b << "; " << endl;
+	*/
 
+	/*赋值运算符尝试*/
+	int a = 10;
+	cout << "int a = 10;         " << "a = " << a << endl << endl;;
+
+	a = 10; a = 100;
+	cout << "‘=’:  a = 10; a = 100;         " << "a = " << a << endl;
+
+	a = 10; a += 2;
+	cout << "‘+=’:  a = 10; a += 2;         " << "a = " << a << endl;
+
+	a = 10; a -= 2;
+	cout << "‘-=’:  a = 10; a -= 2;         " << "a = " << a << endl;
+
+	a = 10; a *= 10;
+	cout << "‘*=’:  a = 10; a *= 10;         " << "a = " << a << endl;
+
+	a = 10; a /= 3;
+	cout << "‘/=’:  a = 10; a /= 3;         " << "a = " << a << endl;
+
+	a = 10; a %= 3;
+	cout << "‘%=’:  a = 10; a %= 3;         " << "a = " << a << endl;
 
 
 	return 0;
