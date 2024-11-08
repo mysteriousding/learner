@@ -1,4 +1,29 @@
-/*(16)字符错序（错误版）
+/*(16) 字符串的全排列
+
+给定一个全由小写字母构成的字符串，求它的全排列，按照字典序从小到大输出。
+
+输入格式:
+一行，一个字符串，长度不大于8。
+
+输出格式:
+输出所有全排列，每行一种排列形式，字典序从小到大。
+
+输入样例:
+在这里给出一组输入。例如：
+
+abc
+输出样例:
+在这里给出相应的输出。例如：
+
+abc
+acb
+bac
+bca
+cab
+cba
+*/
+
+/*(16)字符错序（错误版1）
 #include<iostream>
 #include<ctime>
 #include<cstdlib>
@@ -125,7 +150,7 @@ int main()
 }
 */
 
-/*(16)
+/*(16)字符错序（错误版2）
 #include<iostream>
 #include<string>
 using namespace std;
@@ -185,7 +210,159 @@ start:
 }
 */
 
-/*(17)
+/*(16)（错误版3）
+#include<iostream>
+#include<string>
+using namespace std;
+int main()
+{
+    int JX(int x);
+    string n;
+    cin >> n;
+    char m[8];
+    char m0;
+    int c = n.size();
+    for (int i = 0; i < c; i++)m[i] = n[i];
+    for (int i = 0; i < c - 1; i++)
+    {
+        for (int j = 0; j < c - 1 - i; j++)
+        {
+            if ((int)m[j] > (int)m[j + 1]) { m0 = m[j]; m[j] = m[j + 1]; m[j + 1] = m0; }
+        }
+    }
+    int i[8] = { 0 }, j[8] = { 0 };
+    while (j[0] < c)
+    {
+        for (int k = 0; k < 8; k++)
+        {
+            if (c > k) { cout << m[j[k]]; i[k]++; if (i[k] >= JX(c - 1 - k)) { i[k] = 0; j[k]++; if (k != 0 && j[k] >= c)j[k] -= c; } }
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+
+int JX(int x)
+{
+    int y = 1;
+    for (; x > 0; x--)y *= x;
+    return y;
+}
+*/
+
+/*(16)*/
+#include<iostream>
+#include<string>
+using namespace std;
+int JX(int x);
+char XR(char x[][8], char y[], int z);
+char FX(char x[][8], int y, int z);
+int main()
+{
+    
+    string n;
+    cin >> n;
+    char m[8];
+    char m0;
+    int c = n.size();
+    for (int i = 0; i < c; i++)m[i] = n[i];
+    for (int i = 0; i < c - 1; i++)
+    {
+        for (int j = 0; j < c - 1 - i; j++)
+        {
+            if ((int)m[j] > (int)m[j + 1]) { m0 = m[j]; m[j] = m[j + 1]; m[j + 1] = m0; }
+        }
+    }
+    char N[8][8];
+    int i[8] = { 0 }, j[8] = { 0 };
+    while (j[0] < c)//输出多少个字符串    //j[0]二次计数计满停止
+    {
+        for (int k = 0; k < 8; k++)//进行一个字符串c位的输出，计入以输数组
+        {
+            if (c > k)//判断具体输出多少位
+            {
+
+
+                char d;
+                d = XR(N, m, k);
+                cout << d; i[k]++; //输出一个字符     //一次计数加1 
+                cout << "_____________________________________" << endl;
+                for (int i = 0; i < c ; i++)
+                {
+                    cout << N[k][i] << " ";
+                }
+
+
+                //cout << XR(N, m, k); i[k]++; //输出一个字符     //一次计数加1 
+                if (i[k] >= JX(c - 1 - k)) //如果一次计数计满
+                {
+                    i[k] = 0; j[k]++; //一次计数清零       //二次计数加1
+
+                    if (k != 0 && j[k] >= c)//除了j[0]，剩下的二次计算计满时
+                    {
+                        j[k] -= c;//二次计数清零  
+                        FX(N,k ,k);//清除相应以输数组
+                    }
+                } 
+            }
+        }
+        cout << endl;//一个字符串结束，换行
+    }
+   
+
+
+    return 0;
+}
+
+int JX(int x)
+{
+    int y = 1;
+    for (; x > 0; x--)y *= x;
+    return y;
+}
+char XR(char x[][8], char y[], int z)
+{
+    
+    for (int i = 0; i < 8; i++)
+    {
+        int p = 0,h;
+        for (int j = 0; j < 8; j++)
+        {
+            h = j;
+            if (y[i] == x[z][j]) { p = 1; break; }
+        }
+        if (p == 0)
+        {
+            x[z][] = y[i];
+            return y[i];
+        }
+    }
+    
+}
+char FX(char x[][8], int y, int z)
+{
+    for (int i = y; i < 8; i++)x[z][i] = '\0';
+    return 0;
+}
+
+
+
+/*(17)两整数求和
+
+//本题目要求读入2个整数num1和num2，然后输出它们的和。
+//
+//输入格式:
+//输入:在一行中给出2个绝对值不超过1000的整数num1和num2。
+//
+//输出格式:
+//对每一组输入，在一行中输出num1+num2的值。
+//
+//输入样例:
+//1 2
+//输出样例:
+//3
+
 #include<iostream>
 using namespace std;
 int main()
@@ -199,7 +376,26 @@ int main()
 }
 */
 
-/*(18)
+/*(18)求一元二次函数的根
+
+//这是一个编程题模板。请在这里写题目描述。例如：本题目要求读入2个整数A和B，然后输出它们的和。
+//
+//输入格式:
+//请在这里写输入格式。例如：求一元二次方程式ax^2+bx+c=0的根。a,b,c的值在运行时由键盘输入
+//
+//输出格式:
+//请在这里描述输出格式。例如：对每一组输入，在一行中输出根x1和根x2的值。
+//
+//输入样例:
+//在这里给出一组输入。例如：
+//
+//1 5 4
+//输出样例:
+//在这里给出相应的输出。例如：
+//
+//x1=-1
+//x2=-4
+
 #include<iostream>
 #include<cmath>
 using namespace std;
@@ -217,7 +413,25 @@ int main()
 }
 */
 
-/*(19)
+/*(19)求n！
+
+//这是一个编程题模板。请在这里写题目描述。例如：本题目要求n!。
+//
+//输入格式:
+//请在这里写输入格式。例如：输入在一行中给出5。
+//
+//输出格式:
+//请在这里描述输出格式。例如：对每一组输入，在一行中输出A+B的值。
+//
+//输入样例:
+//在这里给出一组输入。例如：
+//
+//5
+//输出样例:
+//在这里给出相应的输出。例如：
+//
+//5!=120
+
 #include<iostream>
 using namespace std;
 int main()
@@ -235,43 +449,80 @@ int main()
 }
 */
 
-#include<iostream>
-#include<string>
-using namespace std;
-int main()
-{
-    string X[10], Y[10];
-    for (int i = 0; i < 10; i++) { cin >> X[i]; }
-    int y[10] = { 9,9,9,9,9,9,9,9,9,9 };
-    int p;
-    int max(string x, string y);
+//比较10个字符串的大小，按从小到大输出
+//
+//本题要求编写一个函数实现字符串的排序具体，程序运行时具体输入与输出如下：
+//
+//输入格式:
+//依次输入10个字符串，各字符串之间使用换行进行区分
+//
+//输出格式:
+//输出一列排序好后的字符串
+//
+//输入样例:
+//在这里给出一组输入。例如：
+//
+//zhao
+//qian
+//sun
+//li
+//zhou
+//wu
+//zheng
+//wang
+//feng
+//chen
+//输出样例:
+//在这里给出相应的输出。例如：
+//
+//chen
+//feng
+//li
+//qian
+//sun
+//wang
+//wu
+//zhao
+//zheng
+//zhou
 
-    for (int i = 0; i < 10; i++)
-    {
-        for (int j = i + 1; j < 10; j++)
-        {
-            p = max(X[i], X[j]);
-            (p == 1) ? y[i]-- : y[j]--;
-        }
-    }
-    for (int k = 0; k < 10; k++) { Y[y[k]] = X[k]; }
-    for (int j = 0; j < 10; j++)
-    {
-        cout << Y[j] << endl;
-    }
-
-    return 0;
-}
-
-int max(string x, string y)
-{
-    char n, m; int k;
-    for (int i = 0;; i++)
-    {
-        n = x[i]; m = y[i];
-        if (n == m) { continue; }
-        k = ((int)n < (int)m) ? 1 : 0;
-        break;
-    }
-    return(k);
-}
+//#include<iostream>
+//#include<string>
+//using namespace std;
+//int main()
+//{
+//    string X[10], Y[10];
+//    for (int i = 0; i < 10; i++) { cin >> X[i]; }
+//    int y[10] = { 9,9,9,9,9,9,9,9,9,9 };
+//    int p;
+//    int max(string x, string y);
+//
+//    for (int i = 0; i < 10; i++)
+//    {
+//        for (int j = i + 1; j < 10; j++)
+//        {
+//            p = max(X[i], X[j]);
+//            (p == 1) ? y[i]-- : y[j]--;
+//        }
+//    }
+//    for (int k = 0; k < 10; k++) { Y[y[k]] = X[k]; }
+//    for (int j = 0; j < 10; j++)
+//    {
+//        cout << Y[j] << endl;
+//    }
+//
+//    return 0;
+//}
+//
+//int max(string x, string y)
+//{
+//    char n, m; int k;
+//    for (int i = 0;; i++)
+//    {
+//        n = x[i]; m = y[i];
+//        if (n == m) { continue; }
+//        k = ((int)n < (int)m) ? 1 : 0;
+//        break;
+//    }
+//    return(k);
+//}
