@@ -1,4 +1,4 @@
-﻿/*(1)FP18-计算速度和距离
+/*(1)FP18-计算速度和距离
 
 //输入物体匀加速运动的初速度、加速度和移动时间t（整数），计算物体在t秒中移动的距离，t秒后的速度，和t秒中的平均速度。
 //
@@ -127,19 +127,19 @@ int main()
 //
 //要求：输出 2 位小数(末尾四舍五入)。
 
-//#include<iostream>
-//#include<iomanip>
-//using namespace std;
-//int main()
-//{
-//    double t, b, h, a;
-//    cin >> t >> b >> h;
-//    a = (t + b) * h * 0.5 + 1e-7;
-//
-//    cout << setiosflags(ios::fixed) << setprecision(2) << a << endl;
-//
-//    return 0;
-//}
+#include<iostream>
+#include<iomanip>
+using namespace std;
+int main()
+{
+    double t, b, h, a;
+    cin >> t >> b >> h;
+    a = (t + b) * h * 0.5 + 1e-7;
+
+    cout << setiosflags(ios::fixed) << setprecision(2) << a << endl;
+
+    return 0;
+}
 
 
 
@@ -151,222 +151,8 @@ int main()
 
 
 
-//#include<iostream>
-//#include<iomanip>
-////#include<string>
-//using namespace std;
-//int main()
-//{
-//    int a[10]={0};
-//    for (int i = 0; i < 5; i++)cin >> a[i];
-//    for (int i = 0; a[i]!=0; i++)
-//    {
-//        if (i != 0)cout << " ";
-//        cout << a[i];
-//        a[i]=0;
-//    }
-//    cout << endl;
-//    for (int i = 0; i<10; ++i)
-//    {
-//        if (i != 0)cout << " ";
-//        cout << a[i];
-//    }
-//
-//
-//
-//    return 0;
-//}
 
-
-
-
-
-//#include<iostream>
-//#include<iomanip>
-//#include<cmath>
-//using namespace std;
-//int main()
-//{
-//    int x[50] = { 0 };
-//    int i;
-//    cin >> i;
-//        int k = 0, y = 0;
-//        for (int j = 1; j <= sqrt(i); j++)
-//        {
-//            if (i % j == 0)
-//            {
-//                x[k++] = j;
-//                if (j != i / j)x[k++] = i / j;
-//            }
-//        }
-//        for (int l = 0; x[l] != 0; l++)cout << x[l] << " ";
-//        for (int l = 0; x[l] != 0; l++)
-//        {
-//            y += x[l];
-//            x[l] = 0;
-//        }
-//        /*if (y == i)cout << setw(5) << i;*/
-//        cout << y;
-//    
-//
-//    return 0;
-//}
-
-
-
-
-
-
-
-//#include<iostream>
-//#include<vector>
-//using namespace std;
-//int main()
-//{
-//    int i, n, k = 0, f, j, flag;
-//    cin >> n;
-//    vector<int>a(n);
-//    k = n;
-//    for (i = 0; i < n; i++) cin >> a[i];
-//    while (k != 0)
-//    {
-//        f = 0;
-//        while (a[f] == -1) f++;
-//        flag = a[f];
-//        j = f;
-//        cout << j + 1 << " ";
-//        a[j] = -1;
-//        k--;
-//        j++;
-//        while (j < n)
-//        {
-//            if (a[j] != flag && a[j] != -1)
-//            {
-//                cout << j + 1 << " ";
-//                flag = a[j];
-//                a[j] = -1;
-//                k--;
-//                j++;
-//            }
-//            else j++;
-//        }
-//        cout << endl;
-//    }
-//    return 0;
-//}
-
-
-//#include<iostream>
-//#include<iomanip>
-//#include<cmath>
-//using namespace std;
-//int main()
-//{
-//    int x[50] = { 0 };
-//    for (int i = 2; 1 <= 1000; i++)
-//    {
-//        int k = 0, y = 0;
-//        for (int j = 1; j <= sqrt(i); j++)
-//        {
-//            if (i % j == 0)
-//            {
-//                x[k++] = j;
-//                x[k++] = i / j;
-//            }
-//        }
-//        for (int l = 0; x[l] != 0; l++)
-//        {
-//            y += x[l];
-//            x[l] = 0;
-//        }
-//        if (y == i)cout << setw(5) << i;
-//    }
-//
-//    return 0;
-//}
-
-
-
-//#include<iostream>
-//using namespace std;
-//int main() {
-//    char x[1000];
-//    long long a[1000];
-//    int n = 0;
-//    cin.getline(x, 1000);
-//    int len = 0;
-//    while (x[len] != '\0') {
-//        len++;
-//    }
-//    long long num = 0;
-//    for (int i = 0; i < len; ++i) {
-//        if (x[i] >= '0' && x[i] <= '9') {
-//            num = num * 10 + (x[i] - '0');
-//        }
-//        else {
-//            if (num != 0) {
-//                a[n++] = num;
-//                num = 0;
-//            }
-//        }
-//    }
-//    if (num != 0) {
-//        a[n++] = num;
-//    }
-//    cout << n << endl;
-//    if (n > 0) {
-//        cout << a[0];
-//        for (int i = 1; i < n; ++i) {
-//            cout << " " << a[i];
-//        }
-//    }
-//    return 0;
-//}
-
-
-
-
-
-
-//#include<iostream>
-//#include<string>
-//using namespace std;
-//int main()
-//{
-//    string n;
-//    int m[50];
-//    int o, k = 0;
-//    getline(cin, n);
-//    o = n.size();
-//    for (int j = 0; j < o;)
-//    {
-//        int a = 0, p = 0, l = 1;
-//        for (;; j++)
-//        {
-//            if (n[j] < 48 || n[j]>57)break;
-//            a = (n[j] - 48) + a * 10;
-//            //l *= 10;
-//            p = 1;
-//        }
-//        if (p == 1)
-//        {
-//            m[k] = a;
-//            k++;
-//        }
-//        else j++;
-//    }
-//    cout << k << endl;
-//    for (int i = 0; i < k; i++)
-//    {
-//        if (i != 0)cout << " ";
-//        cout << m[i];
-//    }
-//
-//    return 0;
-//}
-
-
-
+/*教王
 #include<iostream>
 #include<string>
 using namespace std;
@@ -377,7 +163,7 @@ int main()
     cin >>ip;
     for(i = 0; i < 32; i++)
     {
-        sum += (ip[i] - '0') * pow(2, 8-1-i%8);
+        sum = sum*2 + ip[i] -'0';
         if ((i + 1) % 8 == 0)
         {
             cout << sum;
@@ -388,3 +174,4 @@ int main()
     
     return 0;
 }
+*/
