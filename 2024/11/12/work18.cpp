@@ -13,7 +13,26 @@
 //输出样例:
 //9300.00,610.00,15.25
 
+#include<iostream>
+#include<iomanip>
+#include<string>
+using namespace std;
+int main()
+{
+    long long a,b;
+    cin>>a>>b;
+    string x[5]={"和","差","积","商","余"};
+    long long y[5]={a+b,a-b,a*b,a/b,a%b};
+    for(int i=0;i<5;i++)
+    {
+        cout<<"11与22"<<x[i]<<"为";
+        if(i!=2)cout<<y[i];
+        else cout<<setiosflags(ios::fixed)<<setprecision(6)<<(double)y[i];
+        if(i!=4)cout<<endl;
+    }
 
+    return 0;
+}
 */
 
 /*(2)圆的周长和面积
