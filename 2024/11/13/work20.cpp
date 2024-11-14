@@ -1,4 +1,4 @@
-﻿/*(11)计算长方形的周长和面积
+/*(11)计算长方形的周长和面积
 
 //输入长方形的长和宽，要求计算长方形的周长和面积。
 //
@@ -150,7 +150,25 @@ int main()
 //11与22商为0
 //11与22余为11
 
+#include<iostream>
+#include<string>
+using namespace std;
+int main()
+{
+    int a, b;
+    cin >> a >> b;
+    string x[5] = { "和","差","积","商","余" };
+    long long y[5] = { a + b,a - b,a * b,a / b,a % b };
+    for (int i = 0; i < 5; i++)
+    {
+        cout << a << "与" << b << x[i] << "为";
+        cout << y[i];
+        if (i == 2)cout << ".000000";
+        if (i != 4)cout << endl;
+    }
 
+    return 0;
+}
 */
 
 //大写字母转换为小写字母
