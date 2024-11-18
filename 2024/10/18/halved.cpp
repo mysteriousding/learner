@@ -1,4 +1,5 @@
-﻿#include<iostream>
+/*错误版
+#include<iostream>
 using namespace std;
 int main()
 {
@@ -48,6 +49,46 @@ int main()
 	}
 
 	cout << a[0] << endl;
+
+	return 0;
+}
+*/
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	int x[102];
+	for (int i = 0; i < 100; i++)x[i] = i + 1;
+	x[100] = x[101] = 0;
+	/*取奇数位
+	for (; x[1] != 0;)
+	{
+		int p = 0;
+		for (int j = 0; x[j] != 0; j++)
+		{
+			if (p == 0)if(x[2 * j] == 0)p = 1;
+			if (p == 0)x[j] = x[2 * j];
+			else x[j] = 0;
+		}
+		for (int j = 0; x[j] != 0; j++)cout << x[j] << " ";
+		cout << endl<<endl;
+	}
+	*/
+	
+	//*取偶数位
+	for (; x[1] != 0;)
+	{
+		int p = 0;
+		for (int j = 0; x[j] != 0; j++)
+		{
+			if (p == 0)if (x[2 * j + 1] == 0)p = 1;
+			if (p == 0)x[j] = x[2 * j + 1];
+			else x[j] = 0;
+		}
+		for (int j = 0; x[j] != 0; j++)cout << x[j] << " ";
+		cout << endl << endl;
+	}
 
 	return 0;
 }
