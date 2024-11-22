@@ -1,4 +1,4 @@
-﻿// 动态链表    
+// 动态链表    
 #include <iostream>
 #include<string>
 using namespace std;
@@ -9,8 +9,9 @@ struct STUDENT
     float stuScore[3];
     STUDENT* next = NULL;
 };
-STUDENT* create_list(int n);
-void print_list(STUDENT* p);
+STUDENT* create_list(int n);     //链表创建
+void print_list(STUDENT* p);     //链表显示
+void append(STUDENT* &p);        //链表末尾插入
 
 int main()
 { 
@@ -20,6 +21,8 @@ int main()
 
     STUDENT* head = create_list(n);
     
+    print_list(head);
+    append(head);
     print_list(head);
 
     return 0;
@@ -85,11 +88,11 @@ STUDENT* create_list(int n)
 {
     STUDENT* head = NULL, * p = NULL, * node = NULL;
 
-    for (int i = 0; i < n; i++)          //根据n的大小，来创建若干个结点并链接起来
+    for (int i = 0; i < n; i++)         //根据n的大小，来创建若干个结点并链接起来
     {
-        node = new STUDENT;     //node表示新创建的结点
+        node = new STUDENT;             //node表示新创建的结点
 
-        if (i == 0)p = head = node;
+        //if (i == 0)p = head = node;   //和下面注释一起，当 n=1 时，无限循环
 
         cout << "请输入学号: \n";
         cin >> node->stuNO;
@@ -103,9 +106,17 @@ STUDENT* create_list(int n)
         cin >> node->stuScore[2];
 
         //建立与之前的链表的关联
-        p->next = node;//令当前结构体指针中保存的next指针，指向新创建的结点
+         
+        //p->next = node;//令当前结构体指针中保存的next指针，指向新创建的结点
+        //p = p->next;   //将循环指针移动到下一个结点的位置处
 
-        p = p->next;   //将循环指针移动到下一个结点的位置处
+        if (i != 0)
+        {
+            p->next = node;
+            p = p->next;
+        }
+        else p = head = node;
+
     }
     //注意，此处最后返回
     return head;
@@ -122,4 +133,30 @@ void print_list(STUDENT* p)
     }
 
     cout << "链表输出完成！" << endl;
+}
+
+void append(STUDENT* &p)        //现在指针 p 就是指针 head 的引用，他们是同一个指针（自己研究,自豪.ing
+{
+    //新创建结点
+    STUDENT* node = new STUDENT;
+
+    cout << "请输入学号: \n";
+    cin >> node->stuNO;
+    cout << "请输入姓名: \n";
+    cin >> node->stuName;
+    cout << "请输入语文成绩: \n";
+    cin >> node->stuScore[0];
+    cout << "请输入数学成绩: \n";
+    cin >> node->stuScore[1];
+    cout << "请输入英语成绩: \n";
+    cin >> node->stuScore[2];
+
+    //插入链表末尾
+    if (p == NULL)p = node;
+    else
+    {
+        STUDENT* p0 = p;
+        while (p0->next != NULL)p0 = p0->next;
+        p0->next = node;
+    }
 }
