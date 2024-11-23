@@ -242,3 +242,102 @@ int main()
 1201 Lisi 20
 1203 Zhaoliu 19
 */
+
+#include<iostream>
+#include<string>
+using namespace std;
+struct STUDENT
+{
+    int xuehao;
+    string mingzi;
+    int nianling;
+    STUDENT* next = NULL;
+};
+STUDENT* chuangli();
+void charu(STUDENT*& p);
+void xianshi(STUDENT* p);
+void tianjia(STUDENT* p, int x);
+void shanchu(STUDENT*& p, int y);
+
+int main()
+{
+    int k, n, m, h;
+    cin >> k;
+    for (int i = 0; i < k; i++)
+    {
+        STUDENT* p = NULL;
+        p = chuangli();
+        cin >> n;
+        for (int j = 0; j < n; j++)
+            charu(p);
+        xianshi(p);
+        cin >> m;
+        tianjia(p, m - 1);
+        xianshi(p);
+        cin >> h;
+        shanchu(p, h);
+        xianshi(p);
+        if (i != k - 1)cout << endl;
+    }
+
+    return 0;
+}
+
+STUDENT* chuangli()
+{
+    STUDENT* head = NULL;
+    return head;
+}
+void charu(STUDENT*& p)
+{
+    STUDENT* node = new STUDENT;
+    cin >> node->xuehao >> node->mingzi >> node->nianling;
+    if (p != NULL)node->next = p;
+    p = node;
+}
+void xianshi(STUDENT* p)
+{
+    while (p != NULL)
+    {
+        cout << p->xuehao << " " << p->mingzi << " " << p->nianling << endl;
+        p = p->next;
+    }
+}
+void tianjia(STUDENT* p, int x)
+{
+    STUDENT* p0 = p, * h = NULL;
+    for (; x > 0; x--)p0 = p0->next;
+    STUDENT* node = new STUDENT;
+    cin >> node->xuehao >> node->mingzi >> node->nianling;
+    //node->next=p0->next;
+    h = p0->next;
+    p0->next = node;
+    //p0=node;
+    node->next = h;
+}
+void shanchu(STUDENT*& p, int y)
+{
+    STUDENT* p0 = p, * p1 = NULL;
+    if (p->xuehao == y)
+    {
+        p0 = p0->next;
+        p->next = NULL;
+        delete p;
+        p = p0;
+    }
+    else
+    {
+        while (p0->next != NULL)
+        {
+            if ((p0->next)->xuehao == y)
+            {
+                p1 = (p0->next)->next;
+                (p0->next)->next = NULL;
+                delete p0->next;
+                p0->next = p1;
+                break;
+            }
+            p0 = p0->next;
+        }
+    }
+}
