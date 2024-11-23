@@ -36,8 +36,6 @@ int main()
         {
         case 0:
             free_list(head);
-            print_list(head);
-            cin >> choice;
             return 0;
         case 1:
             print_list(head);
