@@ -1,5 +1,4 @@
-﻿// 动态链表    
-
+﻿// 动态链表   
 #include <iostream>
 #include<string>
 using namespace std;
