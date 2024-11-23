@@ -1,4 +1,4 @@
-﻿// 动态链表   
+// 动态链表    
 #include <iostream>
 #include<string>
 using namespace std;
@@ -14,8 +14,8 @@ void print_list(STUDENT* p);     //打印链表
 void append(STUDENT*& p);        //追加结点
 void insert_note(STUDENT* &p);   //结点插入
 void modify_node(STUDENT* p);    //结点修改
-void delete_list(STUDENT* &p);    //结点删除
-
+void delete_list(STUDENT*& p);   //结点删除
+void free_list(STUDENT*& p);     //链表清空
 
 int main()
 {
@@ -35,7 +35,9 @@ int main()
         switch (choice)
         {
         case 0:
-            delete head;
+            free_list(head);
+            print_list(head);
+            cin >> choice;
             return 0;
         case 1:
             print_list(head);
@@ -205,47 +207,75 @@ void modify_node(STUDENT* p)
     cout << "未找到指定的学生！无法进行修改！" << endl;
 }
 
+//void delete_list(STUDENT*& p)
+//{
+//    cout << "请输入要删除的学生的学号:" << endl;
+//    int stuNO;
+//    cin >> stuNO;
+//
+//    STUDENT* p0 = p,*p1=NULL;
+//
+//    if (p->stuNO == stuNO)
+//    {
+//        p1 = p->next;
+//        delete p;
+//        p = p1;
+//        return;
+//    }
+//    while (p0->next != NULL)
+//    {
+//        if (p0->stuNO == stuNO)
+//        {
+//            p1 = p0->next;
+//            delete p0;
+//            p0 = p1;                //错误！错误！错误！ p0 不是链表的一部分，它只是从 p 开始遍历链表的一个指针，它改变不能使链表同时改变！！！
+//            return;
+//        }
+//        p0 = p0->next;
+//    }
+//
+//}
+
 void delete_list(STUDENT*& p)
 {
     cout << "请输入要删除的学生的学号:" << endl;
     int stuNO;
     cin >> stuNO;
 
-    STUDENT* p0 = p,*p1=NULL;
+    STUDENT* p0 = p, * p1 = NULL;
     if (p->stuNO == stuNO)
     {
-        p1 = p->next;
-        p->next = NULL;
+        p0 = p->next;
         delete p;
-        p = p1;
+        p = p0;
+        cout << "结点已被正确删除！" << endl;
         return;
     }
-    while (p0 != NULL)
+    while (p0->next != NULL)
     {
-        if (p0->stuNO == stuNO)
+
+        if (p0->next->stuNO == stuNO)
         {
             p1 = p0->next;
-            p0->next = NULL;
-            delete p0;
-            p0 = p1;
-            break;
+            p0->next = p0->next->next;
+            delete p1;
+            cout << "结点已被正确删除！" << endl;
+            return;
         }
         p0 = p0->next;
     }
+    cout << "未找到指定学号的学生，无法删除！" << endl;
+}
+//3 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3
 
-
-
-    //do
-    //{
-    //    if (p0->stuNO == stuNO)
-    //    {
-    //        p1 = p0->next;
-    //        p0->next = NULL;
-    //        delete p0;
-    //        p0 = p1;
-    //        return;
-    //    }
-    //    p0 = p0->next;
-    //} while (p0/*->next*/ != NULL);
-
+void free_list(STUDENT*& p)
+{
+    STUDENT* p0 = p, * p1 = nullptr;
+    while (p0 != nullptr)
+    {
+        p1 = p0->next;
+        delete p0;
+        p0 = p1;
+    }
+    p = NULL;
 }
