@@ -1,10 +1,12 @@
-﻿#include<iostream>
+#include<iostream>
 #include<fstream>
 #include<string>
 using namespace std;
 int main()
 {
-	ofstream XY("xiangyu.txt"/*,ios::app*/);       //有 xiangyu.txt 就修改，没有就新建           //有 ios::app 是添加，没有是覆盖      //不只是 .txt 可以创建,如： .exe, .jpg
+	string k;
+	cin >> k;   //直接输入 ，如“ABC.txt” 
+	ofstream XY(k/*"xiangyu.txt"*//*,ios::app*/);       //有 xiangyu.txt 就修改，没有就新建           //有 ios::app 是添加，没有是覆盖      //不只是 .txt 可以创建,如： .exe, .jpg
 	if (XY.is_open())
 		XY << "你好啊！"<< endl;
 	else
