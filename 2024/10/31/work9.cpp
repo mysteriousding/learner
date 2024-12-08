@@ -271,6 +271,85 @@ int main()
     return 0;
 */
 
+/*(24)完成
+// #include<iostream>
+// #include<vector>
+// #include<algorithm>
+// using namespace std;
+// int main()
+// {
+//     ios::sync_with_stdio(false);
+//     cin.tie(nullptr);
+//     int n,p;//,g=0;
+//     long long k;
+//     cin>>n;
+//     vector<long long>arr(n);
+//     for(int i=0;i<n;i++)
+//     {
+//         cin>>k;
+//         if(k>0)arr[i]=k;//{arr[g]=k;g++;}
+//     }
+
+//     /*
+//     for(int i=0;i<g-1;i++)
+//     {
+//         for(int j=g-1;j>i+1;j--)
+//         {
+//             if(arr[j]<arr[j-1]){p=arr[j];arr[j]=arr[j-1];arr[j-1]=p;}
+//         }
+//         if(arr[i]!=i+1){cout<<i+1<<endl;break;}
+//     }
+//     *
+//     /*
+//     sort(arr.begin(),arr.end());
+//     for(int i=0;i<g;i++)
+//     {
+//         if(arr[i]!=i+1){cout<<i+1<<endl;break;}
+//     }
+//     *
+
+//     for(int j=1;j<=n;j++)
+//     {
+//         p=0;
+//         for(int i=0;i<n;i++)
+//         {
+//             if(j==arr[i]){p=1;break;}
+//         }
+//         if(p==0){cout<<j<<endl;break;}
+//     }
+
+//     return 0;
+// }
+
+
+
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    long long n, j = 0, k;
+    cin >> n;
+    vector<long long>arr(n);
+    for (long long i = 0; i < n; i++)
+    {
+        cin >> k;
+        if (k > 0)arr[j++] = k;
+    }
+    arr.resize(j);
+    sort(arr.begin(), arr.end());
+    unique(arr.begin(), arr.end());//考虑重复！
+    arr.resize(j + 1);
+    for (long long i = 0; i <= j; i++)
+        if (arr[i] != i + 1) { cout << i + 1 << endl; break; }
+
+    return 0;
+}
+*/
+
 //排序
 //
 //请编写程序对不超过50000个整数递增排序。
