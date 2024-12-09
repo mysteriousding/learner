@@ -1,4 +1,4 @@
-﻿/*(6)检阅
+/*(6)检阅
 
 //马年到了，也到了检阅战马的时候。战马分为白色和棕色两种，一字排开，指挥官希望他的战马队列尽可能整齐好看，将相同颜色的战马放在一起。大部分人都喜欢高头白马，因此，指挥官要求白马排在前面，棕马排在后面。现在，N匹战马都已经在广场列队。为了达到要求，指挥官可以调换任意一个位置上的战马（有充足的备用战马）。问至少调换多少匹可以达到要求。
 //
@@ -109,7 +109,56 @@ int main()
 //【输出样例】
 //6
 
+// #include<iostream>
+// #include<string>
+// using namespace std;
+// int sum=1;
+// void DG(int n);
+// int main()
+// {
+//     int n;
+//     cin>>n;
+//     DG(n);
+//     cout<<sum<<endl;
 
+//     return 0;
+// }
+
+// void DG(int n)
+// {
+//     if(n==1)return;
+//     for(int i=1;i<=n/2;i++)
+//     {
+//         sum++;
+//         DG(i);
+//     }
+// }
+
+
+
+#include<iostream>
+#include<string>
+using namespace std;
+int cc[1000];
+int DG(int n);
+int main()
+{
+    int n;
+    cin>>n;
+    for(int i=1;i<=n;i++)
+        cc[i]=DG(i);
+    cout<<cc[n]<<endl;
+
+    return 0;
+}
+
+int DG(int n)    //我不会，蒙对了，很懵逼，wc为什么？！！
+{
+    int sum=1;
+    for(int i=1;i<=n/2;i++)
+        sum+=cc[i];
+    return sum;
+}
 */
 
 /*(8)3名同学5门课程成绩，输出最好成绩及所在的行和列（要求指针作为函数的参数）
