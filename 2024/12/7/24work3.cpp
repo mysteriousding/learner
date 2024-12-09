@@ -1,4 +1,4 @@
-﻿/*(11)矩阵对角线互换
+/*(11)矩阵对角线互换
 
 //本题目要求读入1个n×n的矩阵A，然后输出该矩阵正对角线与反对角线互换后的矩阵。具体过程如下图所示：
 //
@@ -73,7 +73,40 @@ int main()
 //   2   5
 //   3   6
 
+#include<iostream>
+#include<iomanip>
+#include<vector>
+using namespace std;
+int main()
+{
+    int n,m,p=0;
+    cin>>n>>m;
+    vector<vector<int>>N(n,vector<int>(m));
+    vector<vector<int>>M(m,vector<int>(n));
+    for(int i=0;i<n;i++)
+        for(int j=0;j<m;j++)
+        {
+            cin>>N[i][j];
+            M[j][i]=N[i][j];
+        }
+    cout<<"Before:"<<endl;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {cout<<setw(4)<<N[i][j];p=1;}
+        if(p==1)cout<<endl;
+    }
+    p=0;
+    cout<<"After:"<<endl;
+    for(int i=0;i<m;i++)
+    {
+        for(int j=0;j<n;j++)
+        {cout<<setw(4)<<M[i][j];p=1;}
+        if(i!=m-1&&p==1)cout<<endl;
+    }
 
+    return 0;
+}
 */
 
 /*(13)矩阵中的鞍点
