@@ -1,4 +1,4 @@
-﻿/*(16)求一个字符串的长度
+/*(16)求一个字符串的长度
 
 //编写函数fun，其功能是求一个字符串的长度,在main函数中输入字符串,并输出其长度，不能使用strlen函数。
 //
@@ -148,7 +148,85 @@ int main()
 //输出样例:
 //-1
 
+// #include<iostream>
+// #include<vector>
+// #include<cmath>
+// #include<string>
+// using namespace std;
+// int main()
+// {
+//     string n,n0;
+//     int i=0,j,p=-1,k=0;
+//     int m;
+//     getline(cin,n,'\n');
+//     getline(cin,n0,'\n');
+//     n+=' ';
+//     n0+=' ';
+//     m=n.size();
+//     while(n0[i]!='\0')
+//     {
+//         if(i==0)
+//         {
+//             if(n[0]==n0[0]||abs(n[0]-n0[0])==32)goto E;
+//              else goto F;
+//         }
+//         if(n0[i-1]==' ')
+//         {
+//             E:
+//             j=i;
+//             for(;i<=j+m;i++)
+//                 if((n0[i]!=n[i-j]&&abs(n0[i]-n[i-j])!=32)||n0[i]=='\0')break;
 
+//             if(i==j+m){k++;if(p==-1)p=j;}
+//         }
+//         F:
+//         i++;
+//     }
+//     if(p!=-1)cout<<k<<" ";
+//     cout<<p<<endl;
+
+//     return 0;
+// }
+
+
+
+#include<iostream>
+#include<vector>
+#include<cmath>
+#include<string>
+using namespace std;
+int main()
+{
+    string n,n0;
+    int i=0,j,p=-1,k=0;
+    int m;
+    getline(cin,n,'\n');
+    getline(cin,n0,'\n');
+    n+=' ';
+    n0+=' ';
+    m=n.size();
+    while(n0[i]!='\0')
+    {
+        if(i==0)
+        {
+            if(n[0]==n0[0]||abs(n[0]-n0[0])==32)goto E;
+        }
+        else if(n0[i-1]==' ')
+        {
+            E:
+            j=i;
+            for(;i<j+m;i++)
+                if((n0[i]!=n[i-j]&&abs(n0[i]-n[i-j])!=32)||n0[i]=='\0')break;
+
+            if(i==j+m){i--;k++;if(p==-1)p=j;}
+        }
+        i++;
+    }
+    if(p!=-1)cout<<k<<" ";
+    cout<<p<<endl;
+
+    return 0;
+}
 */
 
 //句子反转
