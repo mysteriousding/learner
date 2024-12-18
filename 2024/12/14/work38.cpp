@@ -1,4 +1,4 @@
-﻿/*(6)学生信息的那些操作：（2）按学号，查个人
+/*(6)学生信息的那些操作：（2）按学号，查个人
 
 //有一学生成绩表，包括学号、姓名、3门课程成绩。请实现如下查找功能：输入一个学生的学号，输出该学生学号、姓名、3门课程成绩
 //
@@ -301,42 +301,101 @@ struct stu
     string xh;
     string name;
     int sum[3];
-    stu*next=NULL;
+    stu* next = NULL;
 };
-int main()
+
+// int main()     //指针数组
+// {
+//     int n;
+//     cin>>n;
+//     vector<stu*>m(n);
+//     for(int i=0;i<n;i++)
+//     {
+//         m[i]=new stu;
+//         cin>>m[i]->xh>>m[i]->name;
+//         for(int j=0;j<3;j++)
+//             cin>>m[i]->sum[j];
+//     }
+//     int k;
+//     stu*h=NULL;
+//     cin>>k;
+//     k--;
+//     for(int i=0;i<n-1;i++)
+//         for(int j=0;j<n-i-1;j++)
+//             if(m[j]->sum[k]<m[j+1]->sum[k]||(m[j]->sum[k]==m[j+1]->sum[k]&&m[j]->xh>m[j+1]->xh))
+//             {
+//                 h=m[j];
+//                 m[j]=m[j+1];
+//                 m[j+1]=h;
+//             }
+//     for(int i=0;i<n;i++)
+//     {
+//         if(i!=0)cout<<endl;
+//         cout<<m[i]->xh<<" "<<m[i]->name<<" ";
+//         for(int j=0;j<3;j++)
+//             cout<<m[i]->sum[j]<<" ";
+//         delete m[i];
+//     }
+
+//     return 0;
+// }
+
+int main()   //链表的冒泡排序
 {
     int n;
-    cin>>n;
-    vector<stu*>m(n);
-    stu*head=NULL,*p=NULL;
-    for(int i=0;i<n;i++)
+    cin >> n;
+    stu* head = NULL, * p = NULL;
+    for (int i = 0; i < n; i++)
     {
-        m[i]=new stu;
-        cin>>m[i]->xh>>m[i]->name;
-        for(int j=0;j<3;j++)
-            cin>>m[i]->sum[j];
+        stu* node = new stu;
+        cin >> node->xh >> node->name;
+        for (int j = 0; j < 3; j++)
+            cin >> node->sum[j];
+        node->next = head;
+        head = node;
     }
     int k;
-    stu*h=NULL;
-    cin>>k;
+    cin >> k;
     k--;
-    for(int i=0;i<n-1;i++)
-        for(int j=0;j<n-i-1;j++)
-            if(m[j]->sum[k]<m[j+1]->sum[k]||(m[j]->sum[k]==m[j+1]->sum[k]&&m[j]->xh>m[j+1]->xh))
-            {
-                h=m[j];
-                m[j]=m[j+1];
-                m[j+1]=h;
-            }
-    for(int i=0;i<n;i++)
+    for (int i = 0; i < n - 1; i++)
     {
-        if(i!=0)cout<<endl;
-        cout<<m[i]->xh<<" "<<m[i]->name<<" ";
-        for(int j=0;j<3;j++)
-            cout<<m[i]->sum[j]<<" ";
-        delete m[i];
+        stu* h = NULL;
+        for (int mxd = 0; mxd < n - 1; mxd++)
+        {
+            if (head->sum[k] < head->next->sum[k] || (head->sum[k] == head->next->sum[k] && head->xh > head->next->xh))
+            {
+                p = head->next;
+                head->next = head->next->next;
+                p->next = head;
+                head = p;
+            }
+            else
+            {
+                p = head;
+                while (p->next->next != NULL)
+                {
+                    if (p->next->sum[k] < p->next->next->sum[k] || (p->next->sum[k] == p->next->next->sum[k] && p->next->xh > p->next->next->xh))
+                    {
+                        h = p->next;
+                        p->next = p->next->next;
+                        h->next = h->next->next;
+                        p->next->next = h;
+                    }
+                    p = p->next;
+                }
+            }
+        }
     }
-
+    while (head != NULL)
+    {
+        cout << head->xh << " " << head->name << " ";
+        for (int j = 0; j < 3; j++)
+            cout << head->sum[j] << " ";
+        cout << endl;
+        p = head;
+        head = head->next;
+        delete p;
+    }
 
     return 0;
 }
