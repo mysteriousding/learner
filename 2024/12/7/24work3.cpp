@@ -174,7 +174,7 @@ int main()
 }
 */
 
-/*(14)二维数组
+/*(14)二维数组     ---SB出题人！你家下标从1开始！？ ……
 
 //作者 yzx
 //单位 兰州交通大学
@@ -187,8 +187,17 @@ int main()
 //
 //输出样例:
 
+#include<iostream>
+using namespace std;
+int main()
+{
+    int m=0;
+    for(int i=1;i<=10;i++)
+        m+=i*i*2;
+    cout<<m<<" "<<m/10<<endl;
 
-
+    return 0;
+}
 */
 
 //矩阵乘法
