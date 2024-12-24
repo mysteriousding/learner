@@ -1,4 +1,4 @@
-﻿/*(1)统计成绩
+/*(1)统计成绩
 
 //每次考试或测试后，老师们都要进行成绩统计。假如某次期末考试有语文、数学、英语三门课，现请你编程输出总成绩最高分以及每门学科的最高分。
 //
@@ -293,6 +293,7 @@ long long D(long long y)
 //
 //由于数据规模较大，建议 C/C++ 选手使用 scanf 和 printf 语句输入、输出。
 
+/*版本一
 #include<iostream>
 #include<vector>
 using namespace std;
@@ -355,11 +356,190 @@ int J(vector<int> x, int y, int z)
 {
     while (1)
     {
-        if (x[y] == 2)
-        {
-            y++;
-            if (y == z)return z;
-        }
+        if (y == z)return z;
+
+        if (x[y] == 2)y++;
+
         else return y;
     }
 }
+*/
+
+/*老师版
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+    int i, n, k = 0, f, j, flag;
+    cin >> n;
+    vector<int>a(n);
+    k = n;
+    for (i = 0; i < n; i++) cin >> a[i];
+    while (k != 0)
+    {
+        f = 0;
+        while (a[f] == -1) f++;
+        flag = a[f];
+        j = f;
+        cout << j + 1 << " ";
+        a[j] = -1;
+        k--;
+        j++;
+        while (j < n)
+        {
+            if (a[j] != flag && a[j] != -1)
+            {
+                cout << j + 1 << " ";
+                flag = a[j];
+                a[j] = -1;
+                k--;
+                j++;
+            }
+            else j++;
+        }
+        cout << endl;
+    }
+    return 0;
+}
+*/
+
+/*版本二
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+    int n, k = 1, p = 0, j0 = 0, p1;
+    cin >> n;
+    vector<int>a(n);
+    for (int i = 0; i < n; i++)cin >> a[i];
+
+    for (int i = 0;; i++)
+    {
+        p1 = 0;
+        for (int j = 0; j <= n; j++)
+        {
+            if (p == n) { p = -1; break; }
+            if (p1 == 0)
+            {
+                while (1)
+                {
+                    if (j == n) { j0 = n; break; }
+
+                    if (a[j] == 2)j++;
+
+                    else { j0 = j; break; }
+                }
+
+                if (k == 0)cout << " "; //出
+                cout << j0 + 1;
+                k = 0; p++; 
+
+                j = j0;                 //换
+                p1 = 1;
+            }
+
+            while (1)
+            {
+                if (j == n) break;
+
+                if (a[j] == 2)j++;
+
+                else break;
+            }
+
+            if (j == n)
+            {
+                a[j0] = 2;              //封
+                cout << endl; k = 1;    //尾
+                break;
+            }
+            if (a[j0] != a[j])
+            {
+                a[j0] = 2;              //封
+                
+                if (k == 0)cout << " "; //出
+                cout << j + 1;
+                k = 0; p++;
+
+                j0 = j;                 //换
+
+            }
+        }
+        if (p == -1)break;
+    }
+
+    return 0;
+}
+*/
+
+//二班版\提交版
+#include <bits/stdc++.h>
+#define MAXN 200100
+using namespace std;
+int n, a[MAXN], l[MAXN], r[MAXN];
+vector<int> b;
+int main()
+{
+    scanf("%d", &n);
+    a[0] = a[n + 1] = -1, r[0] = 1, l[n + 1] = n;
+    for (int i = 1; i <= n; i++)
+    {
+        scanf("%d", &a[i]);
+        if (a[i] != a[i - 1]) b.push_back(i);
+        l[i] = i - 1, r[i] = i + 1;
+    }
+    while (r[0] != n + 1)
+    {
+        vector<int> tmp;
+        for (int i = 0; i < b.size(); i++)
+        {
+            printf("%d ", b[i]);
+            int u = l[b[i]], v = r[b[i]];
+            r[u] = v, l[v] = u;
+            if (a[b[i]] != a[u] && a[b[i]] == a[v]) tmp.push_back(v);
+        }
+        puts("");
+        b = tmp;
+    }
+    return 0;
+}
+
+
+
+
+/*修改版-- - 速度降了
+#include <iostream>
+#include <vector>
+using namespace std;
+#define MAXN 200000
+int main()
+{
+    int n, a[MAXN], l[MAXN], r[MAXN];
+    vector<int> b;
+    cin >> n;
+    a[0] = a[n + 1] = -1, r[0] = 1, l[n + 1] = n;
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> a[i];
+        if (a[i] != a[i - 1]) b.push_back(i);
+        l[i] = i - 1, r[i] = i + 1;
+    }
+    while (r[0] != n + 1)
+    {
+        if (r[0] != 1)cout << endl;
+        vector<int> tmp;
+        for (int i = 0; i < b.size(); i++)
+        {
+            cout << b[i] << " ";
+            int u = l[b[i]], v = r[b[i]];
+            r[u] = v, l[v] = u;
+            if (a[b[i]] != a[u] && a[b[i]] == a[v]) tmp.push_back(v);
+        }
+        b = tmp;
+    }
+
+    return 0;
+}
+*/
