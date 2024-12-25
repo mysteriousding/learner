@@ -1,4 +1,4 @@
-﻿/*(56)LX705 点圆关系
+/*(56)LX705 点圆关系
 
 //题目背景
 //《C/C++简明双链教程》
@@ -390,7 +390,48 @@ int main()
 //
 //复制主程序代码，完成缺失部分后将完整的代码提交进行测评！除了填充部分，已给定的代码不要做任何修改。
 
-
+#include <iostream>
+using namespace std;
+class People{
+private:
+    string id;
+    string name;
+public:
+    People(string id, string name){
+        this->id = id;
+        this->name = name;
+    }
+    string getId(){
+        return this->id;
+    }
+    string getName(){
+        return name;
+    }
+};
+class Student : public People{
+private:
+    string sid;
+    int score;
+public:
+    Student(string id, string name, string sid, int score):People(id,name),sid(sid),score(score){}
+    friend ostream& operator <<(ostream &o, Student &s);
+};
+ostream& operator <<(ostream &o, Student &s){
+    o << "(Name:" << s.getName() << "; id:"
+      << s.getId() << "; sid:" << s.sid
+      << "; score:" << s.score << ")";
+    return o;
+}
+int main(){
+    string id,name,sid;
+    int score;
+    getline(cin,id);
+    getline(cin,name);
+    cin>>sid>>score;
+    Student zs(id, name, sid, score);
+    cout << zs << endl;
+    return 0;
+}
 */
 
 //定义基类Point和派生类Circle，求圆的周长.
@@ -426,5 +467,33 @@ int main()
 //Circle destructor called
 //Point destructor called
 
-
-/**/
+#include<iostream>
+#include<iomanip>
+using namespace std;
+#define pi 3.14
+class Point
+{
+public:
+    Point(float x, float y) :x(x), y(y) { cout << "Point constructor called" << endl; }
+    ~Point() { cout << "Point destructor called" << endl; }
+private:
+    float x;
+    float y;
+};
+class Circle :public Point
+{
+public:
+    Circle(float x, float y, float z) :Point(x, y), r(z) { cout << "Circle constructor called" << endl; }
+    float getCircumference() { return 2 * pi * r; }
+    ~Circle() { cout << "Circle destructor called" << endl; }
+private:
+    float r;
+};
+int main()
+{
+    float x, y, r;
+    cin >> x >> y >> r;
+    Circle c(x, y, r);
+    cout << fixed << setprecision(2) << c.getCircumference() << endl;
+    return 0;
+}
