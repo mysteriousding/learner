@@ -74,39 +74,32 @@ class Point{
         void setX(double x_);
         void setY(double y_);
 };
-Point::Point(){setX(0);setY(0);}
-Point::Point(double x_,double y_){setX(x_);setY(y_);}
+Point::Point(double x_,double y_):x(x_),y(y_){}
+double Point::distance(const Point&p)
+{
+    return pow(pow(x-p.x,2)+pow(y-p.y,2),0.5);
+}
 double Point::distance()
 {
-    double L;
-    L=pow(x*x+y*y,1/2.0);
-    return L;
-}
-double Point::distance(const Point& p)
-{
-    double R;
-    R=pow(pow(x-p.x,2)+pow(y-p.y,2),1.0/2);
-    return R;
+    Point k(0,0);
+    return this->distance(k);
 }
 void Point::setX(double x_){x=x_;}
 void Point::setY(double y_){y=y_;}
 class Circle
 {
-public:
-    Circle(Point x,double y):O(x),R(y){}
-    string judge(Point p)
+    public:
+    Circle(Point x,double y):n(x),m(y){}
+    string judge(Point x)
     {
-        double R0;
-        string m;
-        R0=O.distance(p);//pow(pow(p.getX()-O.getX(),2)+pow(p.getY()-O.getY(),2),1.0/2);
-        if(abs(R-R0)<1e-5)m="on";
-        else if(R0>R)m="outside";
-        else m="inside";
-        return m;
+        double k=x.distance(n);
+        if(fabs(m-k)<1e-9)return "on";
+        else if(m<k)return "outside";
+        else return "inside";
     }
-private:
-    Point O;
-    double R;
+    private:
+    Point n;
+    double m;
 };
 int main()
 {
