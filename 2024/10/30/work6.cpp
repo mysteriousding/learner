@@ -348,6 +348,88 @@ int main()
 }
 */
 
+/*豆包修改版
+#include <iostream>
+#include <cstdint>
+#include <string>
+
+using namespace std;
+
+int main() {
+    int64_t num = 0;
+    const int64_t x = 1LL << 12;
+    const int64_t y = 1LL << 22;
+    int n;
+    int64_t startTime;
+    cin >> n >> startTime;
+    int sequence[1024] = {0};
+
+    string command;
+    while (cin >> command) {
+        int nodeId;
+        cin >> nodeId;
+        if (command == "next") {
+            if (nodeId < 0 || nodeId >= n) {
+                continue;
+            }
+            int64_t id = startTime * y + nodeId * x + sequence[nodeId]++;
+            cout << id << endl;
+        } else if (command == "sync") {
+            startTime = nodeId;
+            for (int i = 0; i < n; ++i) {
+                sequence[i] = 0;
+            }
+            cout << "ok" << endl;
+        }
+    }
+    return 0;
+}
+*/
+
+/*提交版
+#include <iostream>
+#include <cstdint>
+#include <string>
+#include<cmath>
+using namespace std;
+int main()
+{
+    int64_t num = 0;
+    // const int64_t x = 1LL << 12;
+    // const int64_t y = 1LL << 22;
+    const int64_t x =pow(2,12);
+    const int64_t y =pow(2,22);
+
+    int n;
+    int64_t startTime;
+    cin >> n >> startTime;
+    int sequence[1024] = {0};
+    string command;
+
+    while (cin >> command)
+    {
+        int nodeId;
+        cin >> nodeId;
+        if (command == "next")
+        {
+            if (nodeId < 0 || nodeId >= n)continue;
+            int64_t id = startTime * y + nodeId * x + sequence[nodeId]++;
+            cout << id << endl;
+        }
+        else if (command == "sync")
+        {
+            startTime = nodeId;
+            for (int i = 0; i < n; ++i)
+                sequence[i] = 0;
+
+            cout << "ok" << endl;
+        }
+    }
+
+    return 0;
+}
+*/
+
 //猴子吃桃 - 《C++编程基础及应用》- 习题2-3
 //
 //一只猴子在树上摘了若干个桃，当即吃了x%，觉得不过瘾，又多吃了一个；第二天它吃了剩下桃子的x%加一个；第三天它又吃了剩下桃子的x%加一个，此时，只剩下一个桃子。请编程求解：猴子第一天从树上摘得多少个桃子？
