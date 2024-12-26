@@ -17,6 +17,8 @@ private:
 	char t[20][41]; 
 };
 
+
+
 class Apple
 {
 public:
@@ -30,7 +32,6 @@ private:
 	int y;
 	int x;
 };
-
 
 
 
