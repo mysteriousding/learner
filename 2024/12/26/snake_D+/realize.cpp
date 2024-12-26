@@ -1,6 +1,6 @@
 #include"snake.h"
 
-//Í¼Àà
+//图类
 Tu::Tu()
 {
     for (int i = 0; i < 20; i++)
@@ -40,7 +40,7 @@ void Tu::xuigai(int y, int x, int z)
 
 
 
-//Æ»¹ûÀà
+//苹果类
 bool Apple::live = 0;
 
 Apple::Apple(Tu& t)
@@ -74,7 +74,7 @@ void Apple::chunhui(Tu& t)
 
 
 
-//ÉßÀà
+//蛇类
 bool Snake::live = 0;
 int  Snake::longs = 0;
 
