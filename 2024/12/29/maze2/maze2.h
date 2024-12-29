@@ -8,27 +8,27 @@
 #include <stack>
 using namespace std;
 
-//dx×î´ó65£¡
+//dxæœ€å¤§65ï¼
 static int dx = 1;
 
-// ÃÔ¹¬¸ñ×Ó×´Ì¬
-enum CellState£ºint { PATH = 0, WALL, FLAG };
+// è¿·å®«æ ¼å­çŠ¶æ€
+enum CellStateï¼šint { PATH = 0, WALL, FLAG };
 
-// ÃÔ¹¬¸ñ¶şÎ¬µã½á¹¹
+// è¿·å®«æ ¼äºŒç»´ç‚¹ç»“æ„
 struct Point2
 {
     int x, y;
     Point2(int _x, int _y) :x(_x), y(_y) {}
 };
 
-// ÃÔ¹¬Éú³É½Ó¿Ú--µİ¹é°æ
+// è¿·å®«ç”Ÿæˆæ¥å£--é€’å½’ç‰ˆ
 void DFS_generator(int _x, int _y, std::vector<std::vector<int>>& maze)
 {
-    // ¶¨Òå·½ÏòÈİÆ÷
+    // å®šä¹‰æ–¹å‘å®¹å™¨
     std::vector<std::vector<int>> dir{ {1,0},{-1,0},{0,1},{0,-1} };
-    // Ëæ»ú´òÂÒ·½Ïò
+    // éšæœºæ‰“ä¹±æ–¹å‘
     std::random_shuffle(dir.begin(), dir.end());
-    // µİ¹éÉú³ÉÃÔ¹¬
+    // é€’å½’ç”Ÿæˆè¿·å®«
     maze[_x][_y] = PATH;
     for (int i = 0; i < 4; ++i)
     {
@@ -41,22 +41,22 @@ void DFS_generator(int _x, int _y, std::vector<std::vector<int>>& maze)
     }
 }
 
-// ÃÔ¹¬Éú³É½Ó¿Ú--µü´ú°æ
+// è¿·å®«ç”Ÿæˆæ¥å£--è¿­ä»£ç‰ˆ
 void DFS_iterative_generator(std::vector<std::vector<int>>& maze)
 {
-    // ¶¨ÒåÕ»ÈİÆ÷
+    // å®šä¹‰æ ˆå®¹å™¨
     std::stack<Point2> sp;
-    // ¶¨Òå·½ÏòÈİÆ÷
+    // å®šä¹‰æ–¹å‘å®¹å™¨
     std::vector<std::vector<int>> dir{ {1,0},{-1,0},{0,1},{0,-1} };
-    // ÒªÇó²ÎÊıÎªÆæÊı
+    // è¦æ±‚å‚æ•°ä¸ºå¥‡æ•°
     Point2 temp((rand() % (dx - 2) + 1) | 1, (rand() % (dx - 2) + 1) | 1);
     sp.push(temp);
-    // ºóĞøµü´úÉú³ÉÃÔ¹¬£¬²¢»æÖÆ
+    // åç»­è¿­ä»£ç”Ÿæˆè¿·å®«ï¼Œå¹¶ç»˜åˆ¶
     while (!sp.empty())
     {
         if (maze[temp.x][temp.y] != PATH)
             maze[temp.x][temp.y] = PATH;
-        // Ëæ»ú´òÂÒ·½Ïò
+        // éšæœºæ‰“ä¹±æ–¹å‘
         std::random_shuffle(dir.begin(), dir.end());
         int i = 0;
         for (; i < 4; ++i)
@@ -98,21 +98,21 @@ tu::tu() : x(0), y(1), T(vector<vector<char>>(dx + 2, vector<char>(dx * 2 + 4)))
     dx += 2;
     live = 1;
 
-    // Èë¿Ú³ö¿Ú
+    // å…¥å£å‡ºå£
     Point2 start(0, 1);
     Point2 end(dx - 1, dx - 2);
 
-    // ¶şÎ¬ÃÔ¹¬ÈİÆ÷
+    // äºŒç»´è¿·å®«å®¹å™¨
     std::vector<std::vector<int>> maze;
 
-    // ³õÊ¼»¯ÃÔ¹¬
+    // åˆå§‹åŒ–è¿·å®«
     for (int i = 0; i < dx; ++i) maze.push_back(std::vector<int>());
     for (int i = 0; i < dx; ++i)
         for (int j = 0; j < dx; ++j)
             maze[i].push_back(WALL);
     maze[start.x][start.y] = maze[end.x][end.y] = PATH;
 
-    // Éú³ÉÃÔ¹¬£¨µü´úºÍ·Çµü´ú¶şÑ¡Ò»Éú³É£©
+    // ç”Ÿæˆè¿·å®«ï¼ˆè¿­ä»£å’Œéè¿­ä»£äºŒé€‰ä¸€ç”Ÿæˆï¼‰
     DFS_generator((rand() % (dx - 2) + 1) | 1, (rand() % (dx - 2) + 1) | 1, maze);
     // DFS_iterative_generator(maze);
 
@@ -126,7 +126,7 @@ tu::tu() : x(0), y(1), T(vector<vector<char>>(dx + 2, vector<char>(dx * 2 + 4)))
 
 void tu::huizhi()
 {
-    // ´òÓ¡ÃÔ¹¬
+    // æ‰“å°è¿·å®«
     for (int i = 0; i < dx; ++i)
     {
         for (int j = 0; j < dx * 2; ++j)
