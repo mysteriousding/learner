@@ -264,3 +264,106 @@ int main()
 //MOON 321 THE 2 GO to CHOOSE WE
 
 
+//和去前导零没有关系？那还有什么没考虑到？总不可能又类似0不属于数字？？
+
+#include<iostream>
+#include<string>
+using namespace std;
+
+int qu(string& s)
+{
+    string m = "";
+    int n = s.size();
+    bool u = 1;
+    for (int i = 0; i < n; i++)
+    {
+        if (u && s[i] != '0')u = 0;
+        if (!u)m += s[i];
+    }
+    s = m;
+    return m.size();
+}
+
+int main()
+{
+    string n, m = "", n0 = "";
+    int k = 0;
+    while (cin >> n)
+    {
+        if (k != 0)m = ' ' + m;
+        k = n.size();
+        if (n[0] >= 'a' && n[0] <= 'z')
+            for (int i = 0; i < k; i++)
+                n[i] -= 32;
+
+        else if (n[0] >= 'A' && n[0] <= 'Z')
+            for (int i = 0; i < k; i++)
+                n[i] += 32;
+
+        else
+        {
+            //k=qu(n);   //取消注释：反转前去前导零
+            for (int i = 0; i < k; i++)
+                n0 = n[i] + n0;
+            n = n0;
+            //qu(n);    //取消注释：反转后去前导零
+            n0 = "";
+        }
+
+        // else 
+        // {
+        //     bool u=0;
+        //     int g=0;
+        //     for(int i=0;i<k;i++)
+        //     {
+        //         if((!u&&n[i]!='0')||i==k-1)u=1;
+        //         if(u){n0=n[i]+n0;g++;}
+        //     }
+        //     n="";
+        //     u=0;
+        //     for(int i=0;i<g;i++)
+        //     {
+        //         if((!u&&n0[i]!='0')||i==k-1)u=1;
+        //         if(u)n+=n0[i]; 
+        //     }
+
+        //     n0="";
+        // }
+
+        m = n + m;
+    }
+    cout << m << endl;
+
+    return 0;
+}
+
+
+
+// int main()
+// {
+// string n, m, s;
+// int i=0;
+// getline(cin, n, '\n');
+// n += '\0';
+// while (n[i] != '\0')
+// {
+//     if (n[i] >= 'a' && n[i] <= 'z')
+//     {
+//         for (; n[i] >= 'a' && n[i] <= 'z'; i++)
+//             s += n[i] - 32;
+//         m = s + m;
+//         s = "";
+//     }
+//     else if (n[i] >= 'A' && n[i] <= 'Z')
+//     {
+//         for (; n[i] >= 'A' && n[i] <= 'Z'; i++)
+//             s += n[i] + 32;
+//         m = s + m;
+//         s = "";
+//     }
+//     else m = n[i++] + m;
+// }
+// cout << m << endl;
+
+//     return 0;
+// }
