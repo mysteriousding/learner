@@ -1,4 +1,4 @@
-﻿#include<iostream>
+#include<iostream>
 #include<iomanip>
 #include<vector>
 #include<string>
@@ -30,7 +30,8 @@ void gn19();
 void gn20();
 void gn21();
 void gn22();
-
+void gn23();
+bool gn24();
 
 int main()
 {
@@ -67,8 +68,8 @@ int main()
         case 20:gn20(); break;
         case 21:gn21(); break;
         case 22:gn22(); break; 
-        case 23:break;
-        case 24:break;
+        case 23:gn23(); break; 
+        case 24:if (gn24()) exit(0); break;
         default:cout << "请重新输入！" << endl;;
         }
         cout << endl; 
@@ -459,7 +460,7 @@ struct stu
     string num;
     string name;
     double cj;
-    stu* next;
+    stu* next = NULL;
 };
 
 
@@ -527,7 +528,7 @@ void gn21()
 
 void gn22()
 {
-    cout << "请输入n ,将储存n个学生的信息:" << endl;
+    cout << "请输入n ,将储存n个学生的信息,同时按照成绩排序:" << endl;
     int n;
     stu* head = NULL, * p;
     cin >> n;
@@ -553,7 +554,7 @@ void gn22()
             else
             {
                 p = head;
-                while (p->next->next != NULL)
+                while (p->next != NULL)
                 {
                     if (p->next->cj > node->cj)
                         break;
@@ -580,7 +581,75 @@ void gn22()
     cout << endl;
 }
 
+void gn23()
+{
+    cout << "请输入n ,将按照成绩排序储存n个学生的信息,同时学生成绩普涨 10 分:" << endl;
+    int n;
+    stu* head = NULL, * p;
+    cin >> n;
+
+    for (int i = 0; i < n; i++)
+    {
+        stu* node = new stu;
+        cout << "请输入第" << i + 1 << "个学生的学号" << endl;
+        cin >> node->num;
+        cout << "请输入第" << i + 1 << "个学生的名字" << endl;
+        cin >> node->name;
+        cout << "请输入第" << i + 1 << "个学生的成绩" << endl;
+        cin >> node->cj;
+        node->cj += 10;
+
+        if (head == NULL)head = node;
+        else
+        {
+            if (head->cj > node->cj)
+            {
+                node->next = head;
+                head = node;
+            }
+            else
+            {
+                p = head;
+                while (p->next != NULL)
+                {
+                    if (p->next->cj > node->cj)
+                        break;
+                    p = p->next;
+                }
+                node->next = p->next;
+                p->next = node;
+            }
+
+        }
+
+        cout << endl;
+    }
 
 
+    cout << "\n\n链表输出:" << endl;
+    while (head != NULL)
+    {
+        cout << "学号:" << head->num << "   名字:" << head->name << "   成绩:" << head->cj << endl;
+        p = head;
+        head = head->next;
+        delete p;
+    }
+    cout << endl;
+}
 
-//学生成绩排序
+bool gn24()
+{
+    cout << "是否确定退出？  1 -- 确定，0 -- 取消 " << endl;
+    bool u;
+    cin >> u;
+    if (u)
+    {
+        cout << "成功退出！" << endl;
+        cout << "欢迎下次使用！" << endl;
+    }
+    else
+    {
+        cout << "取消成功！" << endl;
+    }
+    return u;
+}
