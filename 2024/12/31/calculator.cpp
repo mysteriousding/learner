@@ -69,13 +69,15 @@ int main()
         case 21:gn21(); break;
         case 22:gn22(); break; 
         case 23:gn23(); break; 
-        case 24:if (gn24()) exit(0); break;
+        case 24:if (gn24()) goto end; break;
         default:cout << "请重新输入！" << endl;;
         }
         cout << endl; 
         system("pause");
     }
-    
+end:
+    cout << endl;
+    system("pause");
 
 	return 0;
 }
@@ -653,3 +655,5 @@ bool gn24()
     }
     return u;
 }
+
+//新年快乐！！！
