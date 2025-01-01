@@ -1,4 +1,4 @@
-﻿/*(5)身体 蛇年谐音梗
+/*(5)身体 蛇年谐音梗
 
 //分数 15
 //
@@ -97,7 +97,7 @@ int main()
 
 */
 
-/*(7)健康 贪吃蛇外挂
+/*(6)健康 贪吃蛇外挂
 
 //分数 20
 //
@@ -398,57 +398,57 @@ int main()
 //    return 0;
 //}
 
-//#include<iostream>
-//#include<algorithm>
-//#include<vector>
-//using namespace std;
-//struct stu
-//{
-//int kh;
-//int cj;
-//};
-//
-//bool bj1(stu x, stu y)
-//{
-//    return x.kh < y.kh;
-//}
-//
-//bool bj2(stu x, stu y)
-//{
-//    return x.cj < y.cj;
-//}
-//
-//int main()
-//{
-//    int n,m1,m2;
-//    cin>>n;
-//    vector<stu>p1(n),p2(n);
-//    stu h;
-//    for(int i=0;i<n;i++)
-//    {
-//        cin>>p1[i].kh;
-//        p2[i].kh=p1[i].kh;
-//    }
-//    sort(p2.begin(), p2.end(), bj1);
-//    m1=p2[int(n/2.0+0.5)].kh;
-//
-//    for(int i=0;i<n;i++)
-//    {
-//        cin>>p1[i].cj;
-//        p2[i].cj=p1[i].cj;
-//    }
-//   /* cin.ignore();*/
-//    sort(p2.begin(), p2.end(), bj2);
-//    m2=p2[2].cj;
-//    cout << m1 << "   " << m2 << endl;
-//    bool u=1;
-//    for(int i=0;i<n;i++)
-//        if(p1[i].kh<m1&&p1[i].cj<=m2)
-//        {
-//            cout<<p1[i].kh<<" "<<p1[i].cj<<endl;
-//            u=0;
-//        }
-//    if(u)cout<<"NONE"<<endl;
-//
-//    return 0;
-//}
+#include<iostream>
+#include<algorithm>
+#include<vector>
+using namespace std;
+struct stu
+{
+int kh;
+int cj;
+};
+
+bool bj1(stu x, stu y)
+{
+    return x.kh < y.kh;
+}
+
+bool bj2(stu x, stu y)
+{
+    return x.cj < y.cj;
+}
+
+int main()
+{
+    int n,m1,m2;
+    cin>>n;
+    vector<stu>p1(n),p2(n);
+    stu h;
+    for(int i=0;i<n;i++)
+    {
+        cin>>p1[i].kh;
+        p2[i].kh=p1[i].kh;
+    }
+    sort(p2.begin(), p2.end(), bj1);
+    m1=p2[int(n/2.0+0.5)].kh;
+
+    for(int i=0;i<n;i++)
+    {
+        cin>>p1[i].cj;
+        p2[i].cj=p1[i].cj;
+    }
+   /* cin.ignore();*/
+    sort(p2.begin(), p2.end(), bj2);
+    m2=p2[2].cj;
+    cout << m1 << "   " << m2 << endl;
+    bool u=1;
+    for(int i=0;i<n;i++)
+        if(p1[i].kh<m1&&p1[i].cj<=m2)
+        {
+            cout<<p1[i].kh<<" "<<p1[i].cj<<endl;
+            u=0;
+        }
+    if(u)cout<<"NONE"<<endl;
+
+    return 0;
+}
