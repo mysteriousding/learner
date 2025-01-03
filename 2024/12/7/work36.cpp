@@ -1,4 +1,4 @@
-﻿/*(1)使用链表进行逆置
+/*(1)使用链表进行逆置
 
 //对于输入的若干学生的信息，利用链表进行储存，并将学生的信息逆序输出。
 //要求将学生的完整信息存放在链表的结点中。通过链表的操作完成信息的逆序输出。
@@ -79,64 +79,115 @@ int main()
 //输出样例:
 //1 2 3 5 6 8
 
-#include<iostream>
+//#include<iostream>
+//using namespace std;
+//struct sum
+//{
+//    int sz;
+//    sum*next=NULL;
+//};
+//int main()
+//{
+//    int n,m;
+//    while(cin>>n)
+//    {
+//        sum*head=NULL,*p;
+//        for(int i=0;i<n;i++)
+//        {
+//            cin>>m;
+//            sum*node=new sum;
+//            node->sz=m;
+//            if(head==NULL)head=node;
+//            else
+//            {
+//                if(m<head->sz)
+//                {
+//                    node->next=head;
+//                    head=node;
+//                }
+//                else
+//                {
+//                    p=head;
+//                    if(p->next!=NULL)
+//                        while(p->next!=NULL)
+//                        {
+//                            if(m<p->next->sz)break;
+//                            p=p->next;
+//                        }
+//                    if(p->next==NULL)p->next=node;
+//                    else
+//                    {
+//                        node->next=p->next;
+//                        p->next=node;
+//                    }
+//                }
+//            }
+//        }
+//        p=head;
+//        for(int i=0;i<n;i++)
+//        {
+//            if(i!=0)cout<<" ";
+//            cout<<p->sz;
+//            p=p->next;
+//        }
+//        while(head!=NULL)
+//        {
+//            p=head;
+//            head=head->next;
+//            delete p;
+//        }
+//        cout<<endl;
+//    }
+//
+//    return 0;
+//}
+
+
+#include<iostream>                                                      
 using namespace std;
-struct sum
+struct stu
 {
-    int sz;
-    sum*next=NULL;
+    int num;
+    stu* next = NULL;
 };
 int main()
 {
-    int n,m;
-    while(cin>>n)
+    int n, m;
+    cin >> n;
+    stu* head = NULL, * p;
+    for (int i = 0; i < n; i++)
     {
-        sum*head=NULL,*p;
-        for(int i=0;i<n;i++)
+        stu* node = new stu;
+        cin >> m;
+        node->num = m;
+        if (head == NULL)head = node;
+        else
         {
-            cin>>m;
-            sum*node=new sum;
-            node->sz=m;
-            if(head==NULL)head=node;
+            if (m < head->num)
+            {
+                node->next = head;
+                head = node;
+            }
             else
             {
-                if(m<head->sz)
+                p = head;
+                while (p->next != NULL)
                 {
-                    node->next=head;
-                    head=node;
+                    if (m < p->next->num)
+                        break;
+                    p = p->next;
                 }
-                else
-                {
-                    p=head;
-                    if(p->next!=NULL)
-                        while(p->next!=NULL)
-                        {
-                            if(m<p->next->sz)break;
-                            p=p->next;
-                        }
-                    if(p->next==NULL)p->next=node;
-                    else
-                    {
-                        node->next=p->next;
-                        p->next=node;
-                    }
-                }
+                node->next = p->next;
+                p->next = node;
             }
         }
-        p=head;
-        for(int i=0;i<n;i++)
-        {
-            if(i!=0)cout<<" ";
-            cout<<p->sz;
-            p=p->next;
-        }
-        while(head!=NULL)
-        {
-            p=head;
-            head=head->next;
-            delete p;
-        }
-        cout<<endl;
+    }
+    while (head != NULL)
+    {
+        cout << head->num << " ";
+        p = head;
+        head = head->next;
+        delete p;
     }
 
     return 0;
