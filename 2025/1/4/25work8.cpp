@@ -1,4 +1,4 @@
-﻿/*(26)顺序建立链表
+/*(26)顺序建立链表
 
 //输入N个整数，按照输入的顺序建立单链表存储，并遍历所建立的单链表，输出这些数据。
 //
@@ -75,30 +75,44 @@ int main()
 //
 //80
 
+//#include<iostream>
+//using namespace std;
+//class CRectangle
+//{
+//public:
+//    CRectangle(float x_,float y_)
+//    {
+//        x=(x_&&x_<50)?x_:1;
+//        y=(y_&&y_<50)?y_:1;
+//    }
+//    void display()
+//    {
+//        cout<<(x+y)*2<<endl;
+//    }
+//private:
+//    float x;
+//    float y;
+//};
+//int main()
+//{
+//    float n,m;
+//    cin>>n>>m;
+//    CRectangle c(n,m);
+//    c.display();
+//
+//    return 0;
+//}
+
+//27
 #include<iostream>
 using namespace std;
-class CRectangle
-{
-public:
-    CRectangle(float x_,float y_)
-    {
-        x=(x_&&x_<50)?x_:1;
-        y=(y_&&y_<50)?y_:1;
-    }
-    void display()
-    {
-        cout<<(x+y)*2<<endl;
-    }
-private:
-    float x;
-    float y;
-};
 int main()
 {
-    float n,m;
-    cin>>n>>m;
-    CRectangle c(n,m);
-    c.display();
+    float n, m;
+    cin >> n >> m;
+    if (n < 0 || n>50)n = 1;
+    if (m < 0 || m>50)m = 1;
+    cout << (n + m) * 2 << endl;
 
     return 0;
 }
@@ -126,29 +140,44 @@ int main()
 //12-09-08
 //20-11-09
 
+//#include<iostream>
+//using namespace std;
+//struct Time
+//{
+//public:
+//    bool cin_()
+//    {
+//        return scanf("%d%d%d",&h,&m,&s)==3;
+//    }
+//    void display()
+//    {
+//        printf("%02d-%02d-%02d\n",h,m,s);
+//    }
+//private:
+//    int h;
+//    int m;
+//    int s;
+//};
+//int main()
+//{
+//    Time t;
+//    while(t.cin_())
+//        t.display();
+//
+//    return 0;
+//}
+
+//28
 #include<iostream>
+#include<iomanip>
 using namespace std;
-struct Time
-{
-public:
-    bool cin_()
-    {
-        return scanf("%d%d%d",&h,&m,&s)==3;
-    }
-    void display()
-    {
-        printf("%02d-%02d-%02d\n",h,m,s);
-    }
-private:
-    int h;
-    int m;
-    int s;
-};
 int main()
 {
-    Time t;
-    while(t.cin_())
-        t.display();
+    int x, y, z;
+
+    cout << setfill('0');
+    while(cin >> x >> y >> z)
+    cout << x << "-" << setw(2) << y << "-" << setw(2) << z << endl;
 
     return 0;
 }
@@ -198,180 +227,17 @@ int main()
 //    return 0;
 //}
 
-
-
-
-
-
-
-//#include<iostream>                                                      
-//using namespace std;
-//struct stu
-//{
-//    int num;
-//    stu* next = NULL;
-//};
-//int main()
-//{
-//    int n, m;
-//    cin >> n;
-//    stu* head = NULL, * p;
-//    for (int i = 0; i < n; i++)
-//    {
-//        stu* node = new stu;
-//        cin >> m;
-//        node->num = m;
-//        if (head == NULL)head = node;
-//        else
-//        {
-//            if (m < head->num)
-//            {
-//                node->next = head;
-//                head = node;
-//            }
-//            else
-//            {
-//                p = head;
-//                while (p->next != NULL)
-//                {
-//                    if (m < p->next->num)
-//                        break;
-//                    p = p->next;
-//                }
-//                node->next = p->next;
-//                p->next = node;
-//            }
-//        }
-//    }
-//    while (head != NULL)
-//    {
-//        cout << head->num << " ";
-//        p = head;
-//        head = head->next;
-//        delete p;
-//    }
-//
-//    return 0;
-//}
-
-
-
-
-
-
-
-
-
-//#include<iostream>
-//using namespace std;
-//struct sum
-//{
-//    int sz;
-//    sum* next = NULL;
-//};
-//int main()
-//{
-//    int n, m;
-//    while (cin >> n)
-//    {
-//        sum* head = NULL, * p;
-//        for (int i = 0; i < n; i++)
-//        {
-//            cin >> m;
-//            sum* node = new sum;
-//            node->sz = m;
-//            if (head == NULL)head = node;
-//            else
-//            {
-//                if (m < head->sz)
-//                {
-//                    node->next = head;
-//                    head = node;
-//                }
-//                else
-//                {
-//                    p = head;
-//                    if (p->next != NULL)
-//                        while (p->next != NULL)
-//                        {
-//                            if (m < p->next->sz)break;
-//                            p = p->next;
-//                        }
-//                    if (p->next == NULL)p->next = node;
-//                    else
-//                    {
-//                        node->next = p->next;
-//                        p->next = node;
-//                    }
-//                }
-//            }
-//        }
-//        p = head;
-//        for (int i = 0; i < n; i++)
-//        {
-//            if (i != 0)cout << " ";
-//            cout << p->sz;
-//            p = p->next;
-//        }
-//        while (head != NULL)
-//        {
-//            p = head;
-//            head = head->next;
-//            delete p;
-//        }
-//        cout << endl;
-//    }
-//
-//    return 0;
-//}
-
-
-
-
-
-
-//类类型投机取巧
-
-//27
+//29
 #include<iostream>
+#include<iomanip>
 using namespace std;
 int main()
 {
-    float n, m;
-    cin >> n >> m;
-    if (n < 0 || n>50)n = 1;
-    if (m < 0 || m>50)m = 1;
-    cout << (n + m) * 2 << endl;
+    int x, y, z;
+
+    cout << setfill('0');
+    cin >> x >> y >> z;
+    cout << x << "-" << setw(2) << y << "-" << setw(2) << z << endl;
 
     return 0;
 }
-
-////28
-//#include<iostream>
-//#include<iomanip>
-//using namespace std;
-//int main()
-//{
-//    int x, y, z;
-//    
-//    cout << setfill('0');
-//    while(cin >> x >> y >> z)
-//    cout << x << "-" << setw(2) << y << "-" << setw(2) << z << endl;
-//
-//    return 0;
-//}
-//
-////29
-//#include<iostream>
-//#include<iomanip>
-//using namespace std;
-//int main()
-//{
-//    int x, y, z;
-//    
-//    cout << setfill('0');
-//    cin >> x >> y >> z;
-//    cout << x << "-" << setw(2) << y << "-" << setw(2) << z << endl;
-//
-//    return 0;
-//}
