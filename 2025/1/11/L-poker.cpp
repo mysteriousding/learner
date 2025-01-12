@@ -1,4 +1,4 @@
-﻿/*
+/*
 拉马车
 
 题目描述
@@ -71,3 +71,71 @@ B 方：[Q,6,K,4,K,X,7,8,2,K,5,A,J,K,5]
 
 2J9A7QA6Q6889977
 */
+#include<iostream>
+#include<string>
+#include<stack>
+#include<queue>
+using namespace std;
+void tj(string& m, queue<char>& n, int k)
+{
+    for (int i = m.size() - 1; i >= k; i--)
+    {
+        n.push(m[i]);
+        m.erase(i);
+    }
+}
+bool pd(string& a, char b, queue<char>& c)
+{
+    for (int i = 0; a[i + 1] != '\0'; i++)
+        if (b == a[i])
+        {
+            tj(a, c, i);
+            return 1;
+        }
+    return 0;
+}
+void yx(queue<char>* m, string& n)
+{
+    char h;
+    do
+    {
+        h = (*m).front();
+        (*m).pop();
+        n += h;
+    } while (pd(n, h, *m));
+}
+int main()
+{
+    string s;
+    queue<char>x, y, * p;
+    stack<char>z;
+    char h;
+    int i = 0;
+    getline(cin, s);
+    while (s[i] != '\0')x.push(s[i++]);
+    i = 0;
+    getline(cin, s);
+    while (s[i] != '\0')y.push(s[i++]);
+    s = "", i = 0;
+    int u = 1;
+    while (!x.empty() && !y.empty())
+    {
+        p = u ? &x : &y;
+        yx(p, s);
+        u = !u;
+    }
+
+    while (!x.empty())
+    {
+        cout << x.front();
+        x.pop();
+    }
+    while (!y.empty())
+    {
+        cout << y.front();
+        y.pop();
+    }
+    cout << endl;
+
+    return 0;
+}
