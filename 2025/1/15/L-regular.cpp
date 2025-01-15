@@ -37,8 +37,6 @@ int max(int a, int b)
 
 int dg(string x, int a, int b)
 {
-    // vector<int[2]>huo;
-    // vector<int[3]>h;
     vector<vector<int>>huo;
     vector<vector<int>>h;
     h.push_back({ a - 1,b-1,0 });
@@ -52,9 +50,6 @@ int dg(string x, int a, int b)
         {
         case '(':kh++;
             h.push_back({ i,0,kh });
-            // h.push();
-            // h[k][0]=i;
-            // h[k][2]=kh;
             k++;
             break;
 
@@ -67,9 +62,6 @@ int dg(string x, int a, int b)
 
         case '|':
             huo.push_back({ kh, i });
-            // huo.push()
-            // huo[j][0]=kh;
-            // huo[j][1]=i;
             j++;
             break;
 
