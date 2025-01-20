@@ -389,134 +389,6 @@ Pi 是 Gas 单价，Di（≤D） 是该站到杭州的距离，其中 i=1，⋯�
 最大行驶距离 = 1200.00
 */
 
-//#include<iostream>
-//#include<iomanip>
-//#include<vector>
-//using namespace std;
-//struct D
-//{
-//    float jia;
-//    int d;
-//};
-//int main()
-//{
-//    int v, s, p, n, k, min,max;
-//    float x = 0, y = 0;
-//    cin >> v >> s >> p >> n;
-//    vector<D>m(n + 1);
-//    D h;
-//    for (int i = 0; i < n; i++)
-//        cin >> m[i].jia >> m[i].d;
-//    m[n].jia = 100, m[n].d = s;
-//  /*  for (int i = 0; i < n - 1; i++)
-//    {
-//        min = m[i].d, k = i;
-//        for (int j = i + 1; j < n; j++)
-//            if (min > m[j].d)
-//                min = m[j].d, k = j;
-//        h = m[i], m[i] = m[k], m[k] = h;
-//    }*/
-//    for (int i = 0; i < n - 1; i++)
-//    {
-//        max = m[i].d, k = i;
-//        for (int j = i + 1; j < n; j++)
-//            if (max < m[j].d)
-//                max = m[j].d, k = j;
-//        h = m[i], m[i] = m[k], m[k] = h;
-//    }
-//    cout << setiosflags(ios::fixed) << setprecision(2);
-//    for (int i = 0; i < n; i++)
-//    {
-//        if (m[i].d + v * p < m[i + 1].d)
-//        {
-//            cout << "The maximum travel distance = " << m[i].d + v * p * 1.0 << endl;
-//            return 0;
-//        }
-//        if (m[i].jia > m[i + 1].jia)
-//        {
-//            x += ((m[i + 1].d - m[i].d) / p * 1.0 - y) * m[i].jia;
-//            y = 0;
-//        }
-//        else
-//        {
-//            x += (v - y) * m[i].jia;
-//            y = v - ((m[i + 1].d - m[i].d) / p * 1.0);
-//        }
-//    }
-//    cout << x << endl;
-//
-//    return 0;
-//}
-
-
-
-
-//#include<iostream>
-//#include<iomanip>
-//#include<vector>
-//using namespace std;
-//struct D
-//{
-//    float jia;
-//    int d;
-//};
-//int main()
-//{
-//    int v, s, p, n, k;
-//    float min, max;
-//    cin >> v >> s >> p >> n;
-//    vector<D>m(n + 1);
-//    D h;
-//    for (int i = 0; i < n; i++)
-//        cin >> m[i].jia >> m[i].d;
-//    m[n].d = s;
-//    for (int i = 0; i < n; i++)
-//    {
-//        max = m[i].d, k = i;
-//        for (int j = i + 1; j <= n; j++)
-//            if (max < m[j].d)
-//                max = m[j].d, k = j;
-//        h = m[i], m[i] = m[k], m[k] = h;
-//    }
-//    float x = 0, y = 0, z = 0;
-//    int u;
-//    cout << setiosflags(ios::fixed) << setprecision(2);
-//    while (s)
-//    {
-//        u = 1;
-//        min = 100, k = z;
-//        for (int i = z + 1; i <= n; i++)
-//            if (m[z].d - m[i].d <= v * p)
-//            {
-//                if (min > m[i].jia)min = m[i].jia, k = i, u++;
-//            }
-//            else break;
-//        u = (u != 1) ? 0 : -1;
-//        if (u == -1)
-//        {
-//            for (int i = n; i > 0; i--)
-//                if (m[i].d + v * p < m[i - 1].d)
-//                {
-//                    cout << "The maximum travel distance = " << m[i].d + v * p * 1.0 << endl;
-//                    return 0;
-//                }
-//        }
-//        if (!u)
-//        {
-//            x += (m[z].d - m[k].d) * 1.0 / p * m[k].jia;
-//            s = m[k].d;
-//            z = k;
-//        }
-//    }
-//    cout << x << endl;
-//
-//    return 0;
-//}
-
-
-
-
-
 #include<iostream>
 #include<iomanip>
 #include<vector>
@@ -548,14 +420,14 @@ int main()
     int u;
     cout << setiosflags(ios::fixed) << setprecision(2);
     for (int i = n; i > 0; i--)
-        if (m[i].d + v * p < m[i - 1].d )
+        if (m[i].d + v * p < m[i - 1].d || m[n].d)
         {
-            cout << "The maximum travel distance = " << m[i].d + v * p * 1.0  << endl;
+            cout << "The maximum travel distance = " << (!m[n].d ? m[i].d + v * p * 1.0 : 0) << endl;
             return 0;
         }
     while (s)
     {
-        u = 1;
+        u = 0;
         min = 100, k = z;
         for (int i = z + 1; i <= n; i++)
             if (m[z].d - m[i].d <= v * p)
@@ -563,7 +435,7 @@ int main()
                 if (min > m[i].jia)min = m[i].jia, k = i, u++;
             }
             else break;
-        if (u != 1)
+        if (u)
         {
             y = (m[z].d - m[k].d) * 1.0 / p;
             x += y * m[k].jia;
@@ -577,25 +449,45 @@ int main()
     return 0;
 }
 
-/*
-50 1300 12 8
-6.00 1250
-7.00 600
-7.00 150
-7.10 0
-7.20 200
-7.50 400
-7.30 1000
-6.85 300
 
 
-
-50 1300 12 7
-6.00 1250
-7.00 600
-7.00 150
-7.20 200
-7.50 400
-7.30 1000
-6.85 300
-*/
+// #include<iostream>
+// #include<vector>
+// #include<algorithm>
+// using namespace std;
+// const int MAX = 50000 + 10;
+// struct node {           //记录每个加油站的距离和油价
+//     double D_i;
+//     double P_i;
+// }Data[MAX];
+// int N;
+// double C_max,D,D_avg,D_max;      
+// double dp[MAX],mi,sum;
+// int main(){
+//     cin >> C_max >> D >> D_avg >> N;
+//     D_max = C_max * D_avg;              //计算汽车最大的行驶距离
+//     for (int i = 0; i < N; i++) {       //输入每个加油站
+//         cin >> Data[i].P_i >> Data[i].D_i;
+//     }
+//     for (int i = 0; i < N; i++) {
+//         for (int j = Data[i].D_i+1; j <= Data[i].D_i + D_max; j++) {  //更新dp[]数组
+//             if (dp[j]) dp[j] = min(dp[j], Data[i].P_i / D_avg);     //如果不为空
+//             else dp[j] = Data[i].P_i / D_avg;                       //如果为空
+//         }
+//     }
+//     for (int i = 1; i < 30100; i++) {       //从起点计算花费和到达的距离
+//         if (dp[i] && i <= D) {              //如果到达或者dp[]数组为空就break
+//             mi += dp[i];
+//             sum = i;
+//         }
+//         else {
+//             break;
+//         }
+//     }
+//     if (sum == D)                     //判断输出
+//         printf("%.2f", mi);
+//     else{
+//         printf("The maximum travel distance = %.2f", sum);
+//     }
+//     return 0;
+// }
