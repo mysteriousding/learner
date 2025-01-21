@@ -1,4 +1,4 @@
-﻿/*(1)特殊a串数列求和
+/*(1)特殊a串数列求和
 
 //给定两个均不超过9的正整数a和n，要求编写程序求a+aa+aaa+⋯+aa⋯a（n个a）之和。
 //
@@ -340,33 +340,204 @@ int main()
 //第二次操作将c字母搬运到b和d之间
 //因此这里进行了两次操作，实际上这两个单词的最少操作也是两次
 
-//#include<iostream>
-//#include<string>
-//#include<cmath>
-//using namespace std;
-//int main()
-//{
-//    string n, m;
-//    char h;
-//    int i, j, k;
-//    while (cin >> n >> m)
-//    {
-//        k = i = 0;
-//        while (n != m)
-//        {
-//            if (n[i] != m[i])
-//            {
-//                h = n[i];
-//                n.erase(i, 1);
-//                j = i;
-//                while (h != m[j])j++;
-//                n.insert(j, 1, h);
-//                k++;
-//            }
-//            else i++;
-//        }
-//        cout << k << endl;
-//    }
+#include<iostream>
+#include<string>
+#include<cmath>
+using namespace std;
+int main()
+{
+    string n, m;
+    int i, j, k, f, l, sum, max;
+    while (cin >> n >> m)
+    {
+        l = m.size();
+        f = max = 0;
+        while (f < l)
+        {
+            i = f;
+            k = sum = 0;
+            while (i < l)
+            {
+                j = k;
+                while (j < l)
+                    if (m[i] == n[j])
+                    {
+                        sum++, k = j + 1;
+                        break;
+                    }
+                    else j++;
+                i++;
+            }
+            f++;
+            if (max < sum)max = sum;
+        }
+
+        f = l - 1;
+        while (f >= 0)
+        {
+            i = f;
+            k = l - 1, sum = 0;
+            while (i >= 0)
+            {
+                j = k;
+                while (j >= 0)
+                    if (m[i] == n[j])
+                    {
+                        sum++, k = j - 1;
+                        break;
+                    }
+                    else j--;
+                i--;
+            }
+            f--;
+            if (max < sum)max = sum;
+        }
+
+        cout << l - max << endl;
+    }
+
+    return 0;
+}
+/*漏洞
+asjkdhakajdaqhashakdakadasd  hjdaqdakdajkaskasaadsdhahka
+aasdfghjkldgh aghfghjkasdld
+aasdghjkldgh aghghjkasdld
+aasghjkldgh aghghjkasdl
+aasghjkdgh aghghjkasd
+aasgjkdgh agghjkasd
+aasgjkdg aggjkasd
+asgjkdg aggjksd
+asgjdg aggjsd
+*/
+
+
+
+// #include <iostream>
+// #include <cstring>
+// #include <algorithm>
+// using namespace std;
+// const int MAX_LEN = 101;
+// char a[MAX_LEN], b[MAX_LEN];
+// int dp[MAX_LEN][MAX_LEN];
 //
-//    return 0;
-//}
+// int main() {
+//     while(cin >> a >> b) {
+//         memset(dp, 0, sizeof(dp));
+//         int len = strlen(b);
+//        
+//         for(int i = 1; i <= len; i++) {
+//             for(int j = 1; j <= len; j++) {
+//                 if(a[i-1] == b[j-1])
+//                     dp[i][j] = dp[i-1][j-1] + 1;
+//                 else
+//                     dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
+//             }
+//         }
+//         cout << len-dp[len][len] << endl;
+//     }
+//     return 0;
+// }
+
+
+
+
+
+// #include <iostream>
+// #include <string>
+// #include <vector>
+// using namespace std;
+// // 用于从正向或反向获取最长子序列
+// string getSubsequence(const string& n, const string& m, int& max, bool forward) {
+//     int l = m.size();
+//     int f = forward? 0 : l - 1;
+//     int step = forward? 1 : -1;
+//     string longestSubseq;
+//     while (forward? f < l : f >= 0) {
+//         int i = f;
+//         int k = forward? 0 : n.size() - 1;
+//         int sum = 0;
+//         string currentSubseq;
+//         while (forward? i < l : i >= 0) {
+//             int j = k;
+//             while (forward? j < n.size() : j >= 0) {
+//                 if (m[i] == n[j]) {
+//                     currentSubseq += m[i];
+//                     sum++;
+//                     k = forward? j + 1 : j - 1;
+//                     break;
+//                 }
+//                 forward? j++ : j--;
+//             }
+//             forward? i++ : i--;
+//         }
+//         if (sum > max) {
+//             max = sum;
+//             longestSubseq = currentSubseq;
+//         }
+//         f += step;
+//     }
+//     if (!forward) {
+//         reverse(longestSubseq.begin(), longestSubseq.end());
+//     }
+//     return longestSubseq;
+// }
+// int main() {
+//     string n, m;
+//     while (cin >> n >> m) {
+//         int f, max;
+//         f = max = 0;
+//         string forwardSubseq = getSubsequence(n, m, max, true);
+//         string reverseSubseq = getSubsequence(n, m, max, false);
+//         string longestSubseq = forwardSubseq.size() > reverseSubseq.size()? forwardSubseq : reverseSubseq;
+//         cout << "最长子序列: " << longestSubseq << endl;
+//     }
+//     return 0;
+// }
+
+
+
+// #include <iostream>
+// #include <cstring>
+// #include <algorithm>
+// using namespace std;
+// const int MAX_LEN = 101;
+// char a[MAX_LEN], b[MAX_LEN];
+// int dp[MAX_LEN][MAX_LEN];
+// // 通过回溯dp数组获取最长子序列
+// string getLongestSubsequence() {
+//     int len = strlen(b);
+//     int i = len, j = len;
+//     string subseq;
+//     while (i > 0 && j > 0) {
+//         if (a[i - 1] == b[j - 1]) {
+//             subseq = a[i - 1] + subseq;
+//             i--;
+//             j--;
+//         }
+//         else if (dp[i - 1][j] > dp[i][j - 1]) {
+//             i--;
+//         }
+//         else {
+//             j--;
+//         }
+//     }
+//     return subseq;
+// }
+// int main() {
+//     while (cin >> a >> b) {
+//         memset(dp, 0, sizeof(dp));
+//         int len = strlen(b);
+//         
+//         for (int i = 1; i <= len; i++) {
+//             for (int j = 1; j <= len; j++) {
+//                 if (a[i - 1] == b[j - 1])
+//                     dp[i][j] = dp[i - 1][j - 1] + 1;
+//                 else
+//                     dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+//             }
+//         }
+//         string longestSubseq = getLongestSubsequence();
+//         cout << "最长子序列: " << longestSubseq << endl;
+//     }
+//     return 0;
+// }
