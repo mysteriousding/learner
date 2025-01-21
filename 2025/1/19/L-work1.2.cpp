@@ -18,7 +18,97 @@
 //输出样例：
 //((3-2)*12)+12
 
+#include<iostream>
+using namespace std;
+double ji(double a,double b,char c)
+{
+    double sum = 0;
+    switch (c)
+    {
+    case '+':sum = a + b;break;
+    case '-':sum = a - b;break;
+    case '*':sum = a * b;break;
+    case '/':sum = a / b;break;
+    }
+    return sum;
+}
 
+double cacu(double a,double b,double c,double d)
+{
+    char e,f,g,m[5]="+-/*";
+    int t=0,i,j,k;
+    for(i=0;i<4;i++)
+    {
+        e=m[i];
+        for(j=0;j<4;j++)
+        {
+            f=m[j];
+            for(k=0;k<4;k++)
+            {
+                g=m[k];
+                    if(ji(ji(ji(a,b,e),c,f),d,g)==24)
+                    {
+                        cout<<"(("<<a<<e<<b<<")"<<f<<c<<")"<<g<<d<<endl;
+                        return 1;
+                    }
+                    if(ji(ji(a,ji(b,c,f),e),d,g)==24)
+                    {
+                        cout<<"("<<a<<e<<"("<<b<<f<<c<<"))"<<g<<d<<endl;
+                        return 1;
+                    }
+                     if(ji(ji(a,b,e),ji(c,d,g),f)==24)
+                     {
+                        cout<<"("<<a<<e<<b<<")"<<f<<"("<<c<<g<<d<<")"<<endl;
+                        return 1;
+                     }
+                      if(ji(a,ji(ji(b,c,f),d,g),e)==24)
+                      {
+                        cout<<a<<e<<"(("<<b<<f<<c<<")"<<g<<d<<")"<<endl;
+                        return 1;
+                      }
+                      if(ji(a,ji(b,ji(c,d,g),f),e)==24)
+                      {
+                        cout<<a<<e<<"("<<b<<f<<"("<<c<<g<<d<<"))"<<endl;
+                        return 1;
+                      }
+                }
+            }
+        }
+    return 0;
+}
+
+int main()
+{
+    int m[4],i,j,k,l,a,b,c,d,t=0;
+    for(i=0;i<4;i++)
+        cin>>m[i];
+
+    for(i=0;i<4;i++)
+    {
+        a=m[i];
+        for(j=0;j<4;j++)
+        {
+            if(j==i)continue;
+            b=m[j];
+            for(k=0;k<4;k++)
+            {
+                if(k==i||k==j)continue;
+                c=m[k];
+                for(l=0;l<4;l++)
+                {
+                    if(l==i||l==j||l==k)continue;
+                    d=m[l];
+                    if(cacu(a,b,c,d))
+                        return 0;
+                }
+            }
+        }
+    }
+
+    cout<<"-1"<<endl;
+
+    return 0;
+}
 */
 
 /*(7)互评成绩
@@ -388,7 +478,7 @@ Pi 是 Gas 单价，Di（≤D） 是该站到杭州的距离，其中 i=1，⋯�
 示例输出 2：
 最大行驶距离 = 1200.00
 */
-
+//我真nb!!!   嗯，我感觉我的逆向思维法比大佬的dp数组算法更加高级！！（得意.ing
 #include<iostream>
 #include<iomanip>
 #include<vector>
@@ -400,15 +490,18 @@ struct D
 };
 int main()
 {
-    int v, s, p, n, k;
+    int v, s, p, n, k, u = 0;
     double min, max;
     cin >> v >> s >> p >> n;
     vector<D>m(n + 1);
     D h;
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <= n; i++)
+    {
         cin >> m[i].jia >> m[i].d;
-    m[n].d = s;
-    for (int i = 0; i < n; i++)
+        if (!m[i].d)u = 1;
+    }
+    m[0].d = s;
+    for (int i = 1; i < n; i++)
     {
         max = m[i].d, k = i;
         for (int j = i + 1; j <= n; j++)
@@ -417,17 +510,16 @@ int main()
         h = m[i], m[i] = m[k], m[k] = h;
     }
     double x = 0, y = 0, z = 0;
-    int u;
     cout << setiosflags(ios::fixed) << setprecision(2);
     for (int i = n; i > 0; i--)
-        if (m[i].d + v * p < m[i - 1].d || m[n].d)
+        if (m[i].d + v * p < m[i - 1].d || !u)
         {
-            cout << "The maximum travel distance = " << (!m[n].d ? m[i].d + v * p * 1.0 : 0) << endl;
+            cout << "The maximum travel distance = " << (u ? m[i].d + v * p * 1.0 : 0) << endl;
             return 0;
         }
     while (s)
     {
-        u = 0;
+        u = 1;
         min = 100, k = z;
         for (int i = z + 1; i <= n; i++)
             if (m[z].d - m[i].d <= v * p)
@@ -435,7 +527,7 @@ int main()
                 if (min > m[i].jia)min = m[i].jia, k = i, u++;
             }
             else break;
-        if (u)
+        if (u != 1)
         {
             y = (m[z].d - m[k].d) * 1.0 / p;
             x += y * m[k].jia;
