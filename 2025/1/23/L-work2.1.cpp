@@ -1,4 +1,4 @@
-﻿/*(1)阅览室
+/*(1)阅览室
 
 //天梯图书阅览室请你编写一个简单的图书借阅统计程序。
 //当读者借书时，管理员输入书号并按下S键，程序开始计时；
@@ -222,29 +222,64 @@ int main()
 
 */
 #include<iostream>
+#include<iomanip>
+#include<string>
 #include<vector>
+#include<cmath>
 using namespace std;
 struct man
 {
-    vector<int>h(8);
+    string h[8];
     int k;
     int f;
     int s;
     int p;
+    vector<string>d;
     friend istream& operator>>(istream& in, man& r);
 };
 istream& operator>>(istream& in, man& r)
 {
-    in >> h[0] >> h[1] >> h[2] >> k;
-    k += 3;
-    for (int i = 3; i < k; i++)
-        in >> h[i];
-    in >> f >> s;
+    int x = 2, y = 0;
+    in >> r.h[y++];
+    in >> r.h[y];
+    if (r.h[y] != "-1")y++, x--;
+    in >> r.h[y];
+    if (r.h[y] != "-1")y++, x--;
+
+    in >> r.k;
+    r.k += y;
+    for (int i = y; i < r.k; i++)
+        in >> r.h[i];
+    sort(r.h, r.h + r.k);
+    in >> r.f >> r.s;
     return in;
+}
+struct jia
+{
+    string min = "9999";
+    int shu = 0;
+    vector<string>d;
+    double f = 0;
+    double s = 0;
+};
+ostream& operator<<(ostream& out, jia& r)
+{
+    out << r.min << " " << r.shu << " " << r.f << " " << r.s;
+    return out;
+}
+bool pd(man& a, man& b)
+{
+    return a.p < b.p;
+}
+bool pd2(jia& x, jia& y)
+{
+    if (fabs(x.s - y.s) < 1e-3)return x.min < y.min;
+    else return x.s > y.s;
 }
 int main()
 {
-    int n;
+    int n, l;
+    bool u;
     cin >> n;
     vector<man>m(n);
     for (int i = 0; i < n; i++)
@@ -256,9 +291,64 @@ int main()
         for (int j = i + 1; j < n; j++)
             if (m[i].p != m[j].p)
             {
-
+                u = 0;
+                for (int a = 0; a < m[i].k; a++)
+                {
+                    for (int b = 0; b < m[j].k; b++)
+                    {
+                        if (m[i].h[a] < m[j].h[b])break;
+                        if (m[i].h[a] == m[j].h[b])
+                        {
+                            u = 1;
+                            m[i].d.push_back(m[i].h[a]);
+                            m[j].d.push_back(m[j].h[b]);
+                        }
+                    }
+                }
+                if (u)
+                {
+                    l = m[j].p;
+                    for (int c = 0; c < n; c++)
+                        if (m[c].p == l)
+                            m[c].p = m[i].p;
+                }
             }
-
+    sort(m.begin(), m.end(), pd);
+    l = m[0].p;
+    int num = 1;
+    vector<jia>v(n / 2);
+    for (int i = 0; i < n; i++)
+    {
+        if (l != m[i].p)
+            num++, l = m[i].p;
+        for (int j = 0; j < m[i].k; j++)
+            if (v[num - 1].min > m[i].h[j])
+                v[num - 1].min = m[i].h[j];
+        v[num - 1].shu += m[i].k;
+        v[num - 1].d.insert(v[num - 1].d.end(), m[i].d.begin(), m[i].d.end());
+        v[num - 1].f += m[i].f;
+        v[num - 1].s += m[i].s;
+    }
+    int sum;
+    string f;
+    for (int i = 0; i < num; i++)
+    {
+        sort(v[i].d.begin(), v[i].d.end());
+        if (!v[i].d.empty())
+        {
+            sum = 1, f = v[i].d[0];
+            for (size_t j = 0; j < v[i].d.size(); j++)
+                if (f != v[i].d[j])
+                    sum++, f = v[i].d[j];
+            v[i].shu -= v[i].d.size() - sum;
+        }
+        v[i].f /= v[i].shu, v[i].s /= v[i].shu;
+    }
+    sort(v.begin(), v.begin() + num, pd2);
+    cout << num << endl;
+    cout << setiosflags(ios::fixed) << setprecision(3);
+    for (int i = 0; i < num; i++)
+        cout << v[i] << endl;
 
     return 0;
 }
