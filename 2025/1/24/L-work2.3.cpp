@@ -1,4 +1,4 @@
-﻿/*(11)找出不是两个数组共有的元素
+/*(11)找出不是两个数组共有的元素
 
 //给定两个整型数组，本题要求找出不是两者共有的元素。
 //
@@ -178,3 +178,24 @@ int main()
 //b -> c
 //a -> c
 
+#include<iostream>
+using namespace std;
+void dfs(int x, char n, char v, char m)
+{
+    if (x == 1)
+    {
+        cout << n << " -> " << m << endl;
+        return;
+    }
+    dfs(x - 1, n, m, v);
+    cout << n << " -> " << m << endl;
+    dfs(x - 1, v, n, m);
+}
+int main()
+{
+    int n;
+    cin >> n;
+    dfs(n, 'a', 'b', 'c');
+
+    return 0;
+}
