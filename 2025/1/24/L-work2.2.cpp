@@ -37,8 +37,8 @@
 //
 //Input Specification:
 //Each input file contains one test case. For each case, the first line contains the names of the source and the destination planets, and a positive integer N (≤500).  
-//Then N lines follow, each in the format: 
-//source[i] destination[i] capacity[i] where source[i] and destination[i] are the names of the satellites and the two involved planets, and capacity[i] > 0 is the maximum number of passengers that can be transported at one pass from source[i] to destination[i]. 
+//Then N lines follow, each in the format: source[i] destination[i] capacity[i] 
+//where source[i] and destination[i] are the names of the satellites and the two involved planets, and capacity[i] > 0 is the maximum number of passengers that can be transported at one pass from source[i] to destination[i]. 
 //Each name is a string of 3 uppercase characters chosen from {A-Z}, e.g., ZJU.
 //
 //Note that the satellite transportation stations have no accommodation facilities for the passengers. 
@@ -65,7 +65,90 @@
 //Sample Output:
 //700
 
+/*
+在树上之字形
 
+假设二叉树中的所有键都是不同的正整数。
+唯一的二叉树可以由给定的一对后序和中序遍历序列来确定。
+按级别顺序打印数字是一个简单的标准例程。
+但是，如果你认为问题太简单，那你就太天真了。
+这一次，您应该以 “之字形顺序” 打印数字 -- 即从根开始，逐级打印数字，在左到右和从右到左之间交替。
+例如，对于以下树，您必须输出：1 11 5 8 17 12 20 15。
+
+https://images.ptausercontent.com/337cbfb0-a7b2-4500-9664-318e9ffc870e.jpg
+
+输入规格：
+每个输入文件都包含一个测试用例。
+对于每种情况，第一行给出一个正整数 N （≤30），即二叉树中的节点总数。
+第二行给出中序序列，第三行给出后序序列。
+一行中的所有数字都用空格分隔。
+
+输出规格：
+对于每个测试用例，将树的 之字形 序列打印成一行。
+一行中的所有数字必须用一个空格分隔，并且行尾不能有多余的空格。
+
+示例输入：
+8
+12 11 20 17 1 15 8 5
+12 20 17 11 15 8 5 1
+示例输出：
+1 11 5 8 17 12 20 15
+*
+
+#include<iostream>
+#include<stack>
+using namespace std;
+#define N 35
+struct tree
+{
+    int num;
+    tree* left = NULL;
+    tree* right = NULL;
+};
+void dg(tree*& p, int n[], int m[], int a, int b, int c, int d)
+{
+    if (a > b)return;
+    p = new tree;
+    p->num = m[d];
+    if (a == b)return;
+    int x, y;
+    for (int i = a; i <= b; i++)if (n[i] == m[d]) { x = i; break; }
+    y = x - a;
+    dg(p->left, n, m, a, x - 1, c, c + y - 1);
+    dg(p->right, n, m, x + 1, b, c + y, d - 1);
+}
+
+int main()
+{
+    int n[N], m[N], k;
+    stack<tree*>s[2];
+    cin >> k;
+    for (int i = 1; i <= k; i++)
+        cin >> n[i];
+    for (int i = 1; i <= k; i++)
+        cin >> m[i];
+    tree* T, * p, * q[2];
+    dg(T, n, m, 1, k, 1, k);
+    s[0].push(T);
+    int a = 0, b = 1, h;
+    bool u = 0;
+    while (!s[0].empty() || !s[1].empty())
+    {
+        p = s[a].top();
+        s[a].pop();
+        q[0] = p->left;
+        q[1] = p->right;
+        if (u)cout << " ";
+        cout << p->num;
+        u = 1;
+        if (q[b])s[b].push(q[b]);
+        if (q[a])s[b].push(q[a]);
+        delete p;
+        if (s[a].empty())h = a, a = b, b = h;
+    }
+
+    return 0;
+}
 */
 
 /*(8)计算物体自由下落的距离
