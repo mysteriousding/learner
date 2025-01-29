@@ -178,24 +178,90 @@ int main()
 //b -> c
 //a -> c
 
+// #include<iostream>
+// using namespace std;
+// void dfs(int x,char n,char v,char m)
+// {
+//     if(x==1)
+//     {
+//         cout<<n<<" -> "<<m<<endl;
+//         return;
+//     }
+//     dfs(x-1,n,m,v);
+//     cout<<n<<" -> "<<m<<endl;
+//     dfs(x-1,v,n,m);
+// }
+// int main()
+// {
+//     int n;
+//     cin>>n;
+//     dfs(n,'a','b','c');
+
+//     return 0;
+// }
+
+
+
 #include<iostream>
+#include<stack>
+#include<cstdio>
 using namespace std;
-void dfs(int x, char n, char v, char m)
+
+char tower[3] = { 'a', 'b', 'c' };
+stack<int> a[3];
+
+bool move(int before, int after)
 {
-    if (x == 1)
+    if (a[before].empty())
     {
-        cout << n << " -> " << m << endl;
-        return;
+        return false;
     }
-    dfs(x - 1, n, m, v);
-    cout << n << " -> " << m << endl;
-    dfs(x - 1, v, n, m);
+
+    if (!a[after].empty())
+    {
+        if (a[after].top() - a[before].top() < 0)
+        {
+            return false;
+        }
+    }
+
+    a[after].push(a[before].top());
+    a[before].pop();
+
+    printf("%c -> %c\n", tower[before], tower[after]);
+
+    return true;
 }
+
 int main()
 {
-    int n;
-    cin >> n;
-    dfs(n, 'a', 'b', 'c');
+    int N, count = 0;
+
+    cin >> N;
+
+    for (int i = 0; i < N; i++)
+    {
+        a[0].push(N - i);
+    }
+
+    if (N % 2 == 1)
+    {
+        tower[1] = 'c';
+        tower[2] = 'b';
+    }
+
+    while (++count)
+    {
+        move((count - 1) % 3, count % 3);
+
+        if (!move((count - 1) % 3, (count + 1) % 3))
+        {
+            if (!move((count + 1) % 3, (count - 1) % 3))
+            {
+                break;
+            }
+        }
+    }
 
     return 0;
 }
