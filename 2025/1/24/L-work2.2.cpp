@@ -26,45 +26,6 @@
 //Sample Output:
 //1 11 5 8 17 12 20 15
 
-
-*/
-
-/*(7)Universal Travel Sites
-
-//After finishing her tour around the Earth, CYLL is now planning a universal travel sites development project.  
-//After a careful investigation, she has a list of capacities of all the satellite transportation stations in hand.  
-//To estimate a budget, she must know the minimum capacity that a planet station must have to guarantee that every space vessel can dock and download its passengers on arrival.
-//
-//Input Specification:
-//Each input file contains one test case. For each case, the first line contains the names of the source and the destination planets, and a positive integer N (≤500).  
-//Then N lines follow, each in the format: source[i] destination[i] capacity[i] 
-//where source[i] and destination[i] are the names of the satellites and the two involved planets, and capacity[i] > 0 is the maximum number of passengers that can be transported at one pass from source[i] to destination[i]. 
-//Each name is a string of 3 uppercase characters chosen from {A-Z}, e.g., ZJU.
-//
-//Note that the satellite transportation stations have no accommodation facilities for the passengers. 
-//Therefore none of the passengers can stay.  
-//Such a station will not allow arrivals of space vessels that contain more than its own capacity.  
-//It is guaranteed that the list contains neither the routes to the source planet nor that from the destination planet.
-//
-//Output Specification:
-//For each test case, just print in one line the minimum capacity that a planet station must have to guarantee that every space vessel can dock and download its passengers on arrival.
-//
-//Sample Input:
-//EAR MAR 11
-//EAR AAA 300
-//EAR BBB 400
-//AAA BBB 100
-//AAA CCC 400
-//AAA MAR 300
-//BBB DDD 400
-//AAA DDD 400
-//DDD AAA 100
-//CCC MAR 400
-//DDD CCC 200
-//DDD MAR 300
-//Sample Output:
-//700
-
 /*
 在树上之字形
 
@@ -94,7 +55,6 @@ https://images.ptausercontent.com/337cbfb0-a7b2-4500-9664-318e9ffc870e.jpg
 示例输出：
 1 11 5 8 17 12 20 15
 *
-
 #include<iostream>
 #include<stack>
 using namespace std;
@@ -147,6 +107,237 @@ int main()
         if (s[a].empty())h = a, a = b, b = h;
     }
 
+    return 0;
+}
+*/
+
+/*(7)Universal Travel Sites
+
+//After finishing her tour around the Earth, CYLL is now planning a universal travel sites development project.  
+//After a careful investigation, she has a list of capacities of all the satellite transportation stations in hand.  
+//To estimate a budget, she must know the minimum capacity that a planet station must have to guarantee that every space vessel can dock and download its passengers on arrival.
+//
+//Input Specification:
+//Each input file contains one test case. For each case, the first line contains the names of the source and the destination planets, and a positive integer N (≤500).  
+//Then N lines follow, each in the format: source[i] destination[i] capacity[i] 
+//where source[i] and destination[i] are the names of the satellites and the two involved planets, and capacity[i] > 0 is the maximum number of passengers that can be transported at one pass from source[i] to destination[i]. 
+//Each name is a string of 3 uppercase characters chosen from {A-Z}, e.g., ZJU.
+//
+//Note that the satellite transportation stations have no accommodation facilities for the passengers. 
+//Therefore none of the passengers can stay.  
+//Such a station will not allow arrivals of space vessels that contain more than its own capacity.  
+//It is guaranteed that the list contains neither the routes to the source planet nor that from the destination planet.
+//
+//Output Specification:
+//For each test case, just print in one line the minimum capacity that a planet station must have to guarantee that every space vessel can dock and download its passengers on arrival.
+//
+//Sample Input:
+//EAR MAR 11
+//EAR AAA 300
+//EAR BBB 400
+//AAA BBB 100
+//AAA CCC 400
+//AAA MAR 300
+//BBB DDD 400
+//AAA DDD 400
+//DDD AAA 100
+//CCC MAR 400
+//DDD CCC 200
+//DDD MAR 300
+//Sample Output:
+//700
+
+
+/*
+宇宙旅行站点
+
+完成地球环球旅行后，CYLL 现在正在规划一个宇宙旅行站点开发项目。
+经过仔细调查，她手中有一份所有卫星运输站的容量清单。
+为了估算预算，她必须知道一个行星站必须具备的最小容量，以确保每艘宇宙飞船到达时都能停靠并让乘客下船。
+
+输入规格：
+每个输入文件都包含一个测试用例。对于每种情况，第一行包含源行星和目标行星的名称，以及一个正整数 N （≤500），表示路线数量。
+接下来的 N 行，每行包含一条路线的信息，格式为：源[i],目的地[i]和容量[i]，
+源[i] 和 目的地[i] 是涉及的卫星和两个行星的名称。
+容量[i] 是从 源[i] 到 目的地[i] 的单次运输的最大乘客数，且 容量[i] > 0。
+每个名称是一个由 3 个大写字母组成的字符串，例如 ZJU。
+
+注意：
+卫星运输站没有乘客住宿设施，因此乘客不能停留。
+这样的站点不会允许超过其自身容量的宇宙飞船到达。
+输入保证不会包含通往源行星的路线，也不会包含从目标行星出发的路线。
+
+输出规格：
+对于每个测试用例，输出一个整数，表示行星站必须具备的最小容量，以确保每艘宇宙飞船到达时都能停靠并让乘客下船。
+
+示例输入：
+EAR MAR 11
+EAR AAA 300
+EAR BBB 400
+AAA BBB 100
+AAA CCC 400
+AAA MAR 300
+BBB DDD 400
+AAA DDD 400
+DDD AAA 100
+CCC MAR 400
+DDD CCC 200
+DDD MAR 300
+示例输出：
+700
+*
+// #include<iostream>
+// #include<algorithm>
+// #include<string>
+// #include<vector>
+// using namespace std;
+// struct V
+// {
+//     bool l=1;
+//     bool s=1;
+//     string g;
+//     string q;
+//     int d;
+// }v[15];
+// struct E
+// {
+//     string f[2];
+//     int r;
+//     int num=0;
+// };
+// int main()
+// {
+//     int n,m,k=0;
+//     bool u;
+//     string C,R;
+//     cin>>C>>R>>n;
+//     v[k].g=C,v[k++].d=1e7;
+//     vector<E>e(n);
+//     for(int i=0;i<n;i++)
+//     {
+//         cin>>e[i].f[0]>>e[i].f[1]>>e[i].r;
+//         u=1;
+//         for(int j=0;j<k;j++)
+//             if(v[j].g==e[i].f[0]||R==e[i].f[0]){u=0;break;}
+//         if(u)v[k++].g=e[i].f[0];
+//         u=1;
+//         for(int j=0;j<k;j++)
+//             if(v[j].g==e[i].f[1]||R==e[i].f[1]){u=0;break;}
+//         if(u)v[k++].g=e[i].f[1];
+//     }
+//     v[k++].g=R;
+//     u=1;
+//     string p=v[0].g;
+//     while(u)
+//     {
+//         u=0;
+//         while(p!=R)
+//         {
+//             for(int i=0;i<n;i++)
+//                 if(e[i].f[0]==p)
+//                     if(e[i].f[1])
+//         }
+
+//     }
+
+
+
+//     return 0;
+// }
+
+
+
+#include <iostream>
+#include <vector> 
+#include <cmath>
+#include <queue>
+#include <cstring>
+#define INF 0x3f3f3f3f
+using namespace std;
+int to_int(string str)
+{
+    int ans = 0;
+    for (int i = 0; i < str.size(); i++) {
+        ans = ans * 26 + str[i] - 'A';
+    }
+    return ans;
+}
+int s, t;
+struct Line {
+    int r, w;
+    Line() = default;
+    Line(int r, int w) : r(r), w(w) {	}
+}line[1005];
+vector<int> g[30000];
+int deep[30000];
+bool bfs()
+{
+    queue<int> que;
+    memset(deep, 0, sizeof(deep));
+    que.push(s);
+    deep[s] = 1;
+    while (!que.empty()) {
+        int top = que.front();
+        que.pop();
+        for (int i = 0; i < g[top].size(); i++) {
+            int z = g[top][i];
+            if (!deep[line[z].r] && line[z].w) {   //分层 
+                deep[line[z].r] = deep[top] + 1;
+                que.push(line[z].r);
+                if (deep[t])
+                    return true;
+            }
+        }
+    }
+    return false;
+}
+int dfs(int x, int mix)
+{
+    if (x == t || !mix)
+        return mix;
+    int ap = 0;
+    for (int i = 0; i < g[x].size(); i++) {
+        int z = g[x][i];
+        if (deep[x] < deep[line[z].r] && line[z].w) {    //从低层到高层，要进过非饱和弧 
+            int p = dfs(line[z].r, min(mix, line[z].w));
+            ap += p;
+            mix -= p;
+            line[z].w -= p;
+            line[z ^ 1].w += p;
+            if (!mix)
+                return ap;
+        }
+    }
+    return ap;
+}
+int dinic()
+{
+    int ans = 0;
+    while (bfs()) {
+        ans += dfs(s, INF);
+    }
+    return ans;
+}
+int main()
+{
+    string str1, str2;
+    int m;
+    while (cin >> str1 >> str2 >> m) {
+        s = to_int(str1);
+        t = to_int(str2);
+        for (int i = 0; i < m; i++) {
+            string strx, stry;
+            int w;
+            cin >> strx >> stry >> w;
+            line[2 * i] = Line(to_int(stry), w);
+            line[2 * i + 1] = Line(to_int(strx), 0);
+            g[to_int(strx)].push_back(2 * i);
+            g[to_int(stry)].push_back(2 * i + 1);
+        }
+        cout << dinic() << endl;
+        for (int i = 0; i <= 30000; i++)
+            g[i].clear();
+    }
     return 0;
 }
 */
