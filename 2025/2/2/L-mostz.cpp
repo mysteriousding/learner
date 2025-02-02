@@ -1,4 +1,4 @@
-﻿/*
+/*
 最多个质数【UUST】
 
 问题描述
@@ -41,3 +41,36 @@ b3 = a4 + a6 = 9 + 8 = 17
 
 因此，生成的新序列 b 里面最多可以有 3 个质数。
 */
+#include <iostream>
+#include<algorithm>
+using namespace std;
+int a[210], b[210] = { 0 };
+int n, sum = 0;
+int dfs(int x)
+{
+    if (x >= n)return 0;
+    for (int i = 0; i < n; i++)
+        if (!a[i])
+            for (int j = i + 1; j < n; j++)
+                if (!a[j])
+                {
+                    int h = a[i] + a[j], u = 1;
+                    b[i] = b[j] = 1;
+                    for (int k = 2; k * k <= h; k++)
+                        if (h % k == 0) { u = 0; break; }
+                    u += dfs(x + 2);
+                    b[i] = b[j] = 0;
+                    return u;
+                }
+
+}
+int main()
+{
+    cin >> n;
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+    dfs();
+    cout << sum < endl;
+
+    return 0;
+}
