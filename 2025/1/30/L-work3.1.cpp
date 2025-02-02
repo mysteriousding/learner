@@ -1,4 +1,4 @@
-﻿/*(1)策反加州
+/*(1)策反加州
 
 //题目描述
 //来年一月份，特朗普将再次入主白宫，然而他却花了不少钱，这个时候，小 m 想知道，如果要让特朗普胜选，最少应该花多少钱。
@@ -43,5 +43,144 @@
 //最后耗费 600 美元获得第二个州的 2 + 2 张选票，
 //共 21 张选票，花费 2570 元获得总统职位。
 
+#include<iostream>
+#include<algorithm>
+#include<vector>
+using namespace std;
+struct zhou
+{
+    int n;
+    int m;
+    int p;
+    int x;
+};
 
+int main()
+{
+    int t,w,s,r,v;
+    cin>>t>>w;
+    vector<zhou>a(t);
+    vector<int>dp(w+1,-1);
+    dp[0]=0;
+    for(int i=0;i<t;i++)
+        cin>>a[i].n>>a[i].m>>a[i].p>>a[i].x;
+
+    for(int k=0;k<t;k++)
+    {
+        vector<int>new_dp=dp;
+
+        if(a[k].m>0)
+            s=(a[k].p+1)/2*a[k].x;
+            for(int i=0;i<=w;i++)
+            {
+                if(dp[i]==-1)continue;
+                r=min(i+a[k].m,w);
+                if(new_dp[r]==-1||new_dp[r]>dp[i]+s)
+                    new_dp[r]=dp[i]+s;
+            }
+
+        if(a[k].n>0)
+            for(int j=0;j<=a[k].p;j++)
+            {
+                s=j*a[k].x;
+                v=0;
+                if(a[k].m>0&&j>=(a[k].p+1)/2)
+                    v=a[k].m+(a[k].n*j)/a[k].p;
+                else v=(a[k].n*j)/a[k].p;
+
+                if(v==0)continue;
+
+                for(int i=w;i>=0;i--)
+                {
+                    if(dp[i]==-1)continue;
+                    r=min(i+v,w);
+                    if(new_dp[r]==-1||new_dp[r]>dp[i]+s)
+                        new_dp[r]=dp[i]+s;
+                }
+            }
+
+        dp.swap(new_dp);
+    }
+    cout<<dp[w]<<endl;
+
+    return 0;
+}
+*/
+
+/*(2)小游戏2.0
+
+//题目描述
+//在刷视频的时候，我们经常会遇到这种情况。
+//我们看到一个小游戏广告。它会有 m 排每排 n 个数字，玩家手里有一个初始数字，并且从一个固定的位置出发，只能吃小于等于自己的数字，遇到大于它的数字就会输掉游戏。
+//但是还演示的人经常会表现的十分的菜，以至于他经常通关不了游戏，这个时候你就想到能否使用代码能够算出如果每次走最优的情况下能最终能否通关。
+//
+//现在小 r 正在玩这个游戏，小 r 手速足够快，他可以瞬间碰到这一行的所有可以碰到的数字，但又由于小 r 手速过慢，他下一行只能从这一行最后一个吃到的数字的位置开始。
+//
+//小 r 想知道他手中的数字最后的值最大是多少。
+//
+//输入格式
+//第一行一个数字 t，表示测试用例个数。
+//
+//对于每一个测试用例：
+//
+//第一行输入 4 个数字 n,m,x,p，分别表示每一行数字的个数，行数，初始值和初始位置。
+//
+//第二行一行输入 n 个数 ai ，表示每一行有哪些数字。
+//
+//输出格式
+//一行一个数，表示答案。
+//
+//数据范围和约定
+//t≤20, n≤2×10^5 ,m≤2×10^8 ,x ,ai≤2×10^5 。
+//
+//输入输出样例
+//输入样例 1
+//4
+//4 10 1 1
+//1 5 30 180
+//4 10 1 3
+//1 5 30 180
+//10 10 1 5
+//1000 200 2 6 1 5 2 3 4 400
+//10 100 1 5
+//1000 200 2 6 1 5 2 3 4 400
+//输出样例 1
+//136
+//1
+//165
+//143635
+
+#include<iostream>
+#include<cstdio>
+#include<vector>
+using namespace std;
+int main()
+{
+    std::ios::sync_with_stdio(false);
+    int t,n,m,x,p,z,y;
+    long long num,sum;
+    vector<int>a;
+    cin>>t;
+    for(int k=0;k<t;k++)
+    {
+        cin>>n>>m>>x>>p;
+        sum=x,z=p-1,y=p+1;
+        a.resize(n+2,0);
+        for(int i=1;i<=n;i++)
+            cin>>a[i];
+        if(a[p]>x){cout<<x<<endl;continue;}
+        num=a[p];
+        for(int j=0;j<m;j++)
+        {
+            sum+=num;
+            while(z!=0||y!=n+1)
+                if(z!=0&&a[z]<=sum)sum+=a[z],num+=a[z],z--;
+                else if(y!=n+1&&a[y]<=sum)sum+=a[y],num+=a[y],y++;
+                else break;
+        }
+        cout<<sum<<endl;
+    }
+
+    return 0;
+}
 */
