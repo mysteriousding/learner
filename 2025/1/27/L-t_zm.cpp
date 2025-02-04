@@ -1,4 +1,4 @@
-﻿/*
+/*
 填字母游戏
 
 题目描述
@@ -53,3 +53,192 @@ L*****L
 1
 1
 */
+//#include <iostream>
+//#include<string>
+//using namespace std;
+//int u,h;
+//void dfs(int n,string m)
+//{
+//  if(u==1||n>h)return;
+//  int j=0;
+//  while(m[j+2])
+//  {
+//    if(m[j]=='L') 
+//    if(m[j+1]=='O'&&m[j+2]=='L')
+//    {
+//      if(n%2==1)u=1;
+//      return;
+//    }
+//    j++;
+//  }
+//  bool v=0;
+//  for(int i=0;m[i];i++)
+//  if(m[i]=='*')
+//  {
+//    v=1;
+//    m[i]='L';
+//    dfs(n+1,m);
+//    m[i]='O';
+//    dfs(n+1,m);
+//    m[i]='*';
+//    dfs(n+1,m);
+//  }
+//  if(u==-1&&!v)u=v;
+//}
+//int main()
+//{
+//  int t;
+//  string m;
+//  cin>>t;
+//  for(int k=0;k<t;k++)
+//  {
+//    cin.ignore();
+//    cin>>m;
+//    u=-1,h=0;
+//    for(int i=0;m[i];i++)
+//    if(m[i]=='*')h++;
+//    dfs(0,m);
+//    cout<<u<<endl;
+//  }
+//
+//  
+//  return 0;
+//}
+
+
+
+//#include <iostream>
+//#include<string>
+//using namespace std;
+//int u, v, h;
+////小明先
+//void dfs1(int n, string m)
+//{
+//    if (u == -1 || n > h)return;
+//    int j = 0;
+//    while (m[j + 2])
+//    {
+//        if (m[j] == 'L')
+//            if (m[j + 1] == 'O' && m[j + 2] == 'L')
+//            {
+//                if (n % 2 == 0)u = -1;
+//                return;
+//            }
+//        j++;
+//    }
+//    bool l = 0;
+//    for (int i = 0; m[i]; i++)
+//        if (m[i] == '*')
+//        {
+//            l = 1;
+//            m[i] = 'L';
+//            dfs1(n + 1, m);
+//            m[i] = 'O';
+//            dfs1(n + 1, m);
+//            m[i] = '*';
+//            dfs1(n + 1, m);
+//        }
+//    if (u == 1 && !l)u = l;
+//}
+////K大师先
+//void dfs2(int n, string m)
+//{
+//    if (v == 1 || n > h)return;
+//    int j = 0;
+//    while (m[j + 2])
+//    {
+//        if (m[j] == 'L')
+//            if (m[j + 1] == 'O' && m[j + 2] == 'L')
+//            {
+//                if (n % 2 == 0)v = 1;
+//                return;
+//            }
+//        j++;
+//    }
+//    bool l = 0;
+//    for (int i = 0; m[i]; i++)
+//        if (m[i] == '*')
+//        {
+//            l = 1;
+//            m[i] = 'L';
+//            dfs2(n + 1, m);
+//            m[i] = 'O';
+//            dfs2(n + 1, m);
+//            m[i] = '*';
+//            dfs2(n + 1, m);
+//        }
+//    if (v == -1 && !l)v = l;
+//}
+//
+//int main()
+//{
+//    int t;
+//    string n, m;
+//    cin >> t;
+//    for (int k = 0; k < t; k++)
+//    {
+//        cin.ignore();
+//        cin >> m;
+//        n = m;
+//        u = 1, v = -1, h = 0;
+//        for (int i = 0; m[i]; i++)
+//            if (m[i] == '*')h++;
+//        dfs1(0, m);
+//        dfs2(0, n);
+//        cout << (u >= v ? u : v) << endl;
+//    }
+//
+//
+//    return 0;
+//}
+
+
+
+#include <iostream>
+#include<string>
+using namespace std;
+int u, v;
+void dfs(int n, string m)
+{
+    int j = 0;
+    while (m[j + 2])
+    {
+        if (m[j] == 'L')
+            if (m[j + 1] == 'O' && m[j + 2] == 'L')
+            {
+                if (n % 2 == 0)u = -1, v = 1;
+                return;
+            }
+        j++;
+    }
+    bool l = 0;
+    for (int i = 0; m[i]; i++)
+        if (m[i] == '*')
+        {
+            l = 1;
+            m[i] = 'L';
+            dfs(n + 1, m);
+            m[i] = 'O';
+            dfs(n + 1, m);
+            m[i] = '*';
+        }
+    if (u == 1 && !l)u = 0;
+    if (v == -1 && !l)v = 0;
+}
+
+int main()
+{
+    int t;
+    string m;
+    cin >> t;
+    for (int k = 0; k < t; k++)
+    {
+        cin.ignore();
+        cin >> m;
+        u = 1, v = -1;
+        dfs(0, m);
+        cout << (u >= v ? u : v) << endl;
+    }
+
+    return 0;
+}
