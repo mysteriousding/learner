@@ -1,4 +1,4 @@
-﻿/*
+/*
 压缩字符串
 
 题目描述
@@ -29,20 +29,21 @@ A3BC2D4
 using namespace std;
 int main()
 {
-    string m;
+    string m, n = "";
     int i = 1, j = 1;
-    bool u = 1;
+    bool u = 0;
     cin >> m;
     char h = m[i - 1];
     while (m[i - 1])
         if (m[i] == h)j++, i++;
         else
         {
-            cout << h;
-            if (j > 1) { cout << j; u = 0; }
+            n += h;
+            if (j > 1) { n += char(j + 48); u = 1; }
             h = m[i], j = 0;
         }
-    if (u)cout << "NO";
+    if (u)cout << n;
+    else cout << "NO";
 
     return 0;
 }
