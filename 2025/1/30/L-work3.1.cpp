@@ -177,6 +177,11 @@ int main()
                 if(z!=0&&a[z]<=sum)sum+=a[z],num+=a[z],z--;
                 else if(y!=n+1&&a[y]<=sum)sum+=a[y],num+=a[y],y++;
                 else break;
+            if(z==0&&y==n+1)
+            {
+                sum+=num*(m-j-1);
+                break;
+            }
         }
         cout<<sum<<endl;
     }
@@ -184,3 +189,262 @@ int main()
     return 0;
 }
 */
+
+/*(3)数列游戏
+
+//小明最近为了锻炼智力，在玩一个数列求和的游戏。设数列的长度为n，每一个数字都是整数，且在［-1000,1000］范围内，即范围是﹣1000~1000。
+//游戏规则：小明可以从这个数列里面选一串任意长度的连续子串并求和，小明想知道子串和绝对值的最大值是多少，你能帮帮他吗？
+//绝对值：正数的绝对值为本身，负数的绝对值为它的相反数。
+//如5的绝对值为5,-7的绝对值为7.
+//
+//输入格式:
+//输入共两行，第一行为一个整数n，第二行为n个整数。
+//
+//输出格式:
+//输出一个数，为数列子串和绝对值的最大值。
+//
+//输入样例:
+//10
+//-562 232 969 201-111 378-610 127 245 932
+//输出样例:
+//2363
+
+// #include<iostream>
+// #include<cmath>
+// #include<vector>
+// using namespace std;
+// int n,sum=0;
+// vector<int>a;
+// vector<bool>b;
+// void dfs(int x,int num,int u)
+// {
+//     if(x>n||u==-1)
+//     {
+//         if(sum<abs(num))sum=abs(num);
+//         return ;
+//     }
+//     for(int i=1;i<=n;i++)
+//         if(b[i])
+//         {
+//             b[i]=0;
+//             dfs(x+1,num+a[i],1);
+//             b[i]=1;
+//             dfs(x+1,num,u?-1:0);
+//         }
+// }
+
+// int main()
+// {
+//     cin>>n;
+//     a.resize(n+1);
+//     b.resize(n+1,1);
+//     for(int i=1;i<=n;i++)
+//         cin>>a[i];
+//     dfs(1,0,0);
+//     cout<<sum<<endl;
+
+//     return 0;
+// }
+
+
+
+//我的灵感
+// #include<iostream>
+// #include<vector>
+// #include<cmath>
+// using namespace std;
+// int main()
+// {
+//     int n,m,h,sum=0;
+//     cin>>n;
+//     vector<int>a(n+1);
+//     for(int i=1;i<=n;i++)
+//     {
+//         cin>>a[i];
+//         if(sum<abs(a[i]))sum=abs(a[i]);
+//     }
+//     m=a[1]+a[2];
+//     if(sum<abs(m))sum=abs(m);
+//     for(int i=2;i<n;i++)
+//         if(i%2==0)
+//         {
+//             h=1;
+//             while(h+i<=n)
+//             {
+//                 m+=a[h+i];
+//                 m-=a[h++];
+//                 if(sum<abs(m))sum=abs(m);
+//             }
+//             m+=a[--h];
+//             if(sum<abs(m))sum=abs(m);
+//         }
+//         else
+//         {
+//             h=n;
+//             while(h-i>=1)
+//             {
+//                 m+=a[h-i];
+//                 m-=a[h--];
+//                 if(sum<abs(m))sum=abs(m);
+//             }
+//             m+=a[++h];
+//             if(sum<abs(m))sum=abs(m);
+//         }
+//     cout<<sum<<endl;
+
+//     return 0;
+// }
+
+
+
+//Kadane‘s算法
+#include<iostream>
+#include<algorithm>
+#include<vector>
+#include<cmath>
+using namespace std;
+int main()
+{
+    int n,m1,m2,s1,s2;
+    cin>>n;
+    vector<int>a(n);
+    for(int i=0;i<n;i++)
+        cin>>a[i];
+    s1=s2=m1=m2=a[0];
+    for(int i=1;i<n;i++)
+    {
+        m1=max(m1+a[i],a[i]);
+        m2=min(m2+a[i],a[i]);
+        s1=max(s1,m1);
+        s2=max(s2,abs(m2));
+    }
+    cout<<(s1>=s2?s1:s2)<<endl;
+
+    return 0;
+}
+
+*/
+
+/*(4)生成格雷码--分治法
+
+//格雷码是一种包含 2^n 个数串的序列，这种序列：
+//
+//1不存在重复的元素，
+//
+//2每个元素都是长度为n的二进制数串，
+//
+//3相邻元素只有一位不同。
+//
+//例如，长度为 2^3 的格雷码为：000，001，011，010，110，111，101，100。
+//
+//请使用分治法构造格雷码。
+//
+//提示，使用分治法构造格雷码，详见百度百科。
+//
+//输入格式:
+//输入一个正整数n(1<=n<=10)。
+//
+//输出格式:
+//输出 2^n 个n位的格雷码。
+//
+//输入样例:
+//在这里给出一组输入。例如：
+//
+//4
+//输出样例:
+//在这里给出相应的输出。例如：
+//
+//0000
+//0001
+//0011
+//0010
+//0110
+//0111
+//0101
+//0100
+//1100
+//1101
+//1111
+//1110
+//1010
+//1011
+//1001
+//1000
+
+#include<iostream>
+#include<string>
+using namespace std;
+int n;
+string m="";
+char a='0',b='1';
+void fx(int x,bool u)
+{
+    if(x>=n)
+    {
+        cout<<m<<endl;
+        return;
+    }
+        m[x]=u?a:b;
+        fx(x+1,(u?u:!u));
+        m[x]=u?b:a;
+        fx(x+1,(!u?u:!u));
+}
+int  main()
+{
+    cin>>n;
+    for(int i=0;i<n;i++)
+        m+='0';
+    fx(0,1);
+
+    return 0;
+}
+*/
+
+//最优装载问题--贪心
+//
+//有一批集装箱要装上一艘重量为C的轮船。其中集装箱i的重量为wi，最优装载问题要求确定在装载体积不受限制的情况下，尽可能多得将集装箱装上轮船。
+//
+//输入格式:
+//第1行输入1个整数C。为轮船的载重量。(1<=C<=1000)
+//
+//
+//第2行输入1个整数n。为集装箱的数量。(1<=n<=1000)
+//
+//
+//接下来输入n个整数，为每个集装箱的重量wi。(1<=wi<=1000)
+//
+//输出格式:
+//输出1个整数，为最多装上船的集装箱的数量。
+//
+//输入样例:
+//在这里给出一组输入。例如：
+//
+//500
+//3
+//300 200 100
+//输出样例:
+//在这里给出相应的输出。例如：
+//
+//2
+
+#include<iostream>
+#include<algorithm>
+using namespace std;
+int n, m, a[1010];
+bool b[1010];
+int dfs(int x, int num)
+{
+    if (x > n)return 0;
+    if (num < a[x])return dfs(x + 1, num);
+    else return max(dfs(x + 1, num), dfs(x + 1, num - a[x]) + 1);
+}
+int main()
+{
+    cin >> m >> n;
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
+    int sum = dfs(1, m);
+    cout << sum << endl;
+
+    return 0;
+}
