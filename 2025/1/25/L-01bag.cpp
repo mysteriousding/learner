@@ -199,7 +199,7 @@ using namespace std;
 
 int main()
 {
-    int v[N], w[N], mem[N], f[N];
+    int v[N], w[N], mem[N];
     int n, m;
     cin >> m >> n;
     for (int i = 1; i <= n; i++)
