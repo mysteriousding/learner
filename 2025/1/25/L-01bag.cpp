@@ -1,4 +1,4 @@
-﻿/*
+/*
 求解 01 背包问题
 
 题目描述
@@ -46,6 +46,12 @@ totalweight含义见题干，N 为物品数量。
 输出
 
 */
+
+//优化历程:
+//1 - dfs递归---> 2 - 记忆化搜索---> 3 - 倒序递推---> 4 - 正序递推---> 5 - 空间优化---> 6 - 最终优化
+
+
+
 // 1 - dfs递归
 // #include <iostream>
 // #include <algorithm>
@@ -71,51 +77,138 @@ totalweight含义见题干，N 为物品数量。
 //   return 0;
 // }
 
-#include <iostream>
-#include <algorithm>
-using namespace std;
-#define N 1010
-int v[N], w[N];
-int mem[N][N];
-int n, m;
-int dfs(int x, int V)
-{
-	if (mem[x][V]) return mem[x][V];
-
-	int sum;
-	if (x > n)sum = 0;
-	if (V < v[x])sum = dfs(x + 1, V);
-	else sum = max(dfs(x + 1, V), dfs(x + 1, V - v[x]) + w[x]);
-	mem[x][V] = sum;
-	return sum;
-}
-
-int main()
-{
-	cin >> m >> n;
-	for (int i = 1; i <= n; i++)
-		cin >> v[i] >> w[i];
-	int res = dfs(1, m);
-	cout << res << endl;
-
-	return 0;
-}
 
 
+//2 - 记忆化搜索
 // #include <iostream>
 // #include <algorithm>
 // using namespace std;
 // #define N 1010
-// int v[N],w[N];
+// int v[N],w[N],mem[N][N];
+// int n,m;
+// int dfs(int x,int V)
+// {
+//   if(mem[x][V])return mem[x][V];
+//   int sum;
+//   if(x>n)sum = 0;
+//   else if(V<v[x])sum = dfs(x+1,V);
+//   else sum = max(dfs(x+1,V),dfs(x+1,V-v[x])+w[x]);
+//   mem[x][V]=sum;
+//   return sum;
+// }
+
+// int main()
+// {
+//   cin>>m>>n;
+//   for(int i=1;i<=n;i++)
+//   cin>>v[i]>>w[i];
+//   int res=dfs(1,m);
+//   cout<<res<<endl;
+
+//   return 0;
+// }
+
+
+
+//3 - 倒序递推
+// #include <iostream>
+// #include <algorithm>
+// using namespace std;
+// #define N 1010
+// int v[N],w[N],mem[N][N];
 // int n,m;
 
 // int main()
 // {
 //   cin>>m>>n;
 //   for(int i=1;i<=n;i++)
-//   cin>>w[i]>>v[i];
+//   cin>>v[i]>>w[i];
+//   for(int i=n;i>=1;i--)
+//   for(int j=0;j<=m;j++)
+//   if(j<v[i])mem[i][j]=mem[i+1][j];
+//   else mem[i][j]=max(mem[i+1][j],mem[i+1][j-v[i]]+w[i]);
 
-
+//   cout<<mem[1][m]<<endl;
 
 //   return 0;
 // }
+
+
+//4 - 正序递推
+// #include <iostream>
+// #include <algorithm>
+// using namespace std;
+// #define N 1010
+// int v[N],w[N],mem[N][N];
+// int n,m;
+
+// int main()
+// {
+//   cin>>m>>n;
+//   for(int i=1;i<=n;i++)
+//   cin>>v[i]>>w[i];
+//   for(int i=1;i<=n;i++)
+//   for(int j=0;j<=m;j++)
+//   if(j<v[i])mem[i][j]=mem[i-1][j];
+//   else mem[i][j]=max(mem[i-1][j],mem[i-1][j-v[i]]+w[i]);
+
+//   cout<<mem[n][m]<<endl;
+
+//   return 0;
+// }
+
+
+
+//5 - 空间优化
+// #include <iostream>
+// #include <algorithm>
+// #include<cstring>
+// using namespace std;
+// #define N 1010
+// int v[N],w[N],mem[N],f[N];
+// int n,m;
+
+// int main()
+// {
+//   cin>>m>>n;
+//   for(int i=1;i<=n;i++)
+//   cin>>v[i]>>w[i];
+//   for(int i=1;i<=n;i++)
+//   {
+//     for(int j=0;j<=m;j++)
+//     {
+//       f[j]=mem[j];
+//       if(j>=v[i])f[j]=max(mem[j],mem[j-v[i]]+w[i]);
+//     }
+//     memcpy(mem,f,sizeof(f));
+//   }
+
+//   cout<<mem[m]<<endl;
+
+//   return 0;
+// }
+
+
+
+//6 - 最终优化
+#include <iostream>
+#include <algorithm>
+#include<cstring>
+#define N 1010
+using namespace std;
+
+int main()
+{
+    int v[N], w[N], mem[N], f[N];
+    int n, m;
+    cin >> m >> n;
+    for (int i = 1; i <= n; i++)
+        cin >> v[i] >> w[i];
+    for (int i = 1; i <= n; i++)
+        for (int j = m; j >= v[i]; j--)
+            mem[j] = max(mem[j], mem[j - v[i]] + w[i]);
+
+    cout << mem[m] << endl;
+
+    return 0;
+}
