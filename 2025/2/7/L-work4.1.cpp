@@ -1,4 +1,4 @@
-﻿/*(1)求奇数分之一序列前N项和
+/*(1)求奇数分之一序列前N项和
 
 //本题要求编写程序，计算序列 1 + 1/3 + 1/5 + ... 的前N项之和。
 //
@@ -139,10 +139,10 @@ int main()
     vector<e>y(m);
     for (j = 0; j < m; j++)
         cin >> y[j].a >> y[j].b;
-    vector<e>z(n * m + 1);
+    vector<e>z(n * m);
     for (i = 0; i < n; i++)
-        for (j = 0; j <= m; j++)
-            z[i * n + j].a = x[i].a * y[j].a, z[i * n + j].b = x[i].b + y[j].b;
+        for (j = 0; j < m; j++)
+            z[i * m + j].a = x[i].a * y[j].a, z[i * m + j].b = x[i].b + y[j].b;
     sort(z.begin(), z.end(), pd);
     for (i = 0; i < n * m - 1; i++)
         if (z[i].b == z[i + 1].b)
@@ -153,11 +153,12 @@ int main()
         {
             if (i)cout << " ";
             cout << z[i].a << " " << z[i].b;
-            u = 1;
+            u = 0;
         }
     if (u)cout << "0 0";
     cout << endl;
 
+    z.resize(n + m);
     for (i = 0, j = 0, k = 0; i < n && j < m; k++)
         if (x[i].b == y[j].b)z[k].b = x[i].b, z[k].a = x[i++].a + y[j++].a;
         else if (x[i].b > y[j].b)z[k].b = x[i].b, z[k].a = x[i++].a;
@@ -172,18 +173,10 @@ int main()
         {
             if (i)cout << " ";
             cout << z[i].a << " " << z[i].b;
-            u = 1;
+            u = 0;
         }
     if (u)cout << "0 0";
     cout << endl;
 
     return 0;
 }
-
-
-/*
-
-4 3 4 -5 2  6 1  -2 0
-3 5 20  -7 4  3 1
-
-*/
