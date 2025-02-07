@@ -115,6 +115,7 @@ int main()
 
 */
 #include<iostream>
+#include<iostream>
 #include<algorithm>
 #include<vector>
 using namespace std;
@@ -149,7 +150,7 @@ int main()
             z[i + 1].a += z[i].a, z[i].a = 2025;
     u = 1;
     for (i = 0; i < n * m; i++)
-        if (z[i].a <= 2000 && z[i].a != 0)
+        if (z[i].a <= 2000 && z[i].a)
         {
             if (i)cout << " ";
             cout << z[i].a << " " << z[i].b;
@@ -166,10 +167,10 @@ int main()
     for (; i < n; i++)
         z[k].b = x[i].b, z[k++].a = x[i++].a;
     for (; j < m; j++)
-        z[k].b = y[j].b, z[k].a = y[j++].a;
+        z[k].b = y[j].b, z[k++].a = y[j++].a;
     u = 1;
     for (i = 0; i < k; i++)
-        if (z[i].a <= 2000 && z[i].a != 0)
+        if (z[i].a)
         {
             if (i)cout << " ";
             cout << z[i].a << " " << z[i].b;
