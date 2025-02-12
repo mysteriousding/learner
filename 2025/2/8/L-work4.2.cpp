@@ -258,8 +258,6 @@ int main()
 //输出样例2:
 //No
 
-
-*/
 #include<iostream>
 #include<algorithm>
 #include<vector>
@@ -267,46 +265,265 @@ using namespace std;
 struct p
 {
     int s;
+    char h;
     char c;
 };
-bool pd(p& a, p& b)
+bool pd(p&a,p&b)
 {
-    return a.c < b.c;
+    return a.c<b.c;
 }
 int main()
 {
-    int n, m;
-    char a, b;
-    cin >> n;
+    int n,m;
+    char a,b;
+    cin>>n;
     vector<p>x(n);
-    for (int i = 0; i < n; i++)
+    for(int i=0;i<n;i++)
     {
-        cin >> x[i].c >> a >> b;
-        if (a != '-')x[a - '0'].s = i;
-        if (b != '-')x[b - '0'].s = i;
+        cin>>x[i].c>>a>>b;
+        if(a!='-')x[a-'0'].s=i;
+        if(b!='-')x[b-'0'].s=i;
     }
-    cin >> m;
-    if (n != m)
+    for(int i=0;i<n;i++)
+        x[i].h=x[x[i].s].c;
+    cin>>m;
+    if(n!=m)
     {
-        cout << "No" << endl;
+        cout<<"No"<<endl;
         return 0;
     }
     vector<p>y(m);
-    for (int i = 0; i < m; i++)
+    for(int i=0;i<m;i++)
     {
-        cin >> y[i].c >> a >> b;
-        if (a != '-')y[a - '0'].s = i;
-        if (b != '-')y[b - '0'].s = i;
+        cin>>y[i].c>>a>>b;
+        if(a!='-')y[a-'0'].s=i;
+        if(b!='-')y[b-'0'].s=i;
     }
-    sort(x.begin(), x.end(), pd);
-    sort(y.begin(), y.end(), pd);
-    for (int i = 0; i < n; i++)
-        if (x[i].s != y[i].s || x[i].c != y[i].c)
+    for(int i=0;i<n;i++)
+        y[i].h=y[y[i].s].c;
+    sort(x.begin(),x.end(),pd);
+    sort(y.begin(),y.end(),pd);
+    for(int i=0;i<n;i++)
+        if(!i&&x[i].c==y[i].c);
+        else if(x[i].h!=y[i].h||x[i].c!=y[i].c)
         {
-            cout << "No" << endl;
+            cout<<"No"<<endl;
             return 0;
         }
-    cout << "Yes" << endl;
+    cout<<"Yes"<<endl;
 
     return 0;
 }
+*/
+
+/*(9)列出连通集
+
+//给定一个有 n 个顶点和 m 条边的无向图，请用深度优先遍历（DFS）和广度优先遍历（BFS）分别列出其所有的连通集。
+//假设顶点从 0 到 n−1 编号。
+//进行搜索时，假设我们总是从编号最小的顶点出发，按编号递增的顺序访问邻接点。
+//
+//输入格式:
+//输入第 1 行给出 2 个整数 n (0<n≤10) 和 m，分别是图的顶点数和边数。
+//随后 m 行，每行给出一条边的两个端点。
+//每行中的数字之间用 1 空格分隔。
+//
+//输出格式:
+//按照"{ v1 v2 ... vk }"的格式，每行输出一个连通集。
+//先输出 DFS 的结果，再输出 BFS 的结果。
+//
+//输入样例:
+//8 6
+//0 7
+//0 1
+//2 0
+//4 1
+//2 4
+//3 5
+//输出样例:
+//{ 0 1 4 2 7 }
+//{ 3 5 }
+//{ 6 }
+//{ 0 1 2 7 4 }
+//{ 3 5 }
+//{ 6 }
+
+#include<iostream>
+#include<queue>
+using namespace std;
+#define N 12
+bool t[N][N],l[N];
+int n,m;
+void dfs(int x,bool u)
+{
+    if(u)cout<<"{ ";
+    cout<<x<<" ";
+    l[x]=1;
+    for(int i=0;i<n;i++)
+        if(!l[i]&&t[x][i])
+            dfs(i,0);
+    if(u)cout<<"}\n";
+}
+int main()
+{
+    int a,b,x;
+    queue<int>c;
+    cin>>n>>m;
+
+    for(int j=0;j<m;j++)
+    {
+        cin>>a>>b;
+        t[a][b]=t[b][a]=1;
+    }
+    for(int i=0;i<n;i++)
+        if(!l[i])
+            dfs(i,1);
+    for(int i=0;i<n;i++)
+        l[i]=0;
+
+    for(int i=0;i<n;i++)
+        if(!l[i])
+        {
+            c.push(i);
+            l[i]=1;
+            cout<<"{ ";
+            while(!c.empty())
+            {
+                x=c.front();
+                c.pop();
+                cout<<x<<" ";
+                for(int j=0;j<n;j++)
+                    if(!l[j]&&t[x][j])
+                    {
+                        c.push(j);
+                        l[j]=1;
+                    }
+            }
+            cout<<"}\n";
+        }
+
+    return 0;
+}
+*/
+
+//Saving James Bond - Hard Version
+//
+//This time let us consider the situation in the movie "Live and Let Die" in which James Bond, the world's most famous spy, was captured by a group of drug dealers. 
+//He was sent to a small piece of land at the center of a lake filled with crocodiles.  
+//There he performed the most daring action to escape -- he jumped onto the head of the nearest crocodile!  
+//Before the animal realized what was happening, James jumped again onto the next big head...  
+//Finally he reached the bank before the last crocodile could bite him (actually the stunt man was caught by the big mouth and barely escaped with his extra thick boot).
+//
+//Assume that the lake is a 100 by 100 square one.  
+//Assume that the center of the lake is at (0,0) and the northeast corner at (50,50).  
+//The central island is a disk centered at (0,0) with the diameter of 15.  
+//A number of crocodiles are in the lake at various positions.  
+//Given the coordinates of each crocodile and the distance that James could jump, you must tell him a shortest path to reach one of the banks.  
+//The length of a path is the number of jumps that James has to make.
+//
+//Input Specification:
+//Each input file contains one test case.  
+//Each case starts with a line containing two positive integers N (≤100), the number of crocodiles, and D, the maximum distance that James could jump.  
+//Then N lines follow, each containing the (x,y) location of a crocodile.  
+//Note that no two crocodiles are staying at the same position.
+//
+//Output Specification:
+//For each test case, if James can escape, output in one line the minimum number of jumps he must make. 
+//Then starting from the next line, output the position (x,y) of each crocodile on the path, each pair in one line, from the island to the bank.  
+//If it is impossible for James to escape that way, simply give him 0 as the number of jumps.  
+//If there are many shortest paths, just output the one with the minimum first jump, which is guaranteed to be unique.
+//
+//Sample Input 1:
+//17 15
+//10 -21
+//10 21
+//-40 10
+//30 -50
+//20 40
+//35 10
+//0 -10
+//-25 22
+//40 -40
+//-30 30
+//-10 22
+//0 11
+//25 21
+//25 10
+//10 10
+//10 35
+//-30 10
+//Sample Output 1:
+//4
+//0 11
+//10 21
+//10 35
+//Sample Input 2:
+//4 13
+//-12 12
+//12 12
+//-12 -12
+//12 -12
+//Sample Output 2:
+//0
+
+/*
+拯救詹姆斯·邦德 - 高级版
+
+在电影《生死关头》（Live and Let Die）中，詹姆斯·邦德被一群毒贩抓住，并被扔到了一个充满鳄鱼的湖中央的小岛上。
+为了逃脱，他做出了一个大胆的举动：他跳到了最近的一只鳄鱼的头上！
+在鳄鱼还没反应过来之前，他又跳到了下一只更大的鳄鱼头上……
+最终，他在最后一只鳄鱼咬到他之前成功到达了湖岸（实际上，替身演员被鳄鱼的大嘴咬住了，但幸运的是他穿着特制的厚靴子才勉强脱险）。
+现在，假设这个湖是一个边长为100的正方形区域。
+湖的中心位于坐标 (0, 0)，东北角位于 (50, 50)。
+湖中央的小岛是一个直径为15的圆盘，圆心位于 (0, 0)。
+湖中有许多鳄鱼，它们分布在不同的位置。
+给定每只鳄鱼的坐标以及詹姆斯能够跳跃的最大距离，你需要告诉他一条最短的路径，以便他能够到达湖岸。
+路径的长度定义为詹姆斯需要跳跃的次数。
+
+输入格式：
+每个输入文件包含一个测试用例。
+每个测试用例以一行包含两个正整数 N（≤100，表示鳄鱼的数量）和 D（表示詹姆斯能够跳跃的最大距离）开始。
+接下来的 N 行，每行包含一个鳄鱼的坐标 (x, y)。
+注意：没有两只鳄鱼位于同一个位置。
+
+输出格式：
+对于每个测试用例，如果詹姆斯能够逃脱，输出一行表示他必须跳跃的最小次数。
+从下一行开始，按从岛到岸的顺序，输出路径上每只鳄鱼的坐标 (x, y)，每对坐标占一行。
+如果詹姆斯无法通过这种方式逃脱，只需输出 0 作为跳跃次数。
+如果存在多条最短路径，只需输出第一次跳跃距离最小的路径，保证该路径是唯一的。
+
+示例输入1：
+17 15
+10 -21
+10 21
+-40 10
+30 -50
+20 40
+35 10
+0 -10
+-25 22
+40 -40
+-30 30
+-10 22
+0 11
+25 21
+25 10
+10 10
+10 35
+-30 10
+
+示例输出1：
+4
+0 11
+10 21
+10 35
+
+示例输入2：
+4 13
+-12 12
+12 12
+-12 -12
+12 -12
+
+示例输出2：
+0
+*/
