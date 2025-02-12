@@ -527,3 +527,185 @@ int main()
 示例输出2：
 0
 */
+# include<stdio.h>
+# include<stdbool.h>
+# include<stdlib.h> 
+# define MaxVertemNum 101
+# define MaxDistance 5001
+# define Radius 7.5
+
+// 鳄鱼的结构
+typedef struct VertemNode* Vertem;
+struct VertemNode {
+    int X;		// 横坐标 
+    int Y;		// 纵坐标 
+    int Layer;	// 记录被广度搜索到的轮数 
+    Vertem Parent;
+};
+
+// 广度搜索时存放鳄鱼的队列
+typedef struct QueueNode* Queue;
+struct QueueNode {
+    Vertem Array[MaxVertemNum];
+    int Head;
+    int Rear;
+};
+
+// 存放逃生路线的堆栈
+typedef struct StackNode* Stack;
+struct StackNode {
+    Vertem Array[MaxVertemNum];
+    int Rear;
+};
+
+bool IsEscape(Vertem V, int D);
+bool IsRange(Vertem V1, Vertem V2, int D);
+bool IsFirstRange(Vertem V, int D);
+bool IsEmptyQueue(Queue Q);
+bool IsEmptyStack(Stack S);
+Vertem LastVertem(Queue Q, int D, Vertem PtrArray[], int N);
+
+
+int main() {
+    // 接收鳄鱼的总条数与跳跃的最大距离
+    int N, D;
+    scanf("%d %d", &N, &D);
+    // 如果能一步跳到岸，则输出结果，程序结束 
+    if (D + Radius >= 50) {
+        printf("1\n");
+        return 0;
+    }
+
+    // 用一个结构指针数组PtrArray来接受所有的鳄鱼
+    Vertem PtrArray[N];
+    int i, X, Y;
+    for (i = 0; i < N; i++) {
+        scanf("%d %d", &X, &Y);
+        Vertem V = (Vertem)malloc(sizeof(struct VertemNode));
+        V->X = X;
+        V->Y = Y;
+        V->Layer = 0;
+        V->Parent = NULL;
+        PtrArray[i] = V;
+    }
+    // 创建搜索队列，进行第一轮广度优先搜索，搜索结果依次并加入队列
+    Queue Q = (Queue)malloc(sizeof(struct QueueNode));
+    Q->Head = Q->Rear = -1;
+    for (i = 0; i < N; i++) {
+        if (IsFirstRange(PtrArray[i], D)) {
+            // 若在第一轮广度搜索的范围内，则将其搜索轮数设置为1 
+            PtrArray[i]->Layer = 1;
+            Q->Array[++Q->Rear] = PtrArray[i];
+        }
+    }
+
+    // 寻找逃生路线，并返回逃生前踩的最后一只鳄鱼 
+    Vertem LastV = LastVertem(Q, D, PtrArray, N);
+    int Count = LastV->Layer;
+    Stack S = (Stack)malloc(sizeof(struct StackNode));
+    S->Rear = -1;
+    // 能否逃生的判断 
+    if (Count == -1) {
+        // 不能逃生
+        printf("0");
+    }
+    else {
+        // 能够逃生
+        for (; LastV != NULL; LastV = LastV->Parent) {
+            // 将结果加入堆栈方便按逃生路线输出结果 
+            S->Array[++S->Rear] = LastV;
+        }
+        // 输出结果 
+        printf("%d\n", Count + 1);
+        while (!IsEmptyStack(S)) {
+            printf("%d %d\n", S->Array[S->Rear]->X, S->Array[S->Rear]->Y);
+            S->Rear--;
+        }
+    }
+    return 0;
+}
+
+// 判读是否在第一轮广度搜索的范围内 
+bool IsFirstRange(Vertem V, int D) {
+    int X = V->X, Y = V->Y;
+    int DistanceSqure = X * X + Y * Y;
+    if (DistanceSqure > (Radius + D) * (Radius + D))return false;
+    else return true;
+}
+
+// 核心算法，返回逃生前的最后一只鳄鱼；若没有路径，则返回一只特殊的Layer为-1的鳄鱼
+Vertem LastVertem(Queue Q, int D, Vertem PtrArray[], int N) {
+    Vertem V, VCopy, Res;
+    // ResLayer用来记录逃生前最后一只鳄鱼的Layer，Valid作为是否成功逃生的标志 
+    int i, ResLayer = 0, Valid = 0;
+    int MinDistance = MaxDistance;
+    while (!IsEmptyQueue(Q)) {
+        // 出队
+        V = Q->Array[++Q->Head];
+
+        // 如果成功逃生，先被急着返回，应该把这一轮判断完，看是否存在离岛更近的layer=1的鳄鱼；直到V->Layer!=ResLayer进行下一轮时才返回 
+        if (Valid == 1 && V->Layer != ResLayer) {
+            return Res;
+        }
+        if (IsEscape(V, D)) {
+            // 目的是在可能的众多路线中找出离岛更近的layer=1的鳄鱼 
+            Valid = 1;
+            VCopy = V;
+            for (; VCopy->Parent != NULL; VCopy = VCopy->Parent);
+            if (VCopy->X * VCopy->X + VCopy->Y * VCopy->Y < MinDistance) {
+                MinDistance = VCopy->X * VCopy->X + VCopy->Y * VCopy->Y;
+                Res = V;
+                ResLayer = V->Layer;
+            }
+        }
+
+        // 广度搜索 
+        for (i = 0; i < N; i++) {
+            if (IsRange(V, PtrArray[i], D) && PtrArray[i]->Layer == 0) {
+                // 在该鳄鱼V的影响范围内且未被检索 
+                PtrArray[i]->Layer = V->Layer + 1;
+                PtrArray[i]->Parent = V;
+                // 入队 
+                Q->Array[++Q->Rear] = PtrArray[i];
+            }
+        }
+    }
+
+    // 因为在上面循环中有可能还没有return Res但又存在了Res，而队列为空即无法持续到V->Layer != ResLayer时也应返回正确结果 
+    if (Valid == 1) {
+        return Res;
+    }
+    // 逃生失败,返回一只Layer=-1的特殊的鳄鱼作为失败的标记 
+    Vertem W = (Vertem)malloc(sizeof(struct VertemNode));
+    W->Layer = -1;
+    return W;
+}
+
+// 判断一个鳄鱼是否可以作为最后一个逃生点
+bool IsEscape(Vertem V, int D) {
+    int X = V->X;
+    int Y = V->Y;
+    if (X + D >= 50 || X - D <= -50 || Y + D >= 50 || Y - D <= -50)return true;
+    else return false;
+}
+
+// 判读队列是否为空
+bool IsEmptyQueue(Queue Q) {
+    if (Q->Head == Q->Rear)return true;
+    else return false;
+}
+
+// 判读堆栈是否为空
+bool IsEmptyStack(Stack S) {
+    if (S->Rear == -1)return true;
+    else return false;
+}
+
+// 判读V2是否在V1的辐射范围之内 
+bool IsRange(Vertem V1, Vertem V2, int D) {
+    int X1 = V1->X, Y1 = V1->Y;
+    int X2 = V2->X, Y2 = V2->Y;
+    int DistanceSqure = (X1 - X2) * (X1 - X2) + (Y1 - Y2) * (Y1 - Y2);
+    if (DistanceSqure > D * D)return false;
+    else return true;
+}
