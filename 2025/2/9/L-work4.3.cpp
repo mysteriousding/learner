@@ -211,6 +211,60 @@ int main()
 //输出样例2:
 //6 4 5 4 6 0
 
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+int N, M, S;
+int vis_cnt;
+int depth, max_depth;
+bool space;
+
+bool vis[10005];
+vector<int> v[1005];
+void dfs(int s) {
+    depth++;
+    if (depth > max_depth)
+        max_depth = depth;
+    vis[s] = true;
+    vis_cnt++;
+    if (!space)
+        space = true;
+    else
+        cout << ' ';
+    cout << s;
+    bool flag = true;
+    for (int i = 0; i < v[s].size(); ++i) {
+        int u = v[s][i];
+        if (!vis[u]) {
+            dfs(u);
+            cout << ' ' << s;
+            flag = false;
+        }
+    }
+    if (depth != max_depth && flag) {
+        cout << ' ' << s;
+    }
+    depth--;
+}
+
+int main() {
+    cin >> N >> M >> S;
+    int v1, v2;
+    for (int i = 0; i < M; ++i) {
+        cin >> v1 >> v2;
+        v[v1].push_back(v2);
+        v[v2].push_back(v1);
+    }
+    for (int i = 0; i <= N; ++i) {
+        sort(v[i].begin(), v[i].end());
+    }
+    dfs(S);
+    if (vis_cnt != N) {
+        cout << ' ' << 0;
+    }
+    return 0;
+}
 
 */
 
