@@ -192,24 +192,90 @@ int main()
 //b -> c
 //a -> c
 
+// #include<iostream>
+// using namespace std;
+// void hom(int k,char a,char b,char c)
+// {
+//     if(k==1)
+//     {
+//         cout<<a<<" -> "<<b<<endl;
+//         return ;
+//     }
+//     hom(k-1,a,c,b);
+//     cout<<a<<" -> "<<b<<endl;
+//     hom(k-1,c,b,a);
+// }
+// int main()
+// {
+//     int n;
+//     cin>>n;
+//     hom(n,'a','c','b');
+
+//     return 0;
+// }
+
+
+
 #include<iostream>
+#include<stack>
+#include<cstdio>
 using namespace std;
-void hom(int k, char a, char b, char c)
+
+char tower[3] = { 'a', 'b', 'c' };
+stack<int> a[3];
+
+bool move(int before, int after)
 {
-    if (k == 1)
+    if (a[before].empty())
     {
-        cout << a << " -> " << b << endl;
-        return;
+        return false;
     }
-    hom(k - 1, a, c, b);
-    cout << a << " -> " << b << endl;
-    hom(k - 1, c, b, a);
+
+    if (!a[after].empty())
+    {
+        if (a[after].top() - a[before].top() < 0)
+        {
+            return false;
+        }
+    }
+
+    a[after].push(a[before].top());
+    a[before].pop();
+
+    printf("%c -> %c\n", tower[before], tower[after]);
+
+    return true;
 }
+
 int main()
 {
-    int n;
-    cin >> n;
-    hom(n, 'a', 'c', 'b');
+    int N, count = 0;
+
+    cin >> N;
+
+    for (int i = 0; i < N; i++)
+    {
+        a[0].push(N - i);
+    }
+
+    if (N % 2 == 1)
+    {
+        tower[1] = 'c';
+        tower[2] = 'b';
+    }
+
+    while (++count)
+    {
+        move((count - 1) % 3, count % 3);
+
+        if (!move((count - 1) % 3, (count + 1) % 3))
+        {
+            if (!move((count + 1) % 3, (count - 1) % 3))
+            {
+                break;
+            }
+        }
+    }
 
     return 0;
 }
