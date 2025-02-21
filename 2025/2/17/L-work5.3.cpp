@@ -52,3 +52,25 @@
 //输出样例：
 //8
 
+#include<iostream>
+#include <cstdio>
+#include<vector>
+using namespace std;
+int main()
+{
+    std::ios::sync_with_stdio(false);
+    int n, num = 0;
+    cin >> n;
+    vector<int>a(n);
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+    for (int i = 0; i < n; i++)
+        for (int j = i + 1; j < n; j++)
+            if (a[i] > a[j])
+                for (int k = j + 1; k < n; k++)
+                    if (a[j] > a[k])
+                        num++;
+    cout << num << endl;
+
+    return 0;
+}
