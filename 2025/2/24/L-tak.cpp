@@ -1,4 +1,4 @@
-﻿/*
+/*
 外卖店优先级
 
 题目描述
@@ -43,6 +43,62 @@
 2 号店优先级升到 6， 加入优先缓存。
 所以是有 1 家店 (2 号) 在优先缓存中。
 */
+// #include <iostream>
+// #include<algorithm>
+// #include<vector>
+// using namespace std;
+// struct d
+// {
+//   int x;
+//   int y;
+// };
+// bool pd(d&a,d&b)
+// {
+//   return a.x<b.x;
+// }
+// int main()
+// {
+//   int n,m,t,i,h,r,num=0;
+//   cin>>n>>m>>t;
+//   vector<d>a(m+1);
+//   vector<int>b(n+1,0);
+//   vector<bool>c(n+1,1),q(n+1,0);
+//   for(i=0;i<m;i++)
+//   cin>>a[i].x>>a[i].y;
+//   sort(a.begin(),a.end()-1,pd);
+//   r=h=a[0].x,i=0;
+//   while(i<=m)
+//   {
+//     for(;i<=m;i++)
+//     if(h==a[i].x)
+//     {
+//       b[a[i].y]+=2,c[a[i].y]=0;
+//       if(b[a[i].y]>5)q[a[i].y]=1;
+//     }
+//     else
+//     {
+//       for(int j=1;j<=n;j++)
+//       {
+//         b[j]-=c[j]?r:(r-1);
+//         if(b[j]<0)b[j]=0;
+//         if(q[j]&&b[j]<=3)q[j]=0;
+//         c[j]=1;
+//       }
+//       r=a[i].x-h,h=a[i].x;
+//       if(a[i].y)break;
+//     }
+//     if(h>t)break;
+//   }
+//   for(i=1;i<=n;i++)
+//   if(q[i])
+//   num++;
+//   cout<<num<<endl;
+
+//   return 0;
+// }
+
+
+
 #include <iostream>
 #include<algorithm>
 #include<vector>
@@ -54,40 +110,36 @@ struct d
 };
 bool pd(d& a, d& b)
 {
-    if (a.x != b.x)return a.x < b.x;
-    else return a.y < b.y;
+    return a.x < b.x;
 }
 int main()
 {
     int n, m, t, i, h, r, num = 0;
     cin >> n >> m >> t;
-    vector<d>a(m);
-    vector<int>b(n + 1, 0);
-    vector<bool>c(n + 1, 1), q(n + 1, 0);
+    vector<d>a(m + 1);
+    vector<int>b(n + 1, 0), c(n + 1, 0);
+    vector<bool>q(n + 1, 0);
     for (i = 0; i < m; i++)
         cin >> a[i].x >> a[i].y;
-    sort(a.begin(), a.end(), pd);
-    h = a[0].x, i = 0;
-    while (i < m)
+    sort(a.begin(), a.end() - 1, pd);
+    r = h = a[0].x, i = 0;
+    while (i <= m)
     {
-        for (; i < m; i++)
-            if (h == a[i].x)
-            {
-                b[a[i].y] += 2, c[a[i].y] = 0;
-                if (b[a[i].y] > 5)q[a[i].y] = 1;
-                else if (q[a[i].y] && b[a[i].y] <= 3)q[a[i].y] = 0;
-            }
+        for (; i <= m; i++)
+            if (h == a[i].x)c[a[i].y]++;
             else
             {
-                r = a[i].x - h, h = a[i].x;
                 for (int j = 1; j <= n; j++)
-                    if (!c[a[j].y])
-                    {
-                        b[a[j].y] -= r;
-                        if (b[a[j].y] < 0)b[a[j].y] = 0;
-                        c[a[j].y] = 1;
-                    }
-                break;
+                {
+                    b[j] -= c[j] ? (r - 1) : r;
+                    if (b[j] < 0)b[j] = 0;
+                    b[j] += 2 * c[j], c[j] = 0;
+                    if (b[j] > 5)q[j] = 1;
+                    else if (q[j] && b[j] <= 3)q[j] = 0;
+
+                }
+                r = a[i].x - h, h = a[i].x;
+                if (a[i].y)break;
             }
         if (h > t)break;
     }
