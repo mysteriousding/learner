@@ -1,4 +1,4 @@
-﻿/*
+/*
 排列序数
 
 题目描述
@@ -65,14 +65,19 @@ bdca
 using namespace std;
 int main()
 {
-	int a[11] = { 1 }, num, sum = 0;
-	for (int i = 1; i < 11; i++)
-		a[i] = a[i - 1] * i;
-	string n, m = "abcdefghij";
-	cin >> n;
-	for (int i = 0, j = n.size() - 1; i < n.size(); i++, j--)
-		sum += abs((n[i] - m[i]) * a[j]);
-	cout << sum - 1 << endl;
+    int a[11] = { 1 }, num, sum = 0;
+    for (int i = 1; i < 11; i++)
+        a[i] = a[i - 1] * i;
+    string n;
+    cin >> n;
+    for (int i = 0, j = n.size() - 1; i < n.size(); i++, j--)
+    {
+        num = 0;
+        for (int k = i + 1; k < n.size(); k++)
+            if (n[i] > n[k])num++;
+        sum += num * a[j];
+    }
+    cout << sum << endl;
 
-	return 0;
+    return 0;
 }
