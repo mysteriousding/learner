@@ -64,30 +64,29 @@
 */
 #include <iostream>
 using namespace std;
-int a[21][21] = { 0 };
+int a[21][21] = { {0},{0,1} };
 int main()
 {
     int n, j = 1;
     cin >> n;
     for (int i = 1; i <= n / 2; i++)
     {
-        for (int k = i; k <= n - i; k++)
+        for (int k = i; k <= n - 2 * i + 2; k++)
             a[i][k] = j++;
-        //for (int k =n-i; k >i; k--)
-        //    a[n-i-k][k] = j++;
-        //for (int k = n - i - 2; k > i; k--)
-        //    a[k][i] = j++;
+        for (int k = n - 2 * i + 1; k >= i; k--)
+            a[n - i + 2 - k][k] = j++;
+        for (int k = n - 2 * i + 1; k > i; k--)
+            a[k][i] = j++;
     }
     for (int i = 1; i <= n; i++)
     {
-        for (int k = 1; k <= n - i; k++)
+        for (int k = 1; k <= n - i + 1; k++)
         {
-            if (k)cout << " ";
+            if (k - 1)cout << " ";
             cout << a[i][k];
         }
         cout << endl;
     }
-
 
     return 0;
 }
