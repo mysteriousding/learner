@@ -1,4 +1,4 @@
-﻿/*(1)
+/*(1)
 //L1 - 097 编程解决一切
 //分数 5
 //作者 陈越
@@ -257,31 +257,41 @@ int main()
 using namespace std;
 int main()
 {
-    int n,m,i=0,j,x=0,y,z=0;
+    int n, m, i = 0, j, x = 0, y, z = 0;
     bool u;
-    string h,p="<censored>";
-    cin>>n;
+    string h, q = "0213", p = "<censored>";
+    cin >> n;
+    cin.ignore();
     vector<string>a(n);
+    for (i = 0; i < n; i++)
+        getline(cin, a[i]);
+    cin >> m;
     cin.ignore();
-    for(i=0;i<n;i++)
-        getline(cin,a[i]);
-    cin>>m;
-    cin.ignore();
-    getline(cin,h);
-    for(i=0;i<n;i++)
+    getline(cin, h);
+    for (i = 0; i < n; i++)
     {
-        z=y=0;
-        while((z=h.find(a[i],z))!=string::npos)
+        z = y = 0;
+        while ((z = h.find(a[i], z)) != string::npos)
         {
-            h.erase(z,a[i].size());
-            h.insert(z,p);
-            z+=p.size();
+            h.erase(z, a[i].size());
+            h.insert(z, q);
+            z += q.size();
             y++;
         }
-        x+=y;
+        x += y;
     }
-    if(x<m)cout<<h<<endl;
-    else cout<<x<<"\nHe Xie Ni Quan Jia!"<<endl;
+    if (x < m)
+    {
+        z = 0;
+        while ((z = h.find(q, z)) != string::npos)
+        {
+            h.erase(z, q.size());
+            h.insert(z, p);
+            z += p.size();
+        }
+        cout << h << endl;
+    }
+    else cout << x << "\nHe Xie Ni Quan Jia!" << endl;
 
     return 0;
 }
