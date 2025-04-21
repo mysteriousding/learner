@@ -1,4 +1,8 @@
-﻿#include<iostream>
+/*
+1．顺序表的操作利用顺序存储方式实现下列功能：
+根据键盘输入数据建立一个线性表，并输出该线性表；对该线性表进行数据的插入、删除、查找操作，并在插入和删除数据后，再输出线性表。
+*/
+#include<iostream>
 using namespace std;
 typedef struct
 {
