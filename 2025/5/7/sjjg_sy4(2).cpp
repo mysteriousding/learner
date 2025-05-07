@@ -1,4 +1,4 @@
-﻿/*
+/*
 编程实现一棵二叉排序树，包括插入、删除、查找等功能；
 */
 #include<iostream>
@@ -7,11 +7,11 @@ using namespace std;
 
 class tree
 {
-public:
+private:
 	int x, y;
 	tree* q, * p;
 	tree() : x(0), y(0), q(NULL), p(NULL) {}
-	tree(int key) : x(key), y(0), q(NULL), p(NULL) {}
+	tree(int key) : x(key), y(1), q(NULL), p(NULL) {}
 
 	bool cj0();
 	void dg0(int a[],int x,int y);
@@ -25,6 +25,7 @@ public:
 	void qsc();
 	void zsc();
 	void h_Drl();
+public:
 	void cj();
 };
 
@@ -122,11 +123,12 @@ tree* tree::cr(int key)
 
 	Max();
 	int num = q->sd() - p->sd(), num1;
+	
 	if (num > 1)
 	{
 		num1 = q->q->sd() - q->p->sd();
 		if (num1 < 0)
-			p->Lx();
+			q->Lx();
 
 		return Rx();
 	}
@@ -134,7 +136,7 @@ tree* tree::cr(int key)
 	{
 		num1 = p->q->sd() - p->p->sd();
 		if (num1 > 0)
-			q->Rx();
+			p->Rx();
 
 		return Lx();
 	}
@@ -176,7 +178,7 @@ void tree::cj()
 	cout << "请输入数据个数:" << endl;
 	cin >> n;
 	cout << "请依次输入数据,构建平衡二叉树:" << endl;
-	for (int i = 1; i <= n; i++)
+	for (int i = 0; i < n; i++)
 	{
 		cin >> m;
 		/*this=cr(m);*/
@@ -196,7 +198,3 @@ int main()
 
 	return 0;
 }
-
-/*
-9 8 7 6 5 4 3 2 1
-*/
