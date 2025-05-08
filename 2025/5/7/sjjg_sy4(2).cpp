@@ -7,67 +7,31 @@ using namespace std;
 
 class tree
 {
-private:
-	int x, y;
-	tree* q, * p;
-	tree() : x(0), y(0), q(NULL), p(NULL) {}
-	tree(int key) : x(key), y(1), q(NULL), p(NULL) {}
-
-	bool cj0();
-	void dg0(int a[],int x,int y);
-
-	int sd();
-	void Max();
-	tree* Lx();
-	tree* Rx();
-	tree* jd(int key);
-	tree* cr(int key);
-	void qsc();
-	void zsc();
-	void h_Drl();
 public:
-	void cj();
+	tree() : x(0), y(0), q(NULL), p(NULL) {}
+	tree(int key) : x(key), y(1), q(NULL), p(NULL) {}   //初始新结点
+
+	void cj();     //创建
+
+private:
+	int x, y;      //x是内容，y是高度
+	tree* q, * p;  //q是左指针，p是右指针
+
+	int sd();      //返回高度
+	void Max();    //计算高度
+	tree* Lx();    //左旋
+	tree* Rx();    //右旋
+	tree* ph();    //调整平衡
+	tree* jd(int key);        //生成新结点
+	tree* cr(int key);        //插入结点
+	tree* sc(int key);        //删除结点
+	tree* cz(int key, int& a);//查找结点
+	void xg(tree*& T);        //修改结点
+	void qsc();    //前遍历
+	void zsc();    //中遍历
+	void h_Drl();  //后遍历_删除树
+	void sy(tree* T);         //使用演示
 };
-
-
-/*折半查找判定树实现平衡二叉树构构建 start*/
-bool tree::cj0()
-{
-	int a[N], n, k;
-	cout << "请输入数据个数:" << endl;
-	cin >> n;
-	cout << "请依次输入数据,构建平衡二叉树:" << endl;
-	for (int i = 1; i <= n; i++)
-		cin >> a[i];
-	for (int i = 1; i < n; i++)
-	{
-		a[0] = a[i], k = i;
-		for (int j = i + 1; j <= n; j++)
-			if (a[0] > a[j])
-				a[0] = a[j], k = j;
-		a[k] = a[i], a[i] = a[0];
-	}
-	this->dg0(a, 1, n);
-
-	return 1;
-}
-
-void tree::dg0(int a[], int b1, int b2)
-{
-	int c = (b1 + b2) / 2;
-	x = c;
-	if (b1 <= c - 1)
-	{
-		q = new tree;
-		q->dg0(a, b1, c - 1);
-	}
-	if (c + 1 <= b2)
-	{
-		p = new tree;
-		p->dg0(a, c + 1, b2);
-	}
-}
-/*折半查找判定树实现平衡二叉树构构建 end*/
 
 int tree::sd()
 {
@@ -101,6 +65,30 @@ tree* tree::Rx()
 	return newt;
 }
 
+tree* tree::ph()
+{
+	int num = q->sd() - p->sd(), num1;
+
+	if (num > 1)
+	{
+		num1 = q->q->sd() - q->p->sd();
+		if (num1 <= 0)
+			q = q->Lx();
+
+		return Rx();
+	}
+	if (num < -1)
+	{
+		num1 = p->q->sd() - p->p->sd();
+		if (num1 >= 0)
+			p = p->Rx();
+
+		return Lx();
+	}
+
+	return this;
+}
+
 tree* tree::jd(int key)
 {
 	tree* node = new tree(key);
@@ -122,26 +110,69 @@ tree* tree::cr(int key)
 	else return this;
 
 	Max();
-	int num = q->sd() - p->sd(), num1;
-	
-	if (num > 1)
+	return ph();
+}
+
+tree* tree::sc(int key)
+{
+	if (this == NULL)
+		return NULL;
+
+	else if (key < x)
+		q = q->sc(key);
+
+	else if (key > x)
+		p = p->sc(key);
+
+	else
 	{
-		num1 = q->q->sd() - q->p->sd();
-		if (num1 < 0)
-			q->Lx();
+		tree* s = NULL;
 
-		return Rx();
+		if (q && p)
+		{
+			s = p;
+			while (s->q != NULL)
+				s = s->q;
+			x = s->x;
+			p = p->sc(x);
+		}
+		else
+		{
+			s = q ? q : p;
+			delete this;
+			return s;
+		}	
 	}
-	if (num < -1)
+
+	if (this == NULL)
+		return NULL;
+
+	Max();
+	return ph();
+}
+
+tree* tree::cz(int key ,int&a)
+{
+	tree* l = this;
+	while (l && l->x != key)
 	{
-		num1 = p->q->sd() - p->p->sd();
-		if (num1 > 0)
-			p->Rx();
-
-		return Lx();
+		a++;
+		l = l->x > key ? l->q : l->p;
 	}
+	if(!l) cout << "未找到该数据！" << endl;
 
-	return this;
+	return l;
+}
+
+void tree::xg(tree*& T)
+{
+	int key;
+	cout << "\n请输入要修改的数据:" << endl;
+	cin >> key;
+	T = T->sc(key);
+	cout << "\n请输入修改后的数据:" << endl;
+	cin >> key;
+	T = T->cr(key);
 }
 
 void tree::qsc()
@@ -184,10 +215,39 @@ void tree::cj()
 		/*this=cr(m);*/
 		T = T->cr(m);
 	}
-	cout << "前序遍历：" << endl;
+
+	sy(T);
+}
+
+void tree::sy(tree* T)
+{
+	int n, m;
+	cout << "\n前序遍历：" << endl;
 	T->qsc();
 	cout << "\n中序遍历：" << endl;
 	T->zsc();
+
+	cout << "\n请输入删除数据:" << endl;
+	cin >> n;
+	T = T->sc(n);
+
+	cout << "\n前序遍历：" << endl;
+	T->qsc();
+	cout << "\n中序遍历：" << endl;
+	T->zsc();
+
+	cout << "\n请输入查找数据:" << endl;
+	cin >> n;
+	m = 0;
+	m += !!T->cz(n, m);
+	cout << "共查找" << m << "次。" << endl;
+
+	T->xg(T);
+	cout << "\n前序遍历：" << endl;
+	T->qsc();
+	cout << "\n中序遍历：" << endl;
+	T->zsc();
+
 	T->h_Drl();
 }
 
@@ -198,3 +258,7 @@ int main()
 
 	return 0;
 }
+
+/*
+9 8 7 6 5 4 3 2 1
+*/
