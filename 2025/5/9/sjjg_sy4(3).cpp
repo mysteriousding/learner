@@ -16,30 +16,7 @@ typedef struct
 class slb
 {
 public:
-	slb()
-	{
-		for (int i = 0; i < N; i++)
-			a[i].n = -1;
-		
-		bool u;
-		for (int i = N; i > 1; i--)
-		{
-			u = 1;
-			if ((i % 2 == 0 && i > 2) || (i % 3 == 0 && i > 3))u = 0;
-			if (u)
-				for (int j = 5; j * j <= i; j += 2)
-					if (i % j == 0)
-					{
-						u = 0;
-						break;
-					}
-			if (u)
-			{
-				zs = i;
-				break;
-			}
-		}
-	}
+	slb();
 
 	bool dl();
 
@@ -55,6 +32,31 @@ private:
 	bool xg(int x);
 	bool xg_new(int x,string y, string z);
 };
+
+slb::slb()
+{
+	for (int i = 0; i < N; i++)
+		a[i].n = -1;
+
+	bool u;
+	for (int i = N; i > 1; i--)
+	{
+		u = 1;
+		if ((i % 2 == 0 && i > 2) || (i % 3 == 0 && i > 3))u = 0;
+		if (u)
+			for (int j = 5; j * j <= i; j += 2)
+				if (i % j == 0)
+				{
+					u = 0;
+					break;
+				}
+		if (u)
+		{
+			zs = i;
+			break;
+		}
+	}
+}
 
 int slb::hx(int x)
 {
@@ -186,6 +188,7 @@ bool slb::dl()
 		}
 	if (z)
 	{
+		z = 0;
 		x = stoi(y);
 		x = cz(x);
 		if (a[x].n != -1)
@@ -248,4 +251,5 @@ int main()
 	while(n--)
 		a.dl();
 
+	return 0;
 }
