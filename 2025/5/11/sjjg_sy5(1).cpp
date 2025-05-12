@@ -1,9 +1,10 @@
-﻿/*
+/*
 直接插入排序
 */
 #include<iostream>
 using namespace std;
 #define N 1000
+
 int main()
 {
 	int n, a[N], j;
