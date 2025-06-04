@@ -1,4 +1,4 @@
-﻿/*
+/*
 重新排序
 
 问题描述
@@ -42,24 +42,34 @@
 对于所有评测用例, 1≤n,m≤10^5 ,1≤Ai ≤10^6 ,1≤Li ≤Ri ≤10^6 。
 */
 #include <iostream>
+#include <algorithm>
 using namespace std;
 const int N = 1e5 + 10;
+long long a[N], b[N], num1, num2;
+int c[N], n, m, x, y;
 int main()
 {
-    int a[N] = { 0 }, b[N] = { 0 }, n, m, x, y;
     cin >> n;
     for (int i = 1; i <= n; i++)
+    {
         cin >> a[i];
+        b[i] = b[i - 1] + a[i];
+    }
     cin >> m;
     for (int i = 0; i < m; i++)
     {
         cin >> x >> y;
-        b[x]++;
-        b[y + 1]++;
+        num1 += b[y] - b[x - 1];
+        c[x]++;
+        c[y + 1]--;
     }
     for (int i = 1; i <= n; i++)
-        a[i] += a[i - 1];
-
+        c[i] += c[i - 1];
+    sort(a + 1, a + 1 + n);
+    sort(c + 1, c + 1 + n);
+    for (int i = 1; i <= n; i++)
+        num2 += a[i] * c[i];
+    cout << num2 - num1 << endl;
 
     return 0;
 }
