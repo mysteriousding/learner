@@ -1,4 +1,4 @@
-﻿/*
+/*
 屏蔽信号【算法赛】
 
 问题描述
@@ -39,13 +39,12 @@ int main()
     while (t--)
     {
         cin >> n >> m;
-        if (n < m)
-            h = n, n = m, m = h;
         i = 0;
         while (n && m)
         {
+            if (n < m)
+                h = n, n = m, m = h;
             n -= m;
-            h = n, n = m, m = h;
             i++;
         }
         cout << i << endl;
