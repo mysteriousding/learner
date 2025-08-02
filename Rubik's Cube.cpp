@@ -1040,4 +1040,5 @@ string getPathName(string path) {
 	if (pos != string::npos)path = path.substr(pos + 1);
 	pos = path.find_last_of('.');
 	return path.substr(0, pos);
+
 }
