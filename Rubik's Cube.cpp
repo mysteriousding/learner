@@ -1042,3 +1042,4 @@ string getPathName(string path) {
 	return path.substr(0, pos);
 
 }
+
