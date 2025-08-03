@@ -33,4 +33,5 @@ int main()
 	cout << int(2025 + 15 - 1) / 15 << endl;
 
 	return 0;
+
 }
