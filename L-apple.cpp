@@ -18,4 +18,5 @@ int main()
 	cout << 2023 / (3 * 3 * 4) << endl;
 
 	return 0;
+
 }
