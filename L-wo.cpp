@@ -19,4 +19,5 @@ int main()
 	cout << 36 * 30 / 10 << endl;
 
 	return 0;
+
 }
