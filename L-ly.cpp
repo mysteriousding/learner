@@ -34,4 +34,5 @@ int main()
 	cout << n % 100000 * 10 + n / 100000 << endl;
 
 	return 0;
+
 }
