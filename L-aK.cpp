@@ -26,4 +26,5 @@ int main()
 	cout << "Today AK!" << endl;
 
 	return 0;
+
 }
