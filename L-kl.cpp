@@ -38,4 +38,5 @@ int main()
 	cout << "2024 AK" << endl;
 
 	return 0;
+
 }
