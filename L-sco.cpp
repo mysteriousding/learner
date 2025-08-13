@@ -27,4 +27,5 @@ int main()
 	cout << n * 3 + m << endl;
 
 	return 0;
+
 }
