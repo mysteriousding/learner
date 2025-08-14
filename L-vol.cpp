@@ -26,4 +26,5 @@ int main()
 	cout << 68 + (68 - 14) / 3 << endl;
 
 	return 0;
+
 }
