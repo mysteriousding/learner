@@ -15,4 +15,5 @@ int main()
 	cout << 2021 % 20 << endl;
 
 	return 0;
+
 }
