@@ -13,4 +13,5 @@ int main()
 	cout << 2020 / 12 << endl;
 
 	return 0;
+
 }
