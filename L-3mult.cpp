@@ -26,4 +26,5 @@ int main()
 	cout << b / 3 - a / 3 + (a % 3 == 0) << endl;
 
 	return 0;
+
 }
