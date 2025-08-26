@@ -34,4 +34,5 @@ int main()
 	cout << !v << endl;
 
 	return 0;
+
 }
