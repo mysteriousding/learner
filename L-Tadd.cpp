@@ -41,4 +41,5 @@ int main()
 	cout << a << "\n" << b << endl;
 
 	return 0;
+
 }
