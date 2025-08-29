@@ -30,4 +30,5 @@ int main()
 	cout << 4 * a + 2 * b << endl;
 
 	return 0;
+
 }
