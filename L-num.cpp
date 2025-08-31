@@ -17,4 +17,5 @@ int main()
 	cout << 1 * 9 + 2 * 90 + 3 * 900 + 4 * 1021 << endl;
 
 	return 0;
+
 }
