@@ -26,4 +26,5 @@ int main()
 	cout << n * (n - 1) << endl;
 
 	return 0;
+
 }
