@@ -16,4 +16,5 @@ int main()
 	cout << 40 << endl;
 
 	return 0;
+
 }
