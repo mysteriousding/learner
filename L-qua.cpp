@@ -42,4 +42,5 @@ int main()
         printf("%.1f", a);
 
     return 0;
+
 }
