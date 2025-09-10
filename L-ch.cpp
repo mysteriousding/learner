@@ -21,4 +21,5 @@ int main()
 	cout << 2024 * 2.5 << endl;
 
 	return 0;
+
 }
