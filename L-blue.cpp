@@ -17,4 +17,5 @@ int main()
 	cout << (50 - 21) / 2 + 21 % 2 << endl;
 
 	return 0;
+
 }
