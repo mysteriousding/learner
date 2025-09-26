@@ -16,4 +16,5 @@ int main()
 	cout << (1 + 11 + 52) / 8 << endl;
 
 	return 0;
+
 }
