@@ -1,4 +1,4 @@
-﻿/*
+/*
 LCS3_sc: 根据 DP表 回溯找到所有可能的 LCS 并输出
 */
 #include<iostream>
@@ -41,13 +41,13 @@ void sc()
 // 递归函数，找到所有 LCS
 void LCS(int i, int j, string s)
 {
-	bool v = 0;
+	//bool v = 0;
 	while (i && j)
 		if (n[i - 1] == m[j - 1])
 			s = n[i - 1] + s, i--, j--;
 		else
 		{
-			v = 1;
+			/*v = 1;
 			if (dp[i - 1][j] > dp[i][j - 1])
 				i--, v = 0;
 			if (dp[i][j - 1] > dp[i - 1][j])
@@ -57,7 +57,16 @@ void LCS(int i, int j, string s)
 				string s1 = s;
 				LCS(i - 1, j, s1);
 				j--;
+			}*/
+			if (dp[i - 1][j] == dp[i][j - 1])
+			{
+				string s1 = s;
+				LCS(i - 1, j, s1);
+				j--;
 			}
+			else if (dp[i - 1][j] > dp[i][j - 1])
+				i--;
+			else j--;
 		}
 	str.insert(s);
 }
@@ -86,5 +95,4 @@ int main()
 		cout << lcs << endl;
 
 	return 0;
-
 }
