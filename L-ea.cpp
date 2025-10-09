@@ -42,4 +42,5 @@ int main()
                 cout << n[k] << endl;
                 return 0;
             }
+
 }
