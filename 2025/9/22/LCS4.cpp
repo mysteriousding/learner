@@ -1,4 +1,4 @@
-﻿/*
+/*
 LCS4: 动态规划空间优化 计算最长公共子序列的长度
 */
 #include<iostream>
@@ -17,18 +17,14 @@ int main()
 		x = 0;
 		for (int j = 1; j <= m.size(); j++)
 		{
+			y = dp[j];
 			if (n[i - 1] == m[j - 1])
-				dp[j] = dp[j - 1] + 1;
-			else
-			{
-				y = dp[j];
-				dp[j] = max(x, dp[j]);
-				x = y;
-			}
+				dp[j] = x + 1;
+			else dp[j] = max(dp[j - 1], dp[j]);
+			x = y;
 		}
 	}
 	cout << "LCS Length: " << dp[m.size()] << endl;
 
 	return 0;
-
 }
