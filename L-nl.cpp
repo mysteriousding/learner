@@ -22,4 +22,5 @@ int main()
 	cout << 18 << endl;
 
 	return 0;
+
 }
