@@ -35,4 +35,5 @@ int main()
 	cout << n + (n[n.size() - 1] == 's' ? "es" : "s") << endl;
 
 	return 0;
+
 }
