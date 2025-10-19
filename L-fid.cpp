@@ -46,4 +46,5 @@ int main()
 	cout << (n - 6) / 4 << endl;
 
 	return 0;
+
 }
