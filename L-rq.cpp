@@ -83,4 +83,5 @@ int main()
     int n = diff(1864, 12, 31, 2012, 3, 18);
     printf("%d\n", n);
     return 0;
+
 }
