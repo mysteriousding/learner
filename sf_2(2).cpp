@@ -78,4 +78,5 @@ int main() {
     else cout << "特殊方格越界！" << endl;
 
     return 0;
+
 }
