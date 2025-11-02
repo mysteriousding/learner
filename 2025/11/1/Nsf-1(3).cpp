@@ -1,4 +1,4 @@
-﻿/*
+/*
 例3-机器翻译
 
 题目描述
@@ -61,13 +61,12 @@ int main()
         {
             a[h] = 1;
             b[k++] = h;
-            if (k >= m)
-                a[b[k - m]] = 0;
+            if (k > m)
+                a[b[k - m - 1]] = 0;
             num++;
         }
     }
     cout << num << endl;
 
     return 0;
-
 }
