@@ -1,4 +1,4 @@
-﻿/*
+/*
 · 例5-【模板】静态区间和（前缀和）
 
 题目描述
@@ -30,20 +30,19 @@
 using namespace std;
 int main()
 {
-    int n, m, r, l;
+    int n, m, l, r;
     cin >> n >> m;
-    vector<int>a(n + 1);
+    vector<long long>a(n + 1);
     for (int i = 1; i <= n; i++)
     {
         cin >> a[i];
         a[i] += a[i - 1];
     }
-    for (int i = 0; i < m; i++)
+    while (m--)
     {
-        cin >> r >> l;
-        cout << a[l] - a[r - 1] << endl;
+        cin >> l >> r;
+        cout << a[r] - a[l - 1] << endl;
     }
 
     return 0;
-
 }
