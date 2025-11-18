@@ -42,4 +42,5 @@ int main()
     cout << "共选中 " << count << " 个活动" << endl;
 
     return 0;
+
 }
