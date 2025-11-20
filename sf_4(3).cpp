@@ -90,4 +90,5 @@ int main()
     Kru(b, d, n, m);
 
     return 0;
+
 }
