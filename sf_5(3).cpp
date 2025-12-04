@@ -46,4 +46,5 @@ int main()
 	cout << "最大团大小:" << best << endl; // 输出最大团大小
 
 	return 0;
+
 }
