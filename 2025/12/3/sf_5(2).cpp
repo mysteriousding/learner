@@ -1,39 +1,57 @@
-﻿/*
-2、用回溯法求解TSP问题。
-旅行商问题，即TSP问题（Travelling Salesman Problem）又译为旅行推销员问题、货郎担问题，是数学领域中著名问题之一。
-假设有一个旅行商人要拜访n个城市，他必须选择所要走的路径，路径的限制是每个城市只能拜访一次，而且最后要回到原来出发的城市。
-路径的选择目标是要求得的路径路程为所有路径之中的最小值。
-请使用回溯法求解TSP 问题。
-*/
-#include<iostream>
+#include <iostream>
 using namespace std;
-int n, g[20][20], b[20], mi = 1e9;           // n城市数，g邻接矩阵，vis标记是否访问，mi记录最短回路
-void dfs(int u, int cnt, int cost)           // u当前城市，cnt已访问城市数，cost当前路径长度
-{ 
-    if (cnt == n)                            // 所有城市已访问
-    { 
-        mi = min(mi, cost + g[u][0]);        // 回到起点0，更新最短回路
+int n, g[20][20], b[20], mi = 1e9, q[20], p[20];
+void dfs(int u, int cnt, int cost)
+{
+    p[cnt - 1] = u + 1;
+    if (cost >= mi)
+        return;
+    if (cnt == n)
+    {
+        int x = cost + g[u][0];
+        if (x < mi)
+        {
+            mi = x;
+            for (int i = 0; i < n; i++)
+                q[i] = p[i];
+            q[n] = 0;
+        }
         return;
     }
-    for (int v = 0; v < n; v++)              // 尝试下一城市v
-        if (!b[v] && g[u][v])                // v未访问且u到v有路 
-        {  
-            b[v] = 1;                        // 标记访问
-            dfs(v, cnt + 1, cost + g[u][v]); // 递归访问
-            b[v] = 0;                        // 回溯撤销标记
+    for (int v = 0; v <n; v++)
+        if (!b[v] && g[u][v] != -1)
+        {
+            b[v] = 1;
+            dfs(v, cnt + 1, cost + g[u][v]);
+            b[v] = 0;
         }
 }
-int main()
+
+int main() 
 {
-    cin >> n;                                // 读入城市数
+    cin >> n;
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
-            cin >> g[i][j];                  // 读入邻接矩阵
-
-    b[0] = 1;                                // 起点0标记为已访问
-    dfs(0, 1, 0);                            // 从城市0出发，已访问1城，当前花费0
-    cout << mi << endl;                      // 输出最短回路长度
+            cin >> g[i][j];
+   
+    b[0] = 1;
+    dfs(0, 1, 0);
+    cout << "最优值为:" << mi;
+    if (mi != 1e9)
+    {
+        cout << "最优解为:";
+        for (int i = 0; i < n; i++)
+            cout << q[i];
+        cout << endl;
+    }
 
     return 0;
-
 }
+/*
+5
+0 14 4 10 20
+14 0 7 8 7
+4 5 0 7 16
+11 7 9 0 2
+18 7 17 4 0
+*/
