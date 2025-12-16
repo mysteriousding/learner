@@ -16,4 +16,5 @@ int main()
 	cout << 2048;
 
 	return 0;
+
 }
