@@ -1,4 +1,4 @@
-﻿/*
+/*
 套装螺母
 
 问题描述
@@ -42,4 +42,5 @@ int main()
     cout << num << endl;
 
     return 0;
+
 }
