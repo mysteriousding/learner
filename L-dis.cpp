@@ -32,4 +32,5 @@ int main()
 	cout << n / m << endl;
 
 	return 0;
+
 }
