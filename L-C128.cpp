@@ -27,4 +27,5 @@ int main()
 	cout << 512 << endl;
 
 	return 0;
+
 }
