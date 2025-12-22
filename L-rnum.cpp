@@ -23,4 +23,5 @@ int main()
 	cout << 60 << endl;
 
 	return 0;
+
 }
