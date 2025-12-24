@@ -18,4 +18,5 @@ int main()
 	cout << 255 << endl;
 
 	return 0;
+
 }
