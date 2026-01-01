@@ -51,4 +51,5 @@ int main()
     cout << nu << endl;
 
     return 0;
+
 }
