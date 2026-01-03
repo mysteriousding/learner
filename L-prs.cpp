@@ -30,4 +30,5 @@ int main()
 	cout << int(sqrt(b)) - int(sqrt(a - 1)) << endl;
 
 	return 0;
+
 }
