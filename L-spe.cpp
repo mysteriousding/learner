@@ -32,4 +32,5 @@ int main()
 	cout << 128 << endl;
 
 	return 0;
+
 }
