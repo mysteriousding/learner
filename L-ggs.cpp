@@ -21,4 +21,5 @@ int main()
 	cout << "1/12" << endl;
 
 	return 0;
+
 }
