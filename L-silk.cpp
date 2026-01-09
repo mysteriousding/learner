@@ -26,4 +26,5 @@ int main()
 	cout << 1400 << endl;
 
 	return 0;
+
 }
