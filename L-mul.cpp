@@ -13,4 +13,5 @@ int main()
 	cout << 90000 / 128 - 9999 / 128 << endl;
 
 	return 0;
+
 }
