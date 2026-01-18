@@ -27,4 +27,5 @@ int main()
 	cout << 72 << endl;
 
 	return 0;
+
 }
