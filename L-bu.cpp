@@ -25,4 +25,5 @@ int main()
 	cout << 2520 << endl;
 
 	return 0;
+
 }
