@@ -13,4 +13,5 @@ int main()
 	cout << 96 << endl;
 
 	return 0;
+
 }
