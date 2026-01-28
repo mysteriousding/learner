@@ -30,4 +30,5 @@ int main()
 	cout << b / 3 - (--a) / 3 << endl;
 
 	return 0;
+
 }
