@@ -45,9 +45,7 @@ int main()
     }
     cout << m << endl;
 
-    return 0
-
-
-        
+    return 0     
 }
+
 
