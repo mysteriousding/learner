@@ -26,8 +26,6 @@ int main()
 	cout << 340 << endl;
 
 	return 0;
-
-	
-	
 }
+
 
