@@ -1,5 +1,6 @@
 ﻿//链接：https://ac.nowcoder.com/acm/contest/120561
 //来源：牛客网
+
 /*
 A+B Problem
 
@@ -144,3 +145,4 @@ int main()
     return 0;
 
 }
+
