@@ -24,6 +24,8 @@ int main()
 	cout << (365 + 6) / 7 << endl;
 
 	return 0;
+	
 
 	
 }
+
