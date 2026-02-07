@@ -1,4 +1,4 @@
-﻿//链接：https://ac.nowcoder.com/acm/contest/120563
+﻿//链接：https://ac.nowcoder.com/acm/contest/120563/
 //来源：牛客网
 /* A √
 宙天
@@ -88,4 +88,5 @@ int main()
 
     return 0;
 }
+
 */
