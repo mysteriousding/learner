@@ -1,4 +1,4 @@
-﻿//链接：https://ac.nowcoder.com/acm/contest/
+﻿//链接：https://ac.nowcoder.com/acm/contest
 //来源：牛客网
 /* A  √
 本场比赛灵感来源于树状数组出题组
@@ -2537,4 +2537,5 @@ p
 输出
 复制
 Impossible!
+
 */
