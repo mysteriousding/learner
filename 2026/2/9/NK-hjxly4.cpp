@@ -1,6 +1,6 @@
 //链接：https://ac.nowcoder.com/acm/contest/120564
 //来源：牛客网
-/* A  √
+/* A √
 本场比赛灵感来源于树状数组出题组
 
 题目描述
