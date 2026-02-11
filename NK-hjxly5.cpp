@@ -1,4 +1,4 @@
-//链接：https://ac.nowcoder.com/acm/contest/
+//链接：https://ac.nowcoder.com/acm/contest
 //来源：牛客网
 /* A
 智乃的二进制
@@ -2204,3 +2204,4 @@ int main()
 
     return 0;
 }
+
