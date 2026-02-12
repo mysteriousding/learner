@@ -25,16 +25,4 @@ int main()
 	cout << 2178309 << endl;
 
 	return 0;
-
-
-
-	
-
-	
-	
 }
-
-
-
-
-
