@@ -18,14 +18,4 @@ int main()
 	cout << 70 << endl;
 
 	return 0;
-
-
-	
-
-	
-	
 }
-
-
-
-
