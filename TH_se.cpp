@@ -33,9 +33,4 @@ int main()
 		cout << i + 1 << " " << u[i] << " " << a[i][u[i]-1] << endl;
 	
 	return 0;
-
-
-	
 }
-
-
