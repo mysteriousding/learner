@@ -1,4 +1,4 @@
-﻿#include<iostream>
+#include<iostream>
 #include<vector>
 using namespace std;
 float mi = 100, num = 0, a[4][4] = {
@@ -13,7 +13,7 @@ void dfs(int n)
 {
 	if (n == 4 && mi > num)
 	{
-		cout << mi << endl;
+		//cout << mi << endl;
 		mi = num;
 		u = h;
 	}
