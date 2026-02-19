@@ -14,15 +14,4 @@ int main()
 	cout << 81 << endl;
 
 	return 0;
-
-
-	
-	
-	
-	
 }
-
-
-
-
-
