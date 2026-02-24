@@ -24,10 +24,4 @@ int main()
 	cout << 2299 << endl;
 
 	return 0;
-
 }
-
-
-
-
-
