@@ -30,4 +30,5 @@ int main()
 	cout << 3750 << endl;
 
 	return 0;
+
 }
