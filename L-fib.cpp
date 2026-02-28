@@ -40,4 +40,5 @@ int main()
     cout << fixed << setprecision(8) << a / b << endl;
 
     return 0;
+
 }
