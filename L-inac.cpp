@@ -38,4 +38,5 @@ int main()
 	cout << n * m - n - m << endl;
 
 	return 0;
+
 }
