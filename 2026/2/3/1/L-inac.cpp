@@ -37,10 +37,5 @@ int main()
 	cin >> n >> m;
 	cout << n * m - n - m << endl;
 
-	return 0;
-
+	return 0
 }
-
-
-
-
