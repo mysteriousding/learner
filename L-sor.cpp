@@ -40,4 +40,5 @@ int main()
     cout << fixed << setprecision(2) << m << endl;
 
     return 0;
+
 }
