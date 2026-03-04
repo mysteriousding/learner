@@ -88,9 +88,4 @@ int main(int argc, char* argv[])
     printf("%c\n", verifyCode("32011119610215381"));
     printf("%c\n", verifyCode("42900819801018236"));
     return 0;
-
 }
-
-
-
-
