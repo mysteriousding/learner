@@ -42,4 +42,5 @@ int main()
     cout << (a[0] - 1) * a[0] / 2 + a[1] * a[2] << endl;
 
     return 0;
+
 }
