@@ -1,4 +1,4 @@
-﻿/*
+/*
 井水注满的最小桶数
 
 问题描述
@@ -38,7 +38,7 @@ int main()
     sort(a.begin(), a.end());
     for (int i = 0; i < k; i++)
         m += a[i];
-    cout << m / 100 + (m % 100 != 0) << endl;
+    cout << m / 100 + !!(m % 100) << endl;
 
     return 0;
 }
