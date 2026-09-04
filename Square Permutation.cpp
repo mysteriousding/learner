@@ -1,4 +1,4 @@
-﻿/*】】
+﻿/*
 The 2025 ICPC Asia East Continent Online Contest (II)
 F. Square Permutation I
  Statement
